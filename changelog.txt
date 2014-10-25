@@ -1,0 +1,5 @@
+2014-10-25 Miquèl RAYNAL
+- Creation of a changelog
+- Commit of a basic project running Keil µVision 4 for target STM32F103RB
+- Contains the minimal libraries (Clock, GPIO, Systick, Timers 1-4, NVIC, ADC, DAC)
+- Blink de la led "stat" (active-bas)

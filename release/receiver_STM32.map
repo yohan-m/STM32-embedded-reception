@@ -1,0 +1,461 @@
+Archive member included because of file (symbol)
+
+./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+                              ./release/main.o (Timer_1234_Init)
+./drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
+                              ./release/main.o (GPIO_Configure)
+c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_addsubdf3.o)
+                              ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o) (__aeabi_dadd)
+c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_muldivdf3.o)
+                              ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o) (__aeabi_dmul)
+c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_truncdfsf2.o)
+                              ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o) (__aeabi_d2f)
+c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_addsubsf3.o)
+                              ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o) (__aeabi_ui2f)
+c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_muldivsf3.o)
+                              ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o) (__aeabi_fmul)
+c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_cmpsf2.o)
+                              ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o) (__aeabi_fcmplt)
+c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_fixsfsi.o)
+                              ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o) (__aeabi_f2iz)
+c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_fixunssfsi.o)
+                              ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o) (__aeabi_f2uiz)
+
+Allocating common symbols
+Common symbol       size              file
+
+Enable_Fct_IT_Compare_Match_TIM3_Voie1
+                    0x1               ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+Enable_Fct_IT_Compare_Match_TIM1_Voie3
+                    0x1               ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+Enable_Fct_IT_Compare_Match_TIM2_Voie1
+                    0x1               ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+Enable_Fct_IT_Compare_Match_TIM4_Voie3
+                    0x1               ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+Enable_Fct_IT_Compare_Match_TIM1_Voie1
+                    0x1               ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+Enable_Fct_IT_Compare_Match_TIM3_Voie4
+                    0x1               ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+Enable_Fct_IT_Compare_Match_TIM4_Voie1
+                    0x1               ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+Enable_Fct_IT_Compare_Match_TIM3_Voie2
+                    0x1               ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+Enable_Fct_IT_Compare_Match_TIM2_Voie3
+                    0x1               ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+Enable_Fct_IT_Compare_Match_TIM1_Voie4
+                    0x1               ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+Enable_Fct_IT_Compare_Match_TIM4_Voie4
+                    0x1               ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+Enable_Fct_IT_Compare_Match_TIM2_Voie4
+                    0x1               ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+Enable_Fct_IT_Compare_Match_TIM3_Voie3
+                    0x1               ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+Enable_Fct_IT_Compare_Match_TIM2_Voie2
+                    0x1               ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+Enable_Fct_IT_Compare_Match_TIM1_Voie2
+                    0x1               ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+Enable_Fct_IT_Compare_Match_TIM4_Voie2
+                    0x1               ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH            0x08000000         0x00020000         xr
+RAM              0x20000000         0x00005000         rw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD ./release/clock.o
+LOAD ./release/main.o
+LOAD ./release/startup-gcc.o
+LOAD ./drivers\libDrivers_STM32F103_107_Jan_2013.a
+LOAD c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/lib/thumb2\libm.a
+START GROUP
+LOAD c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a
+LOAD c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/lib/thumb2\libc.a
+END GROUP
+START GROUP
+LOAD c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a
+LOAD c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/lib/thumb2\libc.a
+LOAD c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/lib/thumb2\libm.a
+END GROUP
+
+.text           0x08000000     0x3634
+ *(.isr_vector)
+ .isr_vector    0x08000000       0xec ./release/startup-gcc.o
+                0x08000000                __isr_vector
+ *(.text*)
+ .text          0x080000ec      0x1fc ./release/clock.o
+                0x080001a4                CLOCK_Configure
+                0x08000260                CLOCK_GetTIMCLK
+                0x08000298                CLOCK_GetHCLK
+                0x080002ac                CLOCK_GetPCLK1
+                0x080002c0                CLOCK_GetPCLK2
+                0x080002d4                CLOCK_GetADCCLK
+ .text          0x080002e8      0x128 ./release/main.o
+                0x080002e8                Clignote
+                0x0800033c                main
+ .text          0x08000410       0x8c ./release/startup-gcc.o
+                0x08000410                Reset_Handler
+                0x08000484                SystemInit
+                0x08000486                NMI_Handler
+                0x08000488                HardFault_Handler
+                0x0800048a                MemManage_Handler
+                0x0800048c                BusFault_Handler
+                0x0800048e                UsageFault_Handler
+                0x08000490                SVC_Handler
+                0x08000492                DebugMon_Handler
+                0x08000494                PendSV_Handler
+                0x08000496                SysTick_Handler
+                0x08000498                DMAChannel1_IRQHandler
+                0x08000498                EXTI0_IRQHandler
+                0x08000498                SPI1_IRQHandler
+                0x08000498                TAMPER_IRQHandler
+                0x08000498                DMAChannel4_IRQHandler
+                0x08000498                USART3_IRQHandler
+                0x08000498                PVD_IRQHandler
+                0x08000498                DMAChannel7_IRQHandler
+                0x08000498                CAN1_RX1_IRQHandler
+                0x08000498                I2C1_EV_IRQHandler
+                0x08000498                RCC_IRQHandler
+                0x08000498                TIM1_TRG_COM_IRQHandler
+                0x08000498                EXTI15_10_IRQHandler
+                0x08000498                ADC_IRQHandler
+                0x08000498                DMAChannel5_IRQHandler
+                0x08000498                EXTI9_5_IRQHandler
+                0x08000498                DMAChannel2_IRQHandler
+                0x08000498                SPI2_IRQHandler
+                0x08000498                EXTI3_IRQHandler
+                0x08000498                I2C2_EV_IRQHandler
+                0x08000498                EXTI4_IRQHandler
+                0x08000498                USB_LP_CAN1_RX0_IRQHandler
+                0x08000498                RTC_IRQHandler
+                0x08000498                USB_HP_CAN1_TX_IRQHandler
+                0x08000498                WWDG_IRQHandler
+                0x08000498                TIM1_BRK_IRQHandler
+                0x08000498                EXTI1_IRQHandler
+                0x08000498                RTCAlarm_IRQHandler
+                0x08000498                USART2_IRQHandler
+                0x08000498                I2C2_ER_IRQHandler
+                0x08000498                CAN1_SCE_IRQHandler
+                0x08000498                FLASH_IRQHandler
+                0x08000498                DMAChannel6_IRQHandler
+                0x08000498                DMAChannel3_IRQHandler
+                0x08000498                EXTI2_IRQHandler
+                0x08000498                USART1_IRQHandler
+                0x08000498                I2C1_ER_IRQHandler
+                0x08000498                USBWakeUp_IRQHandler
+ *fill*         0x0800049c        0x4 
+ .text          0x080004a0     0x20d0 ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+                0x080004a0                Timer_1234_Init
+                0x080006b8                Active_IT_Debordement_Timer
+                0x08000890                Active_IT_Compare_Timer
+                0x08000db8                PWM_Init
+                0x08000fc8                PWM_Complementaire_Timer1
+                0x08001074                Timer_Inc_Init
+                0x08001250                Capture_Init
+                0x080016b0                TIM1_CC_IRQHandler
+                0x080019f0                TIM1_UP_IRQHandler
+                0x08001a38                TIM2_IRQHandler
+                0x08001d5c                TIM3_IRQHandler
+                0x08002110                TIM4_IRQHandler
+                0x080024c4                Lire_Duree_Pulse
+ .text          0x08002570      0x25c ./drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
+                0x08002570                GPIO_Configure
+ .text          0x080027cc      0x370 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_addsubdf3.o)
+                0x080027cc                __aeabi_drsub
+                0x080027d4                __aeabi_dsub
+                0x080027d4                __subdf3
+                0x080027d8                __aeabi_dadd
+                0x080027d8                __adddf3
+                0x08002a50                __floatunsidf
+                0x08002a50                __aeabi_ui2d
+                0x08002a70                __floatsidf
+                0x08002a70                __aeabi_i2d
+                0x08002a94                __aeabi_f2d
+                0x08002a94                __extendsfdf2
+                0x08002ad0                __floatundidf
+                0x08002ad0                __aeabi_ul2d
+                0x08002ae0                __floatdidf
+                0x08002ae0                __aeabi_l2d
+ .text          0x08002b3c      0x424 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_muldivdf3.o)
+                0x08002b3c                __aeabi_dmul
+                0x08002b3c                __muldf3
+                0x08002d90                __divdf3
+                0x08002d90                __aeabi_ddiv
+ .text          0x08002f60       0xa0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_truncdfsf2.o)
+                0x08002f60                __truncdfsf2
+                0x08002f60                __aeabi_d2f
+ .text          0x08003000      0x21c c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_addsubsf3.o)
+                0x08003000                __aeabi_frsub
+                0x08003008                __subsf3
+                0x08003008                __aeabi_fsub
+                0x0800300c                __aeabi_fadd
+                0x0800300c                __addsf3
+                0x0800316c                __aeabi_ui2f
+                0x0800316c                __floatunsisf
+                0x08003174                __aeabi_i2f
+                0x08003174                __floatsisf
+                0x08003190                __aeabi_ul2f
+                0x08003190                __floatundisf
+                0x080031a0                __aeabi_l2f
+                0x080031a0                __floatdisf
+ .text          0x0800321c      0x2a0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_muldivsf3.o)
+                0x0800321c                __mulsf3
+                0x0800321c                __aeabi_fmul
+                0x08003384                __aeabi_fdiv
+                0x08003384                __divsf3
+ .text          0x080034bc       0xec c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_cmpsf2.o)
+                0x080034bc                __gesf2
+                0x080034bc                __gtsf2
+                0x080034c4                __lesf2
+                0x080034c4                __ltsf2
+                0x080034cc                __nesf2
+                0x080034cc                __eqsf2
+                0x080034cc                __cmpsf2
+                0x0800352c                __aeabi_cfrcmple
+                0x08003534                __aeabi_cfcmpeq
+                0x08003534                __aeabi_cfcmple
+                0x08003544                __aeabi_fcmpeq
+                0x08003558                __aeabi_fcmplt
+                0x0800356c                __aeabi_fcmple
+                0x08003580                __aeabi_fcmpge
+                0x08003594                __aeabi_fcmpgt
+ .text          0x080035a8       0x4c c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_fixsfsi.o)
+                0x080035a8                __aeabi_f2iz
+                0x080035a8                __fixsfsi
+ .text          0x080035f4       0x40 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_fixunssfsi.o)
+                0x080035f4                __fixunssfsi
+                0x080035f4                __aeabi_f2uiz
+ *(.init)
+ *(.fini)
+ *crtbegin.o(.ctors)
+ *crtbegin?.o(.ctors)
+ *(EXCLUDE_FILE(*crtend.o *crtend?.o) .ctors)
+ *(SORT(.ctors.*))
+ *(.ctors)
+ *crtbegin.o(.dtors)
+ *crtbegin?.o(.dtors)
+ *(EXCLUDE_FILE(*crtend.o *crtend?.o) .dtors)
+ *(SORT(.dtors.*))
+ *(.dtors)
+ *(.rodata*)
+ *(.eh_frame*)
+
+.glue_7         0x08003634        0x0
+ .glue_7        0x00000000        0x0 linker stubs
+
+.glue_7t        0x08003634        0x0
+ .glue_7t       0x00000000        0x0 linker stubs
+
+.vfp11_veneer   0x08003634        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x08003634        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.iplt           0x08003634        0x0
+ .iplt          0x00000000        0x0 ./release/clock.o
+
+.rel.dyn        0x08003634        0x0
+ .rel.iplt      0x00000000        0x0 ./release/clock.o
+
+.ARM.extab
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+                0x08003634                __exidx_start = .
+
+.ARM.exidx
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+                0x08003634                __exidx_end = .
+                0x08003634                __etext = .
+
+.data           0x20000000        0x4 load address 0x08003634
+                0x20000000                __data_start__ = .
+ *(vtable)
+ *(.data*)
+ .data          0x20000000        0x0 ./release/clock.o
+ .data          0x20000000        0x4 ./release/main.o
+                0x20000000                LED
+ .data          0x20000004        0x0 ./release/startup-gcc.o
+ .data          0x20000004        0x0 ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+ .data          0x20000004        0x0 ./drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
+ .data          0x20000004        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_addsubdf3.o)
+ .data          0x20000004        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_muldivdf3.o)
+ .data          0x20000004        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_truncdfsf2.o)
+ .data          0x20000004        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_addsubsf3.o)
+ .data          0x20000004        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_muldivsf3.o)
+ .data          0x20000004        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_cmpsf2.o)
+ .data          0x20000004        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_fixsfsi.o)
+ .data          0x20000004        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_fixunssfsi.o)
+                0x20000004                . = ALIGN (0x4)
+                0x20000004                PROVIDE (__preinit_array_start, .)
+ *(.preinit_array)
+                0x20000004                PROVIDE (__preinit_array_end, .)
+                0x20000004                . = ALIGN (0x4)
+                0x20000004                PROVIDE (__init_array_start, .)
+ *(SORT(.init_array.*))
+ *(.init_array)
+                0x20000004                PROVIDE (__init_array_end, .)
+                0x20000004                . = ALIGN (0x4)
+                0x20000004                PROVIDE (__fini_array_start, .)
+ *(SORT(.fini_array.*))
+ *(.fini_array)
+                0x20000004                PROVIDE (__fini_array_end, .)
+                0x20000004                . = ALIGN (0x4)
+                0x20000004                __data_end__ = .
+
+.igot.plt       0x20000004        0x0 load address 0x08003638
+ .igot.plt      0x00000000        0x0 ./release/clock.o
+
+.bss            0x20000004       0xa0 load address 0x08003638
+                0x20000004                __bss_start__ = .
+ *(.bss*)
+ .bss           0x20000004        0x0 ./release/clock.o
+ .bss           0x20000004        0x0 ./release/main.o
+ .bss           0x20000004        0x0 ./release/startup-gcc.o
+ .bss           0x20000004       0x90 ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+ .bss           0x20000094        0x0 ./drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
+ .bss           0x20000094        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_addsubdf3.o)
+ .bss           0x20000094        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_muldivdf3.o)
+ .bss           0x20000094        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_truncdfsf2.o)
+ .bss           0x20000094        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_addsubsf3.o)
+ .bss           0x20000094        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_muldivsf3.o)
+ .bss           0x20000094        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_cmpsf2.o)
+ .bss           0x20000094        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_fixsfsi.o)
+ .bss           0x20000094        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_fixunssfsi.o)
+ *(COMMON)
+ COMMON         0x20000094       0x10 ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+                0x20000094                Enable_Fct_IT_Compare_Match_TIM3_Voie1
+                0x20000095                Enable_Fct_IT_Compare_Match_TIM1_Voie3
+                0x20000096                Enable_Fct_IT_Compare_Match_TIM2_Voie1
+                0x20000097                Enable_Fct_IT_Compare_Match_TIM4_Voie3
+                0x20000098                Enable_Fct_IT_Compare_Match_TIM1_Voie1
+                0x20000099                Enable_Fct_IT_Compare_Match_TIM3_Voie4
+                0x2000009a                Enable_Fct_IT_Compare_Match_TIM4_Voie1
+                0x2000009b                Enable_Fct_IT_Compare_Match_TIM3_Voie2
+                0x2000009c                Enable_Fct_IT_Compare_Match_TIM2_Voie3
+                0x2000009d                Enable_Fct_IT_Compare_Match_TIM1_Voie4
+                0x2000009e                Enable_Fct_IT_Compare_Match_TIM4_Voie4
+                0x2000009f                Enable_Fct_IT_Compare_Match_TIM2_Voie4
+                0x200000a0                Enable_Fct_IT_Compare_Match_TIM3_Voie3
+                0x200000a1                Enable_Fct_IT_Compare_Match_TIM2_Voie2
+                0x200000a2                Enable_Fct_IT_Compare_Match_TIM1_Voie2
+                0x200000a3                Enable_Fct_IT_Compare_Match_TIM4_Voie2
+                0x200000a4                __bss_end__ = .
+
+.heap           0x200000a8      0x800
+                0x200000a8                __end__ = .
+                0x200000a8                end = __end__
+                0x200000a8                _end = __end__
+ *(.heap*)
+ .heap          0x200000a8      0x800 ./release/startup-gcc.o
+                0x200000a8                __HeapBase
+                0x200008a8                __HeapLimit = .
+
+.stack_dummy    0x200000a8      0xc00
+ *(.stack)
+ .stack         0x200000a8      0xc00 ./release/startup-gcc.o
+                0x20005000                __StackTop = (ORIGIN (RAM) + 0x5000)
+                0x20004400                __StackLimit = (__StackTop - SIZEOF (.stack_dummy))
+                0x20005000                PROVIDE (__stack, __StackTop)
+                0x00000001                ASSERT ((__StackLimit >= __HeapLimit), region RAM overflowed with stack)
+OUTPUT(./release/receiver_STM32.elf elf32-littlearm)
+
+.debug_info     0x00000000     0x1855
+ .debug_info    0x00000000      0x577 ./release/clock.o
+ .debug_info    0x00000577      0x3f9 ./release/main.o
+ .debug_info    0x00000970       0x86 ./release/startup-gcc.o
+ .debug_info    0x000009f6      0xbf9 ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+ .debug_info    0x000015ef      0x266 ./drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
+
+.debug_abbrev   0x00000000      0x46a
+ .debug_abbrev  0x00000000      0x121 ./release/clock.o
+ .debug_abbrev  0x00000121       0xdb ./release/main.o
+ .debug_abbrev  0x000001fc       0x14 ./release/startup-gcc.o
+ .debug_abbrev  0x00000210      0x18a ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+ .debug_abbrev  0x0000039a       0xd0 ./drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
+
+.debug_loc      0x00000000      0x4b2
+ .debug_loc     0x00000000      0x14c ./release/clock.o
+ .debug_loc     0x0000014c       0x64 ./release/main.o
+ .debug_loc     0x000001b0      0x2cb ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+ .debug_loc     0x0000047b       0x37 ./drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
+
+.debug_aranges  0x00000000       0xa0
+ .debug_aranges
+                0x00000000       0x20 ./release/clock.o
+ .debug_aranges
+                0x00000020       0x20 ./release/main.o
+ .debug_aranges
+                0x00000040       0x20 ./release/startup-gcc.o
+ .debug_aranges
+                0x00000060       0x20 ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+ .debug_aranges
+                0x00000080       0x20 ./drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
+
+.debug_line     0x00000000      0x76b
+ .debug_line    0x00000000      0x18d ./release/clock.o
+ .debug_line    0x0000018d      0x130 ./release/main.o
+ .debug_line    0x000002bd       0xa7 ./release/startup-gcc.o
+ .debug_line    0x00000364      0x2d3 ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+ .debug_line    0x00000637      0x134 ./drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
+
+.debug_str      0x00000000      0x982
+ .debug_str     0x00000000      0x2bb ./release/clock.o
+                                0x2fc (size before relaxing)
+ .debug_str     0x000002bb       0x3d ./release/main.o
+                                0x23f (size before relaxing)
+ .debug_str     0x000002f8      0x641 ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+                                0x84f (size before relaxing)
+ .debug_str     0x00000939       0x49 ./drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
+                                0x19c (size before relaxing)
+
+.comment        0x00000000       0x86
+ .comment       0x00000000       0x30 ./release/clock.o
+                                 0x31 (size before relaxing)
+ .comment       0x00000000       0x31 ./release/main.o
+ .comment       0x00000030       0x2b ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+ .comment       0x0000005b       0x2b ./drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
+
+.ARM.attributes
+                0x00000000       0x31
+ .ARM.attributes
+                0x00000000       0x33 ./release/clock.o
+ .ARM.attributes
+                0x00000033       0x33 ./release/main.o
+ .ARM.attributes
+                0x00000066       0x21 ./release/startup-gcc.o
+ .ARM.attributes
+                0x00000087       0x31 ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+ .ARM.attributes
+                0x000000b8       0x31 ./drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
+ .ARM.attributes
+                0x000000e9       0x19 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_addsubdf3.o)
+ .ARM.attributes
+                0x00000102       0x19 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_muldivdf3.o)
+ .ARM.attributes
+                0x0000011b       0x19 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_truncdfsf2.o)
+ .ARM.attributes
+                0x00000134       0x19 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_addsubsf3.o)
+ .ARM.attributes
+                0x0000014d       0x19 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_muldivsf3.o)
+ .ARM.attributes
+                0x00000166       0x19 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_cmpsf2.o)
+ .ARM.attributes
+                0x0000017f       0x19 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_fixsfsi.o)
+ .ARM.attributes
+                0x00000198       0x19 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_fixunssfsi.o)
+
+.debug_frame    0x00000000      0x2e4
+ .debug_frame   0x00000000       0xc8 ./release/clock.o
+ .debug_frame   0x000000c8       0x48 ./release/main.o
+ .debug_frame   0x00000110      0x1a8 ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+ .debug_frame   0x000002b8       0x2c ./drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
+
+.debug_pubnames
+                0x00000000      0x405
+ .debug_pubnames
+                0x00000000      0x3e0 ./drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+ .debug_pubnames
+                0x000003e0       0x25 ./drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
