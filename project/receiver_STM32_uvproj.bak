@@ -297,32 +297,62 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>pilotes</GroupName>
-          <Files>
-            <File>
-              <FileName>clock.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\drivers/clock/clock.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>src</GroupName>
-          <Files>
-            <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src/main.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>Boot</GroupName>
           <Files>
             <File>
               <FileName>startup-gcc.S</FileName>
               <FileType>2</FileType>
-              <FilePath>C:/Keil/stm32lib/stm32f10x/boot/stm32f103/startup-gcc.S</FilePath>
+              <FilePath>../system/stm32f103/startup-gcc.S</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Drivers</GroupName>
+          <Files>
+            <File>
+              <FileName>clock.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../drivers/clock/clock.c</FilePath>
+            </File>
+            <File>
+              <FileName>clock.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\drivers\clock\clock.h</FilePath>
+            </File>
+            <File>
+              <FileName>usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../drivers/usart/usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>usart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\drivers\usart\usart.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Services</GroupName>
+          <Files>
+            <File>
+              <FileName>serialComm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../src/serialComm.c</FilePath>
+            </File>
+            <File>
+              <FileName>serialComm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\serialComm.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Application</GroupName>
+          <Files>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../src/main.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -588,7 +618,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_MD</Define>
               <Undefine></Undefine>
-              <IncludePath>.\src;.\drivers\include;.\drivers\clock</IncludePath>
+              <IncludePath>..\system\stm32f103;..\system;..\src;..\drivers\include;..\drivers\clock;..\drivers\usart</IncludePath>
             </VariousControls>
           </Carm>
           <Aarm>
@@ -611,40 +641,70 @@
             <DataAddressRange></DataAddressRange>
             <BSSAddressRange></BSSAddressRange>
             <IncludeLibs>Drivers_STM32F103_107_Jan_2013</IncludeLibs>
-            <IncludeDir>.\drivers</IncludeDir>
+            <IncludeDir>..\drivers</IncludeDir>
             <Misc></Misc>
-            <ScatterFile>C:\Keil\stm32lib\stm32f10x\boot\stm32f103\stm32f103.ld</ScatterFile>
+            <ScatterFile>..\system\stm32f103\stm32f103.ld</ScatterFile>
           </LDarm>
         </TargetArm>
       </TargetOption>
       <Groups>
-        <Group>
-          <GroupName>pilotes</GroupName>
-          <Files>
-            <File>
-              <FileName>clock.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\drivers/clock/clock.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>src</GroupName>
-          <Files>
-            <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src/main.c</FilePath>
-            </File>
-          </Files>
-        </Group>
         <Group>
           <GroupName>Boot</GroupName>
           <Files>
             <File>
               <FileName>startup-gcc.S</FileName>
               <FileType>2</FileType>
-              <FilePath>C:/Keil/stm32lib/stm32f10x/boot/stm32f103/startup-gcc.S</FilePath>
+              <FilePath>../system/stm32f103/startup-gcc.S</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Drivers</GroupName>
+          <Files>
+            <File>
+              <FileName>clock.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../drivers/clock/clock.c</FilePath>
+            </File>
+            <File>
+              <FileName>clock.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\drivers\clock\clock.h</FilePath>
+            </File>
+            <File>
+              <FileName>usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../drivers/usart/usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>usart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\drivers\usart\usart.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Services</GroupName>
+          <Files>
+            <File>
+              <FileName>serialComm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../src/serialComm.c</FilePath>
+            </File>
+            <File>
+              <FileName>serialComm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\serialComm.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Application</GroupName>
+          <Files>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../src/main.c</FilePath>
             </File>
           </Files>
         </Group>

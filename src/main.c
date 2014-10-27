@@ -1,44 +1,83 @@
-//__________________________________________________________
-// BINOME :
-// ETAT : 
-//__________________________________________________________
+/**
+	* @file main.c
+	* @brief Main function core
+	*
+	*      This file contains the main function that initializes, configurates
+	* 			and start all applications with their services. 
+	*
+	*			Last modification : 25 Oct 2014
+	*
+	* @author Miquèl RAYNAL
+	* @version 0.1
+	* @date 25 Oct 2014
+	*/
 
-//____ registres de périphériques du stm_32
+
+/******************************************************************************
+	* 
+	*   INCLUDED FILES
+	*
+	*****************************************************************************/
+
+
+#include <stdint.h>
 #include "stm32f10x.h"
 #include "Clock.h"
 #include "Timer_1234.h"
 #include "GPIO.h"
+#include "serialComm.h"
+#include <string.h>
+#include "xprintf.h"	// For debug purpose only
 
-
-
-void Clignote(void)		// Routine d'interruption
+float realPeriod;
+char serialText[50];
+	
+	
+void Clignote(void)		// Interruption routine
 {
 	GPIO_Toggle(GPIOC, 12);
+	serialCommSendData((uint8_t *)serialText, sizeof(serialText));
 }
+
 
 int main (void)
 {
-	float Duree_Reelle;		
-	CLOCK_Configure();		// Initialisation du système d'horloge
-												//	- Si la clé de compilation STM32F107 est défini, le CPU est clocké à 50MHz
-												//  - par défaut (STM32F107 non défini), le CPU est clocké à 40MHz
 
+	/*******************
+	 * Initializations *
+	 *******************/
+	// Clock
+	CLOCK_Configure();		// Initialization of the system clock
+												//	- If the compilation key STM32F107 is defined, the CPU is clocked at 50MHz
+												//  - Else (STM32F107 non defined), the CPU is clocked at 40MHz
 
-	// Configuration
-	GPIO_Configure(GPIOC, 12, OUTPUT, OUTPUT_PPULL); // Led Stat
-	GPIO_Clear(GPIOC, 12);
+	// GPIO (Stat LED)
+	GPIO_Configure( GPIOC, 12, OUTPUT, OUTPUT_PPULL ); // Led Stat
+	GPIO_Clear( GPIOC, 12 );
 	
-	Duree_Reelle = Timer_1234_Init(TIM2, 100000.0 );	// Configuration du Timer 2 pour un cycle de 20ms 
-																										// la valeur est donnée en float, en µs
-																										// Duree_Reelle contient la valeur exacte du cycle du 											//Timer, au plus proche de ce qui est demandé.
+	// Timer
+	realPeriod = Timer_1234_Init( TIM2, 100000.0 );	// Configuration of Timer 2 (float value un µs)
+																									// Real_period contains the real period as close as demanded
 
-	Active_IT_Debordement_Timer( TIM2, 1, Clignote);  // Autorisation d'une interruption de priorité 1 
-																										// sur le Timer 2. Spécification du nom de la fonction 											// devant être la routine d'interruption associée, ici, 											//fonction Clignote.
+	// IT on timer overflow
+	Active_IT_Debordement_Timer( TIM2, 1, Clignote );  // Allows interrupt for Timer 2 overflow (priority 1)
 	
+	// Serial communication
+	serialCommInit();
 	
-	// Action en tâche de fond 
+	/***********
+	 * Process *
+	 ***********/
+	
+	// Example of debug message (no floating point visualization)
+	xsprintf(serialText, "Real period : %d us\n", (int) realPeriod);
+	
 	while(1)
-	{}
+	{
+
+		// NOP
+				
+	}
 		
 	return 0;
 }

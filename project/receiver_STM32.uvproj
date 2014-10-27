@@ -314,10 +314,47 @@
               <FileType>1</FileType>
               <FilePath>../drivers/clock/clock.c</FilePath>
             </File>
+            <File>
+              <FileName>clock.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\drivers\clock\clock.h</FilePath>
+            </File>
+            <File>
+              <FileName>usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../drivers/usart/usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>usart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\drivers\usart\usart.h</FilePath>
+            </File>
+            <File>
+              <FileName>xprintf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../drivers/xprintf/xprintf.c</FilePath>
+            </File>
+            <File>
+              <FileName>xprintf.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\drivers\xprintf\xprintf.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
           <GroupName>Services</GroupName>
+          <Files>
+            <File>
+              <FileName>serialComm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../src/serialComm.c</FilePath>
+            </File>
+            <File>
+              <FileName>serialComm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\serialComm.h</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>Application</GroupName>
@@ -591,7 +628,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_MD</Define>
               <Undefine></Undefine>
-              <IncludePath>..\system\stm32f103;..\system;..\src;..\drivers\include;..\drivers\clock</IncludePath>
+              <IncludePath>..\system\stm32f103;..\system;..\src;..\drivers\include;..\drivers\clock;..\drivers\usart;..\drivers\xprintf</IncludePath>
             </VariousControls>
           </Carm>
           <Aarm>
@@ -639,10 +676,47 @@
               <FileType>1</FileType>
               <FilePath>../drivers/clock/clock.c</FilePath>
             </File>
+            <File>
+              <FileName>clock.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\drivers\clock\clock.h</FilePath>
+            </File>
+            <File>
+              <FileName>usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../drivers/usart/usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>usart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\drivers\usart\usart.h</FilePath>
+            </File>
+            <File>
+              <FileName>xprintf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../drivers/xprintf/xprintf.c</FilePath>
+            </File>
+            <File>
+              <FileName>xprintf.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\drivers\xprintf\xprintf.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
           <GroupName>Services</GroupName>
+          <Files>
+            <File>
+              <FileName>serialComm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../src/serialComm.c</FilePath>
+            </File>
+            <File>
+              <FileName>serialComm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\serialComm.h</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>Application</GroupName>
