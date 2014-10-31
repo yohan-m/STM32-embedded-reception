@@ -4,4 +4,6 @@ release/serialcomm.o: ../src/serialComm.c \
  ../system/stm32f10x.h C:/Keil/ARM/CMSIS/Include/core_cm3.h \
  C:/Keil/ARM/CMSIS/Include/core_cmInstr.h \
  C:/Keil/ARM/CMSIS/Include/core_cmFunc.h ../system/system_stm32f10x.h \
- ../drivers/include/gpio.h ../drivers/usart/usart.h ../src/serialComm.h
+ ../drivers/include/gpio.h ../drivers/usart/usart.h ../src/serialComm.h \
+ ../../common-sources/src/usartFrame.h \
+ ../../common-sources/src/frameTypes.h

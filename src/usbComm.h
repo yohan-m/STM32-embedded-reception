@@ -1,9 +1,9 @@
 /**
-	* @file serialComm.c
+	* @file usbComm.c
 	* @brief Serial Communication Protocol file core
 	*
-	*     This file contains the service serial communication RS232 (UART).
-	*			Initialization, configuration and send mode. The status LED toggles if Tx is valid.
+	*     This file contains the service serial communication USB.
+	*			Initialization, configuration and send mode. The status LED toggles when a frame is sent.
 	*
 	* 		Last modification : 25 Oct 2014
 	*
@@ -23,29 +23,13 @@
 	*
 	*****************************************************************************/
 
-
 #include <stdint.h>
-
 
 /******************************************************************************
 	* 
 	*   CONSTANTS
 	*
 	*****************************************************************************/
-
-
-#define UART_ID										USART1							// UART to use
-#define UART_BAUD_RATE						9600								// Baudrate
-#define UART_PARITY								DISABLED						// Parity
-#define UART_STOP_BIT_MODE1				STOP_BIT_MODE1			// Number of stop bits
-#define UART_WORD_LENGTH					WORD_LENGTH_8BITS		// Word length
-#define UART_HANDLER_PRIORITY 		0										// Priority
-
-typedef enum // Error LED state
-{
-	LED_ON,
-	LED_OFF
-} t_LEDState;
 
 
 /******************************************************************************
@@ -55,25 +39,14 @@ typedef enum // Error LED state
 	*****************************************************************************/
 	
 /*******************************************************************************
-	* serialCommSendChar
+	* usbCommToggleLEDStatus
 	*
-	*			Send character to USART serie protocol
-	* 			
-	* @param Char to send  
-	* @return 0 if no error
-	* @return 1 if error during send
-	******************************************************************************/
-uint8_t serialCommSendChar( uint8_t c );
-	
-/*******************************************************************************
-	* serialCommToggleLEDStatus
-	*
-	*			Set the UART error LED (closest to the UART pins)
+	*			Set the USB error LED (2nd pin)
 	* 			
 	* @param Void  
 	* @return Void
 	******************************************************************************/
-void serialCommToggleLEDStatus();
+void usbCommToggleLEDStatus();
 
 
 /******************************************************************************
@@ -84,27 +57,49 @@ void serialCommToggleLEDStatus();
 
 
 /********************************************************************************
-	* serialCommInit
+	* usbCommInit
 	*
-	*      Configure all clocks and registers.
-	*			Initialize all GPIOs and Timers
+	*      Configure the usb serial communication.
+	*				Blocking function.
 	* 			
 	* @param Void
-	* @return 0 if no error
-	* @return 1 if error takes place in the initialization
+	* @return Void
 	*******************************************************************************/
-uint8_t serialCommInit( void );
+void usbCommInit( void );
+	
+/*******************************************************************************
+	* usbCommSendChar
+	*
+	*			Send character via USB
+	* 			
+	* @param Char to send  
+	* @return Void
+	******************************************************************************/
+void usbCommSendChar( uint8_t c );
 
 /*******************************************************************************
-	* serialCommSendData
+	* usbCommSendData
 	*
-	*			Send an array of uint8_t to USART serie protocol
+	*			Send an array of uint8_t via USB
 	* 			
 	* @param Array of uint8_t to send  
-	* @return 0 if no error
-	* @return The number of errors during send
+	* @param Size of the array
+	* @return Void
 	******************************************************************************/
-uint8_t serialCommSendData(uint8_t * array, uint16_t size);
+void usbCommSendData( uint8_t * array, uint16_t size );
+
+/*******************************************************************************
+	* usbCommSendTimes
+	*
+	*			Send a frame containing the four times to the drone via USB
+	* 			
+	* @param Time of the 1st emitter in ns
+	* @param Time of the 2nd emitter in ns
+	* @param Time of the 3rd emitter in ns
+	* @param Time of the 4th emitter in ns
+	* @return Void
+	******************************************************************************/
+void usbCommSendTimes( uint32_t time1, uint32_t time2, uint32_t time3, uint32_t time4 );
 
 
 #endif					/* S_SERIALCOMM_H */

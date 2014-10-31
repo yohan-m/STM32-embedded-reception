@@ -8,3 +8,8 @@
 - UART added
 - Use of xprintf library (string formatting for debug purpose)
 - Possibility to send an array of char/uint8_t
+
+2014-10-31 Miquèl RAYNAL
+- Switch from UART to USB serial communication
+- USB full support
+- Sending recorded samples from the ADC via the serial USB

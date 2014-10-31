@@ -1,6 +1,6 @@
 /**
-	* @file serialComm.c
-	* @brief Serial Communication Protocol file core
+	* @file uartComm.c
+	* @brief UART Communication Protocol file core
 	*
 	*     This file contains the service serial communication RS232 (UART).
 	*			Initialization, configuration and send mode. The status LED toggles if Tx is valid.
@@ -24,8 +24,8 @@
 #include "stm32f10x.h"
 #include "gpio.h"
 #include "usart.h"
-#include "serialComm.h"
-
+#include "uartComm.h"
+#include "serialFrame.h"
 
 /******************************************************************************
 	*
@@ -34,7 +34,7 @@
 	*****************************************************************************/
 	
 /*******************************************************************************
-	* serialCommSendChar
+	* uartCommSendChar
 	*
 	*			Send character to USART serie protocol
 	* 			
@@ -42,7 +42,7 @@
 	* @return 0 if no error
 	* @return 1 if error during send
 	******************************************************************************/
-uint8_t serialCommSendChar( uint8_t c )
+uint8_t uartCommSendChar( uint8_t c )
 { 		
 	uint8_t errorCode = 0;
 	
@@ -55,14 +55,14 @@ uint8_t serialCommSendChar( uint8_t c )
 }
 	
 /*******************************************************************************
-	* serialCommToggleLEDStatus
+	* uartCommToggleLEDStatus
 	*
 	*			Set the UART error LED (closest to the UART pins)
 	* 			
 	* @param Void  
 	* @return Void
 	******************************************************************************/
-void serialCommToggleLEDStatus()
+void uartCommToggleLEDStatus()
 {
 		GPIO_Toggle(GPIOB, 5);		// Toggle status LED
 }
@@ -76,16 +76,15 @@ void serialCommToggleLEDStatus()
 
 
 /********************************************************************************
-	* serialCommInit
+	* uartCommInit
 	*
 	*      Configure all clocks and registers.
 	*			Initialize all GPIOs and Timers
 	* 			
 	* @param Void
-	* @return 0 if no error
-	* @return 1 if error takes place in the initialization
+	* @return 0 if no error else 1
 	*******************************************************************************/
-uint8_t serialCommInit( void )
+uint8_t uartCommInit( void )
 {
 	
 	uint8_t errorCode = 0; 
@@ -107,7 +106,7 @@ uint8_t serialCommInit( void )
 	else
 	{
 		// No error in initialization process
-		serialCommToggleLEDStatus();
+		uartCommToggleLEDStatus();
 		
 		// I/O configuration for Tx
 		GPIO_Configure( GPIOA, 9, OUTPUT, ALT_PPULL );	// Tx 
@@ -117,15 +116,14 @@ uint8_t serialCommInit( void )
 }
 
 /*******************************************************************************
-	* serialCommSendData
+	* uartCommSendData
 	*
 	*			Send an array of uint8_t to USART serie protocol
 	* 			
 	* @param Array of uint8_t to send  
-	* @return 0 if no error
-	* @return The number of errors during send
+	* @return 0 if no error else the number of errors during send
 	******************************************************************************/
-uint8_t serialCommSendData(uint8_t * array, uint16_t size)
+uint8_t uartCommSendData( uint8_t * array, uint16_t size )
 { 		
 	uint8_t errorCode = 0;
 	uint16_t idChar = 0;
@@ -138,8 +136,28 @@ uint8_t serialCommSendData(uint8_t * array, uint16_t size)
 
 	if (errorCode == 0)
 	{
-		serialCommToggleLEDStatus();
+		uartCommToggleLEDStatus();
 	}	
 	
 	return errorCode;
+}
+
+/*******************************************************************************
+	* uartCommSendTimes
+	*
+	*			Send a frame containing the four times to the drone via UART
+	* 			
+	* @param Time of the 1st emitter in ns
+	* @param Time of the 2nd emitter in ns
+	* @param Time of the 3rd emitter in ns
+	* @param Time of the 4th emitter in ns
+	* @return 0 if no error else the number of errors during send
+	******************************************************************************/
+uint8_t uartCommSendTimes( uint32_t time1, uint32_t time2, uint32_t time3, uint32_t time4 )
+{
+	
+	uint8_t * frame = createSendableFrame( TIME_FRAME, time1, time2, time3, time4);
+	
+	return uartCommSendData( frame, CONVERTED_SERIAL_FRAME_SIZE );
+	
 }

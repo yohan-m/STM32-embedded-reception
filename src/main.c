@@ -21,13 +21,16 @@
 
 
 #include <stdint.h>
+#include <string.h>
 #include "stm32f10x.h"
 #include "Clock.h"
 #include "Timer_1234.h"
 #include "GPIO.h"
-#include "serialComm.h"
-#include <string.h>
 #include "xprintf.h"	// For debug purpose only
+#include "sampleAcquisition.h"
+#include "usb_cdc.h"
+#include "uartComm.h"
+#include "usbComm.h"
 
 float realPeriod;
 char serialText[50];
@@ -36,7 +39,8 @@ char serialText[50];
 void Clignote(void)		// Interruption routine
 {
 	GPIO_Toggle(GPIOC, 12);
-	serialCommSendData((uint8_t *)serialText, sizeof(serialText));
+	//serialCommSendData((uint8_t *)serialText, sizeof(serialText));
+	//serialCommSendTimes(0x11111111, 0x22222222, 0x33333333, 0x44444444);
 }
 
 
@@ -51,6 +55,8 @@ int main (void)
 												//	- If the compilation key STM32F107 is defined, the CPU is clocked at 50MHz
 												//  - Else (STM32F107 non defined), the CPU is clocked at 40MHz
 
+	
+	
 	// GPIO (Stat LED)
 	GPIO_Configure( GPIOC, 12, OUTPUT, OUTPUT_PPULL ); // Led Stat
 	GPIO_Clear( GPIOC, 12 );
@@ -61,24 +67,31 @@ int main (void)
 
 	// IT on timer overflow
 	Active_IT_Debordement_Timer( TIM2, 1, Clignote );  // Allows interrupt for Timer 2 overflow (priority 1)
+  
+	// UART communication
+	uartCommInit();
 	
-	// Serial communication
-	serialCommInit();
-	
+	// USB communication
+	usbCommInit();	
+
+
 	/***********
 	 * Process *
 	 ***********/
+
 	
-	// Example of debug message (no floating point visualization)
-	xsprintf(serialText, "Real period : %d us\n", (int) realPeriod);
-	
+	uint16_t * tab;
+	sampleAcquisitionInit();
+
+
 	while(1)
 	{
 
-		// NOP
-				
-	}
+		tab = acquireSignals();
+		usbCommSendData( (uint8_t *)tab, 500 );
 		
+	}
+
 	return 0;
 }
 
