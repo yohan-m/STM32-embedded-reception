@@ -83,7 +83,6 @@ int main (void)
 	 * Process *
 	 ***********/
 	
-
 	while(1)
 	{
 
