@@ -16,6 +16,26 @@
 
 /******************************************************************************
 	* 
+	*   INCLUDED FILES
+	*
+	*****************************************************************************/
+
+
+#include <stdint.h>
+#include <string.h>
+#include "stm32f10x.h"
+#include "Clock.h"
+#include "Timer_1234.h"
+#include "GPIO.h"
+#include "xprintf.h"	// For debug purpose only
+#include "sampleAcquisition.h"
+#include "usb_cdc.h"
+#include "uartComm.h"
+#include "usbComm.h"
+
+
+/******************************************************************************
+	* 
 	*   CONSTANTS
 	*
 	*****************************************************************************/

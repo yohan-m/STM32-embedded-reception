@@ -60,10 +60,7 @@
 	* @param Void  
 	* @return Void
 	******************************************************************************/
-void setLEDAcquisition( uint8_t status )
-{
-		GPIO_Write( GPIOB, 7, status );		// Toggle status LED
-}
+void setLEDAcquisition( uint8_t status );
 
 
 /******************************************************************************

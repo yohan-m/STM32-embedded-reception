@@ -575,9 +575,9 @@
               <FilePath>../src/sampleAcquisition.c</FilePath>
             </File>
             <File>
-              <FileName>sampleAcquisition.h</FileName>
+              <FileName>sampleAcquisistion.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\src\sampleAcquisition.h</FilePath>
+              <FilePath>..\src\sampleAcquisistion.h</FilePath>
             </File>
             <File>
               <FileName>uartComm.c</FileName>
@@ -1197,9 +1197,9 @@
               <FilePath>../src/sampleAcquisition.c</FilePath>
             </File>
             <File>
-              <FileName>sampleAcquisition.h</FileName>
+              <FileName>sampleAcquisistion.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\src\sampleAcquisition.h</FilePath>
+              <FilePath>..\src\sampleAcquisistion.h</FilePath>
             </File>
             <File>
               <FileName>uartComm.c</FileName>

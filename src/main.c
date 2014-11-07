@@ -12,26 +12,13 @@
 	* @date 25 Oct 2014
 	*/
 
-
 /******************************************************************************
 	* 
 	*   INCLUDED FILES
 	*
 	*****************************************************************************/
 
-
-#include <stdint.h>
-#include <string.h>
-#include "stm32f10x.h"
-#include "Clock.h"
-#include "Timer_1234.h"
-#include "GPIO.h"
-#include "xprintf.h"	// For debug purpose only
-#include "sampleAcquisition.h"
-#include "usb_cdc.h"
-#include "uartComm.h"
-#include "usbComm.h"
-
+#include "global.h"
 
 /******************************************************************************
 	*
@@ -54,6 +41,7 @@ void Clignote(void)		// Interruption routine
 
 int main (void)
 {
+
 
 	/******************
 	 * Main variables *
@@ -94,6 +82,7 @@ int main (void)
 	/***********
 	 * Process *
 	 ***********/
+	
 
 	while(1)
 	{
