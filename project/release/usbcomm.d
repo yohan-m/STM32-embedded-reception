@@ -19,5 +19,5 @@ release/usbcomm.o: ../src/usbComm.c \
  ../../common-sources/Pack_USB/STM_USB_Lib/inc_usb_md_cdc/usb_desc.h \
  ../../common-sources/Pack_USB/STM_USB_Lib/inc_usb_md_cdc/hw_config.h \
  ../../common-sources/Pack_USB/STM_USB_Lib/inc_usb_md_cdc/usb_pwr.h \
- ../src/usbComm.h ../../common-sources/src/serialFrame.h \
+ ../src/usbComm.h ../src/global.h ../../common-sources/src/serialFrame.h \
  ../../common-sources/src/frameTypes.h

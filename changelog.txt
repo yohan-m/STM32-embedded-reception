@@ -13,3 +13,7 @@
 - Switch from UART to USB serial communication
 - USB full support
 - Sending recorded samples from the ADC via the serial USB
+
+2014-11-07 Miquèl RAYNAL
+- Corrected bug on the ADC sampling frequency
+- Working example sending formatted frames via USB.

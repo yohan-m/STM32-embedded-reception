@@ -1,10 +1,10 @@
 /**
-	* @file sampleAcquisition.c
+	* @file sampleAcquisition.h
 	* @brief ADC acquisition of an ultrasound sample
 	*
 	*     This file contains the service for acquire sample from the ADC.
-	*			Initialization, configuration and start. The status LED turn on at each acquisition.
-	*			
+	*			Initialization, configuration and start. The status LED toggles at each valid sample saved.
+	*
 	* 		Last modification : 07 Nov 2014
 	*
 	* @author Miquèl RAYNAL
@@ -13,30 +13,36 @@
 	*/
 
 
+#ifndef S_SAMPLEACQUISITION_H
+#define S_SAMPLEACQUISITION_H
+
+
 /******************************************************************************
 	* 
 	*   INCLUDED FILES
 	*
 	*****************************************************************************/
-	
-	
+
+
 #include <stdint.h>
-#include "stm32f10x.h"
-#include "gpio.h"
-#include "sampleAcquisition.h"
-#include "global.h"
-#include "adc_dma.h"
 
 
 /******************************************************************************
 	* 
-	*   VARIABLES
+	*   CONSTANTS
 	*
 	*****************************************************************************/
 
 
-float sampleTime;												// Real sample time
-uint16_t adcBuffer[NB_SAMPLES_TOTAL];		// Static buffer to save a signal
+#define ADC_ID										ADC1						// ADC ID
+#define ADC_HANDLER_PRIORITY 			4 							// EOC ADC Interruption Priority
+#define ADC_CHANNEL								10							// ADC channel
+#define ADC_CONVERSION_TIME				5.0							// Minimum time of conversion for 1 sample in µs (RC response at the entry of the ADC)
+#define ADC_SAMPLING_FREQUENCY		128							// Sampling frequency in kHz
+
+#define NB_SAMPLES_TOTAL					256							// Number of samples to acquire
+
+#define DMA_NON_CIRCULAR					0								// "char circ" parameter of the Init_ADC1_DMA1 function
 
 
 /******************************************************************************
@@ -45,7 +51,7 @@ uint16_t adcBuffer[NB_SAMPLES_TOTAL];		// Static buffer to save a signal
 	*
 	*****************************************************************************/
 	
-	
+
 /*******************************************************************************
 	* setLEDAcquisition
 	*
@@ -76,21 +82,7 @@ void setLEDAcquisition( uint8_t status )
 	* @param Void
 	* @return 0 if working
 	*******************************************************************************/
-uint8_t sampleAcquisitionInit( void )
-{
-	// I/O configuration on ADC1 input, channel 10
-	GPIO_Configure( GPIOC, 0, INPUT, ANALOG );														// ADC_In10 (channel 10) 
-	
-	// ADC Initialization
-	sampleTime = Init_TimingADC_ActiveADC( ADC_ID, ADC_CONVERSION_TIME );	// Samples of 1us
-	Single_Channel_ADC( ADC_ID, ADC_CHANNEL ); 														// ADC 1 on channel 10
-	
-	// LED 3 turn on at each burst acquisition
-	GPIO_Configure( GPIOB, 7, OUTPUT, OUTPUT_PPULL );
-	setLEDAcquisition( OFF );
-	
-	return 0;
-}
+uint8_t sampleAcquisitionInit( void );
 
 /********************************************************************************
 	* acquireSample
@@ -101,15 +93,7 @@ uint8_t sampleAcquisitionInit( void )
 	* @param Void
 	* @return The sampled value from the ADC
 	*******************************************************************************/
-uint16_t acquireSample ( void )
-{	
-	// Start conversion
-	Start_ADC_Conversion( ADC_ID );
-	// Wait EOC
-	Wait_On_EOC_ADC( ADC_ID );
-	// Read value
-	return Read_ADC( ADC_ID );
-}
+uint16_t acquireSample ( void );
 
 /********************************************************************************
 	* acquireBurstManual
@@ -120,17 +104,7 @@ uint16_t acquireSample ( void )
 	* @param Void
 	* @return A pointer on the filled array
 	*******************************************************************************/
-uint16_t * acquireBurstManual( void )
-{
-	
-	uint32_t idSample = 0;
-	for ( idSample = 0; idSample < NB_SAMPLES_TOTAL ; idSample++ )
-	{
-		adcBuffer[idSample] = acquireSample();
-	}
-	
-	return adcBuffer;
-}
+uint16_t * acquireBurstManual( void );
 
 /********************************************************************************
 	* acquireBurstDMA
@@ -141,25 +115,7 @@ uint16_t * acquireBurstManual( void )
 	* @param Void
 	* @return A pointer on the filled array
 	*******************************************************************************/
-uint16_t * acquireBurstDMA( void )
-{
+uint16_t * acquireBurstDMA( void );
 
-	// LED 3 turned on at each acquisition
-	setLEDAcquisition( ON );
-	
-	// Conversion on timer trig
-	Init_Conversion_On_Trig_Timer(ADC_ID , TIM1_CC1, ADC_SAMPLING_FREQUENCY);	
-	
-	// DMA stores acquisition data (u16) in buffer
-	Init_ADC1_DMA1(DMA_NON_CIRCULAR, (vu16 *) adcBuffer);
 
-	// Starts DMA to fulfill the buffer
-	Start_DMA1( NB_SAMPLES_TOTAL );
-	
-	// Wait the end of the acquisition at the previously given frequency
-	Wait_On_End_Of_DMA1();
-	
-	setLEDAcquisition( OFF );
-	
-	return adcBuffer;
-}
+#endif					/* S_SERIALCOMM_HS_SAMPLEACQUISITION_H */

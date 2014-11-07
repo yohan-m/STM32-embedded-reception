@@ -4,5 +4,5 @@ release/sampleacquisition.o: ../src/sampleAcquisition.c \
  ../system/stm32f10x.h C:/Keil/ARM/CMSIS/Include/core_cm3.h \
  C:/Keil/ARM/CMSIS/Include/core_cmInstr.h \
  C:/Keil/ARM/CMSIS/Include/core_cmFunc.h ../system/system_stm32f10x.h \
- ../drivers/include/gpio.h ../src/sampleAcquisition.h \
+ ../drivers/include/gpio.h ../src/sampleAcquisition.h ../src/global.h \
  ../drivers/include/adc_dma.h

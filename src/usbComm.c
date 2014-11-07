@@ -5,7 +5,7 @@
 	*     This file contains the service serial communication USB.
 	*			Initialization, configuration and send mode. The status LED toggles when a frame is sent.
 	*
-	* 		Last modification : 25 Oct 2014
+	* 		Last modification : 07 Nov 2014
 	*
 	* @author Miquel RAYNAL
 	* @version 0.1
@@ -25,6 +25,7 @@
 #include "gpio.h"
 #include "usb_cdc.h"
 #include "usbComm.h"
+#include "global.h"
 #include "serialFrame.h"
 
 	
@@ -34,17 +35,18 @@
 	*
 	*****************************************************************************/
 	
+	
 /*******************************************************************************
-	* usbCommToggleLEDStatus
+	* setLEDComUSB
 	*
-	*			Set the USB error LED (2nd pin)
+	*			Set the USB status LED (2nd pin)
 	* 			
 	* @param Void  
 	* @return Void
 	******************************************************************************/
-void usbCommToggleLEDStatus()
+void setLEDComUSB( uint8_t status )
 {
-		GPIO_Toggle(GPIOB, 6);		// Toggle status LED
+	GPIO_Write( GPIOB, 6, status );		// Toggle status LED
 }
 
 
@@ -72,6 +74,9 @@ void usbCommInit( void )
   USB_Interrupts_Config();
   USB_Init();
 	while (USB_GetState() != CONFIGURED) {} // Wait USB is ready
+		
+	GPIO_Configure( GPIOB, 6, OUTPUT, OUTPUT_PPULL );
+	setLEDComUSB( OFF );
 	
 }
 	
@@ -104,13 +109,14 @@ void usbCommSendData( uint8_t * array, uint16_t size )
 	
 	uint16_t idChar = 0;
 		
+	setLEDComUSB( ON );
 	for (idChar = 0; idChar < size; idChar++ )
 	{
 			// Send one char
 			usbCommSendChar( array[idChar] );
 	}
 
-	usbCommToggleLEDStatus(); // Toogle the LED when a frame is sent
+	setLEDComUSB( OFF ); // Toogle the LED when a frame is sent
 }
 
 /*******************************************************************************

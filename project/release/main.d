@@ -19,7 +19,8 @@ release/main.o: ../src/main.c \
  C:/Keil/ARM/CMSIS/Include/core_cmInstr.h \
  C:/Keil/ARM/CMSIS/Include/core_cmFunc.h ../system/system_stm32f10x.h \
  ../drivers/clock/Clock.h ../drivers/include/Timer_1234.h \
- ../drivers/include/GPIO.h ../src/sampleAcquisition.h \
+ ../drivers/include/GPIO.h ../drivers/xprintf/xprintf.h \
+ ../src/sampleAcquisition.h \
  ../../common-sources/Pack_USB/STM_USB_Lib/inc_usb_md_cdc/usb_cdc.h \
  ../../common-sources/Pack_USB/STM_USB_Lib/inc_usb_md_cdc/usb_lib.h \
  ../../common-sources/Pack_USB/STM_USB_Lib/inc_usb_md_cdc/usb_type.h \

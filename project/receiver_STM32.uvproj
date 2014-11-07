@@ -337,77 +337,12 @@
             <File>
               <FileName>xprintf.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\drivers\xprintf\xprintf.c</FilePath>
+              <FilePath>../drivers/xprintf/xprintf.c</FilePath>
             </File>
             <File>
               <FileName>xprintf.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\drivers\xprintf\xprintf.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Services</GroupName>
-          <Files>
-            <File>
-              <FileName>lib_crc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../common-sources/src/lib_crc.c</FilePath>
-            </File>
-            <File>
-              <FileName>lib_crc.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\common-sources\src\lib_crc.h</FilePath>
-            </File>
-            <File>
-              <FileName>sampleAcquisition.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../src/sampleAcquisition.c</FilePath>
-            </File>
-            <File>
-              <FileName>sampleAcquisition.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\src\sampleAcquisition.h</FilePath>
-            </File>
-            <File>
-              <FileName>uartComm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../src/uartComm.c</FilePath>
-            </File>
-            <File>
-              <FileName>uartComm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\src\uartComm.h</FilePath>
-            </File>
-            <File>
-              <FileName>usbComm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../src/usbComm.c</FilePath>
-            </File>
-            <File>
-              <FileName>usbComm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\src\usbComm.h</FilePath>
-            </File>
-            <File>
-              <FileName>serialFrame.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../common-sources/src/serialFrame.c</FilePath>
-            </File>
-            <File>
-              <FileName>serialFrame.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\common-sources\src\serialFrame.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Application</GroupName>
-          <Files>
-            <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../src/main.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -618,6 +553,76 @@
               <FileName>usb_sil.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../common-sources/Pack_USB/STM_USB_Lib/src_usb_md_cdc/usb_sil.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Services</GroupName>
+          <Files>
+            <File>
+              <FileName>lib_crc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../common-sources/src/lib_crc.c</FilePath>
+            </File>
+            <File>
+              <FileName>lib_crc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\common-sources\src\lib_crc.h</FilePath>
+            </File>
+            <File>
+              <FileName>sampleAcquisition.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../src/sampleAcquisition.c</FilePath>
+            </File>
+            <File>
+              <FileName>sampleAcquisistion.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\sampleAcquisistion.h</FilePath>
+            </File>
+            <File>
+              <FileName>uartComm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../src/uartComm.c</FilePath>
+            </File>
+            <File>
+              <FileName>uartComm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\uartComm.h</FilePath>
+            </File>
+            <File>
+              <FileName>usbComm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../src/usbComm.c</FilePath>
+            </File>
+            <File>
+              <FileName>usbComm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\usbComm.h</FilePath>
+            </File>
+            <File>
+              <FileName>serialFrame.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../common-sources/src/serialFrame.c</FilePath>
+            </File>
+            <File>
+              <FileName>serialFrame.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\common-sources\src\serialFrame.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Application</GroupName>
+          <Files>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../src/main.c</FilePath>
+            </File>
+            <File>
+              <FileName>global.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\global.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -954,77 +959,12 @@
             <File>
               <FileName>xprintf.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\drivers\xprintf\xprintf.c</FilePath>
+              <FilePath>../drivers/xprintf/xprintf.c</FilePath>
             </File>
             <File>
               <FileName>xprintf.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\drivers\xprintf\xprintf.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Services</GroupName>
-          <Files>
-            <File>
-              <FileName>lib_crc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../common-sources/src/lib_crc.c</FilePath>
-            </File>
-            <File>
-              <FileName>lib_crc.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\common-sources\src\lib_crc.h</FilePath>
-            </File>
-            <File>
-              <FileName>sampleAcquisition.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../src/sampleAcquisition.c</FilePath>
-            </File>
-            <File>
-              <FileName>sampleAcquisition.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\src\sampleAcquisition.h</FilePath>
-            </File>
-            <File>
-              <FileName>uartComm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../src/uartComm.c</FilePath>
-            </File>
-            <File>
-              <FileName>uartComm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\src\uartComm.h</FilePath>
-            </File>
-            <File>
-              <FileName>usbComm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../src/usbComm.c</FilePath>
-            </File>
-            <File>
-              <FileName>usbComm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\src\usbComm.h</FilePath>
-            </File>
-            <File>
-              <FileName>serialFrame.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../common-sources/src/serialFrame.c</FilePath>
-            </File>
-            <File>
-              <FileName>serialFrame.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\common-sources\src\serialFrame.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Application</GroupName>
-          <Files>
-            <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../src/main.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1235,6 +1175,76 @@
               <FileName>usb_sil.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../common-sources/Pack_USB/STM_USB_Lib/src_usb_md_cdc/usb_sil.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Services</GroupName>
+          <Files>
+            <File>
+              <FileName>lib_crc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../common-sources/src/lib_crc.c</FilePath>
+            </File>
+            <File>
+              <FileName>lib_crc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\common-sources\src\lib_crc.h</FilePath>
+            </File>
+            <File>
+              <FileName>sampleAcquisition.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../src/sampleAcquisition.c</FilePath>
+            </File>
+            <File>
+              <FileName>sampleAcquisistion.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\sampleAcquisistion.h</FilePath>
+            </File>
+            <File>
+              <FileName>uartComm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../src/uartComm.c</FilePath>
+            </File>
+            <File>
+              <FileName>uartComm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\uartComm.h</FilePath>
+            </File>
+            <File>
+              <FileName>usbComm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../src/usbComm.c</FilePath>
+            </File>
+            <File>
+              <FileName>usbComm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\usbComm.h</FilePath>
+            </File>
+            <File>
+              <FileName>serialFrame.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../common-sources/src/serialFrame.c</FilePath>
+            </File>
+            <File>
+              <FileName>serialFrame.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\common-sources\src\serialFrame.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Application</GroupName>
+          <Files>
+            <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../src/main.c</FilePath>
+            </File>
+            <File>
+              <FileName>global.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\global.h</FilePath>
             </File>
           </Files>
         </Group>
