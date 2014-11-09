@@ -74,9 +74,9 @@
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
           </BeforeMake>
           <AfterMake>
-            <RunUserProg1>1</RunUserProg1>
+            <RunUserProg1>0</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name>"C:\Program Files (x86)\CodeSourcery\Sourcery G++ Lite\bin\arm-none-eabi-size.exe" release\*.elf</UserProg1Name>
+            <UserProg1Name></UserProg1Name>
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
@@ -133,7 +133,7 @@
           <Target>
             <UseTarget>0</UseTarget>
             <LoadApplicationAtStartup>1</LoadApplicationAtStartup>
-            <RunToMain>0</RunToMain>
+            <RunToMain>1</RunToMain>
             <RestoreBreakpoints>1</RestoreBreakpoints>
             <RestoreWatchpoints>1</RestoreWatchpoints>
             <RestoreMemoryDisplay>1</RestoreMemoryDisplay>
@@ -141,7 +141,7 @@
             <RestoreToolbox>1</RestoreToolbox>
             <RestoreTracepoints>0</RestoreTracepoints>
             <RestoreSysVw>1</RestoreSysVw>
-            <UsePdscDebugDescription>1</UsePdscDebugDescription>
+            <UsePdscDebugDescription>0</UsePdscDebugDescription>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
           <TargetSelection>0</TargetSelection>
@@ -166,11 +166,11 @@
             <UseTargetDll>1</UseTargetDll>
             <UseExternalTool>0</UseExternalTool>
             <RunIndependent>0</RunIndependent>
-            <UpdateFlashBeforeDebugging>0</UpdateFlashBeforeDebugging>
+            <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
             <Capability>1</Capability>
             <DriverSelection>4096</DriverSelection>
           </Flash1>
-          <bUseTDR>0</bUseTDR>
+          <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
           <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
@@ -274,9 +274,9 @@
             <uThumb>1</uThumb>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F10X_MD</Define>
+              <Define>STM32F10X_MD USE_OLIMEX_H103</Define>
               <Undefine></Undefine>
-              <IncludePath>.\src;.\drivers\include;.\drivers\clock</IncludePath>
+              <IncludePath>..\system\stm32f103;..\system;..\src;..\drivers\include;..\drivers\clock;..\drivers\usart;..\drivers\xprintf;..\..\common-sources\src;..\..\common-sources\Pack_USB\STM_USB_Lib\inc_peripherals;..\..\common-sources\Pack_USB\STM_USB_Lib\inc_usb_md_cdc;..\drivers</IncludePath>
             </VariousControls>
           </Carm>
           <Aarm>
@@ -298,10 +298,10 @@
             <TextAddressRange></TextAddressRange>
             <DataAddressRange></DataAddressRange>
             <BSSAddressRange></BSSAddressRange>
-            <IncludeLibs></IncludeLibs>
-            <IncludeDir>.\src;.\drivers\include;.\drivers\clock</IncludeDir>
+            <IncludeLibs>Drivers_STM32F103_107_Jan_2013</IncludeLibs>
+            <IncludeDir>..\drivers</IncludeDir>
             <Misc></Misc>
-            <ScatterFile>C:\Keil\stm32lib\stm32f10x\boot\stm32f103\stm32f103.ld</ScatterFile>
+            <ScatterFile>..\system\stm32f103\stm32f103.ld</ScatterFile>
           </LDarm>
         </TargetArm>
       </TargetOption>
@@ -353,6 +353,26 @@
               <FileName>xprintf.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\drivers\xprintf\xprintf.h</FilePath>
+            </File>
+            <File>
+              <FileName>exp_39500.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\exp_39500.h</FilePath>
+            </File>
+            <File>
+              <FileName>exp_40000.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\exp_40000.h</FilePath>
+            </File>
+            <File>
+              <FileName>exp_40500.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\exp_40500.h</FilePath>
+            </File>
+            <File>
+              <FileName>exp_41000.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\exp_41000.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -638,6 +658,11 @@
               <FileName>signalFilter.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\signalFilter.c</FilePath>
+            </File>
+            <File>
+              <FileName>signalFilter.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\signalFilter.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -936,7 +961,7 @@
             <DataAddressRange></DataAddressRange>
             <BSSAddressRange></BSSAddressRange>
             <IncludeLibs>Drivers_STM32F103_107_Jan_2013</IncludeLibs>
-            <IncludeDir>..\drivers</IncludeDir>
+            <IncludeDir>.\src;.\drivers\include;.\drivers\clock</IncludeDir>
             <Misc></Misc>
             <ScatterFile>..\system\stm32f103\stm32f103.ld</ScatterFile>
           </LDarm>
@@ -990,6 +1015,26 @@
               <FileName>xprintf.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\drivers\xprintf\xprintf.h</FilePath>
+            </File>
+            <File>
+              <FileName>exp_39500.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\exp_39500.h</FilePath>
+            </File>
+            <File>
+              <FileName>exp_40000.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\exp_40000.h</FilePath>
+            </File>
+            <File>
+              <FileName>exp_40500.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\exp_40500.h</FilePath>
+            </File>
+            <File>
+              <FileName>exp_41000.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\exp_41000.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1275,6 +1320,11 @@
               <FileName>signalFilter.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\signalFilter.c</FilePath>
+            </File>
+            <File>
+              <FileName>signalFilter.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\signalFilter.h</FilePath>
             </File>
           </Files>
         </Group>

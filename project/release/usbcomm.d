@@ -36,6 +36,7 @@ release/usbcomm.o: ../src/usbComm.c \
  c:\users\administrateur\desktop\codesourcery\sourcery\ g++\ lite\bin\../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/include/sys/string.h \
  ../drivers/clock/Clock.h ../drivers/include/Timer_1234.h \
  ../drivers/include/GPIO.h ../drivers/xprintf/xprintf.h \
- ../src/sampleAcquisition.h ../src/uartComm.h \
+ ../src/sampleAcquisition.h ../src/uartComm.h ../src/signalFilter.h \
+ c:\users\administrateur\desktop\codesourcery\sourcery\ g++\ lite\bin\../lib/gcc/arm-none-eabi/4.7.3/include-fixed/math.h \
  ../../common-sources/src/serialFrame.h \
  ../../common-sources/src/frameTypes.h

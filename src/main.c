@@ -49,6 +49,7 @@ int main (void)
 	
 	uint16_t * signal;
 	uint32_t time[] = { 0x00112233, 0x44556677, 0x8899AABB, 0xCCDDEEFF };
+	uint8_t signalOutputfilter[4];
 
 	/*******************
 	 * Initializations *
@@ -74,7 +75,7 @@ int main (void)
 	uartCommInit();
 	
 	// USB communication
-	usbCommInit();	
+	//usbCommInit();	
 
 	// Signals acquisition
 	sampleAcquisitionInit();
@@ -87,9 +88,12 @@ int main (void)
 	while(1)
 	{
 
-		signal = acquireBurstDMA();
-		//usbCommSendData( (uint8_t *)signal, NB_SAMPLES_TOTAL*2 ); // Sending NB_SAMPLES_TOTAL of uint16_t
-		usbCommSendTimes( time[0], time[1], time[2], time[3] ); // Sending four times using a known pattern
+		//signal = acquireBurstDMA();
+		//signal 
+		signalTraitement(signal,signalOutputfilter);
+				
+		//usbCommSendData( (uint8_t *)signalOutputfilter[1], 2); // Sending NB_SAMPLES_TOTAL of uint16_t
+		
 		
 	}
 

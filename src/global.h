@@ -32,6 +32,7 @@
 #include "usb_cdc.h"
 #include "uartComm.h"
 #include "usbComm.h"
+#include "signalFilter.h"
 
 
 /******************************************************************************

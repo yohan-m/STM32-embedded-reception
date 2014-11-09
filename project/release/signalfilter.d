@@ -1,4 +1,5 @@
-release/signalfilter.o: ../src/signalFilter.c ../src/global.h \
+release/signalfilter.o: ../src/signalFilter.c ../src/signalFilter.h \
+ ../src/global.h \
  c:\users\administrateur\desktop\codesourcery\sourcery\ g++\ lite\bin\../lib/gcc/arm-none-eabi/4.7.3/include/stdint.h \
  c:\users\administrateur\desktop\codesourcery\sourcery\ g++\ lite\bin\../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/include/stdint.h \
  c:\users\administrateur\desktop\codesourcery\sourcery\ g++\ lite\bin\../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/include/string.h \
@@ -35,4 +36,7 @@ release/signalfilter.o: ../src/signalFilter.c ../src/global.h \
  ../../common-sources/Pack_USB/STM_USB_Lib/inc_usb_md_cdc/usb_desc.h \
  ../../common-sources/Pack_USB/STM_USB_Lib/inc_usb_md_cdc/hw_config.h \
  ../../common-sources/Pack_USB/STM_USB_Lib/inc_usb_md_cdc/usb_pwr.h \
- ../src/uartComm.h ../src/usbComm.h
+ ../src/uartComm.h ../src/usbComm.h \
+ c:\users\administrateur\desktop\codesourcery\sourcery\ g++\ lite\bin\../lib/gcc/arm-none-eabi/4.7.3/include-fixed/math.h \
+ ../src/exp_39500.h ../src/exp_40000.h ../src/exp_40500.h \
+ ../src/exp_41000.h

@@ -35,4 +35,6 @@ release/sampleacquisition.o: ../src/sampleAcquisition.c \
  ../../common-sources/Pack_USB/STM_USB_Lib/inc_usb_md_cdc/usb_desc.h \
  ../../common-sources/Pack_USB/STM_USB_Lib/inc_usb_md_cdc/hw_config.h \
  ../../common-sources/Pack_USB/STM_USB_Lib/inc_usb_md_cdc/usb_pwr.h \
- ../src/uartComm.h ../src/usbComm.h ../drivers/include/adc_dma.h
+ ../src/uartComm.h ../src/usbComm.h ../src/signalFilter.h \
+ c:\users\administrateur\desktop\codesourcery\sourcery\ g++\ lite\bin\../lib/gcc/arm-none-eabi/4.7.3/include-fixed/math.h \
+ ../drivers/include/adc_dma.h
