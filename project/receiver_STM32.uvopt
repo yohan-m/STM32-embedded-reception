@@ -1389,7 +1389,7 @@
       <Focus>0</Focus>
       <ColumnNumber>82</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>84</TopLine>
+      <TopLine>77</TopLine>
       <CurrentLine>78</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>../src/sampleAcquisition.c</PathWithFileName>
@@ -1557,7 +1557,7 @@
       <Focus>0</Focus>
       <ColumnNumber>3</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>23</TopLine>
+      <TopLine>1</TopLine>
       <CurrentLine>30</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\src\signalFilter.c</PathWithFileName>
