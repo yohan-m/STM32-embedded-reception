@@ -56,7 +56,7 @@ uint16_t adcBuffer[NB_SAMPLES_TOTAL];		// Static buffer to save a signal
 	******************************************************************************/
 void setLEDAcquisition( uint8_t status )
 {
-		GPIO_Write( GPIOB, 7, status );		// Toggle status LED
+		GPIO_Write( GPIOB, 5, status );		// Toggle status LED
 }
 
 
@@ -86,7 +86,7 @@ uint8_t sampleAcquisitionInit( void )
 	Single_Channel_ADC( ADC_ID, ADC_CHANNEL ); 														// ADC 1 on channel 10
 	
 	// LED 3 turn on at each burst acquisition
-	GPIO_Configure( GPIOB, 7, OUTPUT, OUTPUT_PPULL );
+	GPIO_Configure( GPIOB, 5, OUTPUT, OUTPUT_PPULL );
 	setLEDAcquisition( OFF );
 	
 	return 0;

@@ -30,6 +30,20 @@
 	*
 	*****************************************************************************/
 
+/********************************************************************************
+	* signalTraitementInit
+	*
+	* Congifure the GPIO for the signal reception
+	*
+	*******************************************************************************/
+
+void signalTraitementInit()
+{
+	GPIO_Configure( GPIOB, 6, OUTPUT, OUTPUT_PPULL ); //LED 39,5 kHz
+	GPIO_Configure( GPIOB, 7, OUTPUT, OUTPUT_PPULL );	//LED 40,0 kHz
+	GPIO_Configure( GPIOB, 8, OUTPUT, OUTPUT_PPULL );	//LED 40,5 kHz
+	GPIO_Configure( GPIOB, 9, OUTPUT, OUTPUT_PPULL );	//LED 41,0 kHz
+}
 
 /********************************************************************************
 	* signalTraitement
@@ -62,12 +76,13 @@ int signalTraitement (uint16_t * signal,uint8_t frequencyCoefficient[])
 	float outputFilter[4];
 	
 	int32_t mean = 0;
-		
+	
 	//Variable initialization
 	for (i=0;i<4;i++)
 	{
 		preOutputFilterIm[i]= 0;
 		preOutputFilterReel[i] = 0;
+		frequencyCoefficient[i] = 0;
 	}
 	
 	//Determine the mean of the input signal
@@ -110,21 +125,41 @@ int signalTraitement (uint16_t * signal,uint8_t frequencyCoefficient[])
 	if (outputFilter[0] > FREQUENCY_THRESHOLD_39500)
 	{
 		frequencyCoefficient[0] = 1;
+		GPIO_Write( GPIOB, 6, ON );
+	}
+	else
+	{
+		GPIO_Write( GPIOB, 6, OFF );
 	}
 	
 	if (outputFilter[1] > FREQUENCY_THRESHOLD_40000)
 	{
 		frequencyCoefficient[1] = 1;
+		GPIO_Write( GPIOB, 7, ON );
+	}
+		else
+	{
+		GPIO_Write( GPIOB, 7, OFF );
 	}
 	
 	if (outputFilter[2] > FREQUENCY_THRESHOLD_40500)
 	{
 		frequencyCoefficient[2] = 1;
+		GPIO_Write( GPIOB, 8, ON );
+	}
+	else
+	{
+		GPIO_Write( GPIOB, 8, OFF );
 	}
 	
 	if (outputFilter[3] > FREQUENCY_THRESHOLD_41000)
 	{
 		frequencyCoefficient[3] = 1;
+		GPIO_Write( GPIOB, 9, ON );
+	}
+	else
+	{
+		GPIO_Write( GPIOB, 9, OFF );
 	}
 			
 	return 0;

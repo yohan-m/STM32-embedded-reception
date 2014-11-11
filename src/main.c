@@ -79,7 +79,11 @@ int main (void)
 
 	// Signals acquisition
 	sampleAcquisitionInit();
-
+	
+	// Signals filtering
+	signalTraitementInit();
+	
+	
 	/***********
 	 * Process *
 	 ***********/
@@ -88,7 +92,7 @@ int main (void)
 	while(1)
 	{
 
-		//signal = acquireBurstDMA();
+		signal = acquireBurstDMA();
 		//signal 
 		signalTraitement(signal,signalOutputfilter);
 				
