@@ -91,6 +91,7 @@ uint8_t uartCommInit( void )
 
 	// I/O configuration for Error_Code
 	GPIO_Configure( GPIOB, 5, OUTPUT, OUTPUT_PPULL );	// USART ERROR LED (On/Off)
+	GPIO_Clear( GPIOB, 5 );
 	
 	if ((errorCode = Init_USART (
 																UART_ID,
