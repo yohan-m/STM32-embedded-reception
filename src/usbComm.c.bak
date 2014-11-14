@@ -135,6 +135,8 @@ void usbCommSendTimes( uint32_t time1, uint32_t time2, uint32_t time3, uint32_t 
 	
 	uint8_t * frame = createSendableFrame( TIME_FRAME, time1, time2, time3, time4);
 	
+	usbCommSendChar( SYNC_CHAR_1 );
+	usbCommSendChar( SYNC_CHAR_2 );
 	usbCommSendData( frame, CONVERTED_SERIAL_FRAME_SIZE );
 	
 }

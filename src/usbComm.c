@@ -46,7 +46,7 @@
 	******************************************************************************/
 void setLEDComUSB( uint8_t status )
 {
-	GPIO_Write( GPIOB, 6, status );		// Toggle status LED
+	//GPIO_Write( GPIOB, 6, status );		// Toggle status LED
 }
 
 
@@ -75,8 +75,8 @@ void usbCommInit( void )
   USB_Init();
 	while (USB_GetState() != CONFIGURED) {} // Wait USB is ready
 		
-	GPIO_Configure( GPIOB, 6, OUTPUT, OUTPUT_PPULL );
-	setLEDComUSB( OFF );
+	//GPIO_Configure( GPIOB, 6, OUTPUT, OUTPUT_PPULL );
+	//setLEDComUSB( OFF );
 	
 }
 	
@@ -116,7 +116,7 @@ void usbCommSendData( uint8_t * array, uint16_t size )
 			usbCommSendChar( array[idChar] );
 	}
 
-	setLEDComUSB( OFF ); // Toogle the LED when a frame is sent
+	//setLEDComUSB( OFF ); // Toogle the LED when a frame is sent
 }
 
 /*******************************************************************************

@@ -42,6 +42,7 @@
 #define UART_HANDLER_PRIORITY 		4										// Priority
 
 
+
 /******************************************************************************
 	*
 	*   PRIVATE FUNCTIONS

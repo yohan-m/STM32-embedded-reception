@@ -72,11 +72,11 @@ int main (void)
 	Active_IT_Debordement_Timer( TIM2, 1, Clignote );  // Allows interrupt for Timer 2 overflow (priority 1)
   
 	// UART communication
-	//uartCommInit();
+	uartCommInit();
 	
 	// USB communication
-	usbCommInit();	
-
+	//usbCommInit();	
+ 
 	// Signals acquisition
 	sampleAcquisitionInit();
 	
@@ -93,10 +93,11 @@ int main (void)
 	{
 
 		signal = acquireBurstDMA();
-
-		signalProcessing( signal, signalOutputfilter );
-
-		usbCommSendData( (uint8_t *)signal, NB_SAMPLES_TOTAL*2 ); // Sending NB_SAMPLES_TOTAL of uint16_t
+		//signal 
+ 		signalTraitement(signal,signalOutputfilter);
+				
+		//usbCommSendData( (uint8_t *)signalOutputfilter[1], 2); // Sending NB_SAMPLES_TOTAL of uint16_t
+		
 		
 	}
 

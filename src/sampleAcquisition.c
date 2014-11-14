@@ -150,6 +150,9 @@ uint16_t * acquireBurstDMA( void )
 	// Conversion on timer trig
 	Init_Conversion_On_Trig_Timer(ADC_ID , TIM1_CC1, ADC_SAMPLING_FREQUENCY);	
 	
+	//Wait_On_EOC_ADC(ADC_ID);
+	
+	
 	// DMA stores acquisition data (u16) in buffer
 	Init_ADC1_DMA1(DMA_NON_CIRCULAR, (vu16 *) adcBuffer);
 

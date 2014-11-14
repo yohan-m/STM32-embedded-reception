@@ -59,6 +59,6 @@ void signalTraitementInit();
 	* @return 0 if working
 	*******************************************************************************/
 
-int signalProcessing (uint16_t * signal,uint8_t frequencyCoefficient[]);
+int signalTraitement (uint16_t * signal,uint8_t frequencyCoefficient[]);
 
 #endif
