@@ -3,8 +3,8 @@ release/stm32f10x_fsmc.o: \
  ../../common-sources/Pack_USB/STM_USB_Lib/inc_peripherals/stm32f10x_fsmc.h \
  ../../common-sources/Pack_USB/STM_USB_Lib/inc_peripherals/stm32f10x.h \
  ../../common-sources/Pack_USB/STM_USB_Lib/inc_peripherals/CMSIS/core_cm3.h \
- c:\users\administrateur\desktop\codesourcery\sourcery\ g++\ lite\bin\../lib/gcc/arm-none-eabi/4.7.3/include/stdint.h \
- c:\users\administrateur\desktop\codesourcery\sourcery\ g++\ lite\bin\../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/include/stdint.h \
+ c:\program\ files\ (x86)\codesourcery\sourcery\ g++\ lite\bin\../lib/gcc/arm-none-eabi/4.7.3/include/stdint.h \
+ c:\program\ files\ (x86)\codesourcery\sourcery\ g++\ lite\bin\../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/include/stdint.h \
  ../../common-sources/Pack_USB/STM_USB_Lib/inc_peripherals/CMSIS/core_cmInstr.h \
  ../../common-sources/Pack_USB/STM_USB_Lib/inc_peripherals/CMSIS/core_cmFunc.h \
  ../../common-sources/Pack_USB/STM_USB_Lib/inc_peripherals/system_stm32f10x.h \

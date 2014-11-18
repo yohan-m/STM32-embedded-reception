@@ -85,5 +85,18 @@ void usbCommSendData( uint8_t * array, uint16_t size );
 	******************************************************************************/
 void usbCommSendTimes( uint32_t time1, uint32_t time2, uint32_t time3, uint32_t time4 );
 
+/*******************************************************************************
+	* usbCommSendCoefficients
+	*
+	*			Send a frame containing the four coefficients to debug purpose
+	* 			
+	* @param Coefficient of the 1st emitter
+	* @param Coefficient of the 2nd emitter
+	* @param Coefficient of the 3rd emitter
+	* @param Coefficient of the 4th emitter
+	* @return Void
+	******************************************************************************/
+void usbCommSendCoefficients( uint32_t coef1, uint32_t coef2, uint32_t coef3, uint32_t coef4);
+
 
 #endif					/* S_SERIALCOMM_H */

@@ -49,6 +49,8 @@ int main (void)
 	
 	uint16_t * signal;
 	uint32_t time[] = { 0x00112233, 0x44556677, 0x8899AABB, 0xCCDDEEFF };
+	uint32_t coefficient[] = { 555, 6666, 77777, 8888888 };
+
 	uint8_t signalOutputfilter[4];
 
 	/*******************
@@ -96,8 +98,8 @@ int main (void)
 
 		signalProcessing( signal, signalOutputfilter );
 
-		usbCommSendData( (uint8_t *)signal, NB_SAMPLES_TOTAL*2 ); // Sending NB_SAMPLES_TOTAL of uint16_t
-		
+		//usbCommSendData( (uint8_t *)signal, NB_SAMPLES_TOTAL*2 ); // Sending NB_SAMPLES_TOTAL of uint16_t
+		//usbCommSendCoefficients( coefficient[0], coefficient[1], coefficient[2], coefficient[3] );
 	}
 
 	return 0;

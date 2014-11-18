@@ -4,6 +4,7 @@
 #ifndef _EXP400_H__
 #define _EXP400_H__
 
+
 #include "global.h"
 
 const int32_t cos_40000[256]= {

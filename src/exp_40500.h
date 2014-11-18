@@ -4,6 +4,7 @@
 #ifndef _EXP405_H__
 #define _EXP405_H__
 
+
 #include "global.h"
 
 const int32_t cos_40500[256]= {

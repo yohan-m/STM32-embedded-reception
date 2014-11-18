@@ -17,12 +17,12 @@
 	*
 	*****************************************************************************/
 
-#define FREQUENCY_THRESHOLD_39500 (1*4096)			
-#define FREQUENCY_THRESHOLD_40000 (1*4096)	
-#define FREQUENCY_THRESHOLD_40500 (1*4096)	
-#define FREQUENCY_THRESHOLD_41000 (1*4096)	
+#define FREQUENCY_THRESHOLD_39500 (1000)			
+#define FREQUENCY_THRESHOLD_40000 (1000)	
+#define FREQUENCY_THRESHOLD_40500 (1000)	
+#define FREQUENCY_THRESHOLD_41000 (1000)
 
-#define POSITION_VIRGULE 
+#define POSITION_VIRGULE 					12
 
 /******************************************************************************
 	*
