@@ -145,12 +145,12 @@ uint16_t * acquireBurstDMA( void )
 {
 
 	// LED 3 turned on at each acquisition
-	setLEDAcquisition( ON );
+	//setLEDAcquisition( ON );
 	
 	// Conversion on timer trig
 	Init_Conversion_On_Trig_Timer(ADC_ID , TIM1_CC1, ADC_SAMPLING_FREQUENCY);	
 	
-	//Wait_On_EOC_ADC(ADC_ID);
+	Wait_On_EOC_ADC(ADC_ID);
 	
 	
 	// DMA stores acquisition data (u16) in buffer

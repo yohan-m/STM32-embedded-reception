@@ -77,7 +77,7 @@ int main (void)
 	//uartCommInit();
 	
 	// USB communication
-	usbCommInit();	
+	//usbCommInit();	
 
 	// Signals acquisition
 	sampleAcquisitionInit();
