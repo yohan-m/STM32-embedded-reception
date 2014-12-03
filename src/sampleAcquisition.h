@@ -33,17 +33,14 @@
 	*
 	*****************************************************************************/
 
+#define ADC1_DR_Address    	((uint32_t)0x4001244C)
+#define TIM1_CCR1_Address  	((uint32_t)0x40012C34)
 
-#define ADC_ID										ADC1						// ADC ID
-#define ADC_HANDLER_PRIORITY 			4 							// EOC ADC Interruption Priority
-#define ADC_CHANNEL								10							// ADC channel
-#define ADC_CONVERSION_TIME				5.0							// Minimum time of conversion for 1 sample in µs (RC response at the entry of the ADC)
-#define ADC_SAMPLING_FREQUENCY		128							// Sampling frequency in kHz
+#define SIGNAL_BUFFER_SIZE	128
+#define SIGNAL_HALF_BUFFER_SIZE 		(SIGNAL_BUFFER_SIZE/2)
 
-#define NB_SAMPLES_TOTAL					256							// Number of samples to acquire
-
-#define DMA_NON_CIRCULAR					0								// "char circ" parameter of the Init_ADC1_DMA1 function
-
+extern uint16_t adcBuffer[SIGNAL_BUFFER_SIZE];		// Static buffer to save a signal
+extern uint16_t idDataToProcess;
 
 /******************************************************************************
 	*
@@ -79,40 +76,8 @@ void setLEDAcquisition( uint8_t status );
 	* @param Void
 	* @return 0 if working
 	*******************************************************************************/
-uint8_t sampleAcquisitionInit( void );
+void sampleAcquisitionInit( void );
 
-/********************************************************************************
-	* acquireSample
-	*
-	*      Manual acquisition of one sample
-	*				Blocking function.
-	* 			
-	* @param Void
-	* @return The sampled value from the ADC
-	*******************************************************************************/
-uint16_t acquireSample ( void );
-
-/********************************************************************************
-	* acquireBurstManual
-	*
-	*      Manual acquisition of an array of samples.
-	*				Blocking function.
-	* 			
-	* @param Void
-	* @return A pointer on the filled array
-	*******************************************************************************/
-uint16_t * acquireBurstManual( void );
-
-/********************************************************************************
-	* acquireBurstDMA
-	*
-	*      Automatic acquisition of an array of samples (using DMA).
-	*				Blocking function.
-	* 			
-	* @param Void
-	* @return A pointer on the filled array
-	*******************************************************************************/
-uint16_t * acquireBurstDMA( void );
 
 
 #endif					/* S_SERIALCOMM_HS_SAMPLEACQUISITION_H */

@@ -10,6 +10,7 @@
 
 #include "global.h"
 #include <math.h>
+#include "sampleAcquisition.h"
 
 /******************************************************************************
 	* 
@@ -17,12 +18,22 @@
 	*
 	*****************************************************************************/
 
-#define FREQUENCY_THRESHOLD_39500 (4096)			
-#define FREQUENCY_THRESHOLD_40000 (4096)	
-#define FREQUENCY_THRESHOLD_40500 (4096)	
-#define FREQUENCY_THRESHOLD_41000 (4096)
+#define FREQUENCY_THRESHOLD					{1500,1500,1500,1500}
+#define POSITION_VIRGULE						9
 
-#define POSITION_VIRGULE 					12
+#define NB_BLOCKS										(256/SIGNAL_HALF_BUFFER_SIZE)
+#define MAX_SIGNAL									1
+#define AVERAGE_SIGNAL              1970
+
+#define NB_BEACONS									4
+
+#define EMISSION_PERIOD 						1 //ms
+#define EMISSION_OFF_PERIOD	 				24
+
+#define EMISSION_PERIOD_SAMPLE 			(EMISSION_PERIOD*(256/SIGNAL_HALF_BUFFER_SIZE))	
+
+#define TDOA_PERIOD 								1000 //ms
+#define TDOA_PERIOD_SAMPLE 					(TDOA_PERIOD/(EMISSION_OFF_PERIOD + EMISSION_PERIOD))
 
 /******************************************************************************
 	*
@@ -59,6 +70,9 @@ void signalTraitementInit();
 	* @return 0 if working
 	*******************************************************************************/
 
-int signalProcessing (uint16_t * signal,uint8_t frequencyCoefficient[]);
+uint32_t signalProcessing ();
+
+int32_t squaredRootHomeMade(int32_t numberToSquare, uint16_t maxIteration);
+
 
 #endif

@@ -97,6 +97,7 @@ void usbCommSendTimes( uint32_t time1, uint32_t time2, uint32_t time3, uint32_t 
 	* @return Void
 	******************************************************************************/
 void usbCommSendCoefficients( uint32_t coef1, uint32_t coef2, uint32_t coef3, uint32_t coef4);
+void usbCommSendCoefficients64( uint64_t coef1, uint64_t coef2, uint64_t coef3, uint64_t coef4);
 
 
 #endif					/* S_SERIALCOMM_H */

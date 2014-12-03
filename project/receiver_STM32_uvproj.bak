@@ -595,6 +595,11 @@
               <FilePath>../src/sampleAcquisition.c</FilePath>
             </File>
             <File>
+              <FileName>sampleAcquisition.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\sampleAcquisition.h</FilePath>
+            </File>
+            <File>
               <FileName>uartComm.c</FileName>
               <FileType>1</FileType>
               <FilePath>../src/uartComm.c</FilePath>
@@ -624,11 +629,6 @@
               <FileType>5</FileType>
               <FilePath>..\..\common-sources\src\serialFrame.h</FilePath>
             </File>
-            <File>
-              <FileName>sampleAcquisition.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\src\sampleAcquisition.h</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -643,16 +643,6 @@
               <FileName>global.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\src\global.h</FilePath>
-            </File>
-            <File>
-              <FileName>signalFilter.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../src/signalFilter.c</FilePath>
-            </File>
-            <File>
-              <FileName>signalFilter.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\src\signalFilter.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1247,6 +1237,11 @@
               <FilePath>../src/sampleAcquisition.c</FilePath>
             </File>
             <File>
+              <FileName>sampleAcquisition.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\sampleAcquisition.h</FilePath>
+            </File>
+            <File>
               <FileName>uartComm.c</FileName>
               <FileType>1</FileType>
               <FilePath>../src/uartComm.c</FilePath>
@@ -1276,11 +1271,6 @@
               <FileType>5</FileType>
               <FilePath>..\..\common-sources\src\serialFrame.h</FilePath>
             </File>
-            <File>
-              <FileName>sampleAcquisition.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\src\sampleAcquisition.h</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -1295,16 +1285,6 @@
               <FileName>global.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\src\global.h</FilePath>
-            </File>
-            <File>
-              <FileName>signalFilter.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../src/signalFilter.c</FilePath>
-            </File>
-            <File>
-              <FileName>signalFilter.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\src\signalFilter.h</FilePath>
             </File>
           </Files>
         </Group>

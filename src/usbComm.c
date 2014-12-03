@@ -163,3 +163,14 @@ void usbCommSendCoefficients( uint32_t coef1, uint32_t coef2, uint32_t coef3, ui
 	usbCommSendData( (uint8_t *)&coef4, 4 );
 	
 }
+void usbCommSendCoefficients64( uint64_t coef1, uint64_t coef2, uint64_t coef3, uint64_t coef4)
+{
+	
+	usbCommSendChar( SYNC_CHAR_1 );
+	usbCommSendChar( SYNC_CHAR_2 );
+	usbCommSendData( (uint8_t *)&coef1, 8 );
+	usbCommSendData( (uint8_t *)&coef2, 8 );
+	usbCommSendData( (uint8_t *)&coef3, 8 );
+	usbCommSendData( (uint8_t *)&coef4, 8 );
+	
+}

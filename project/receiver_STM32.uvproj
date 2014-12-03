@@ -30,7 +30,6 @@
           <SLE66AMisc></SLE66AMisc>
           <SLE66LinkerMisc></SLE66LinkerMisc>
           <SFDFile></SFDFile>
-          <bCustSvd>0</bCustSvd>
           <UseEnv>0</UseEnv>
           <BinPath></BinPath>
           <IncludePath></IncludePath>
@@ -98,7 +97,6 @@
           <StopOnExitCode>3</StopOnExitCode>
           <CustomArgument></CustomArgument>
           <IncludeLibraryModules></IncludeLibraryModules>
-          <ComprImg>1</ComprImg>
         </CommonProperty>
         <DllOption>
           <SimDllName>SARMCM3.DLL</SimDllName>
@@ -128,7 +126,6 @@
             <RestoreFunctions>1</RestoreFunctions>
             <RestoreToolbox>1</RestoreToolbox>
             <LimitSpeedToRealTime>0</LimitSpeedToRealTime>
-            <RestoreSysVw>1</RestoreSysVw>
           </Simulator>
           <Target>
             <UseTarget>1</UseTarget>
@@ -140,8 +137,6 @@
             <RestoreFunctions>0</RestoreFunctions>
             <RestoreToolbox>1</RestoreToolbox>
             <RestoreTracepoints>0</RestoreTracepoints>
-            <RestoreSysVw>1</RestoreSysVw>
-            <UsePdscDebugDescription>1</UsePdscDebugDescription>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
           <TargetSelection>1</TargetSelection>
@@ -170,14 +165,9 @@
             <Capability>1</Capability>
             <DriverSelection>4096</DriverSelection>
           </Flash1>
-          <bUseTDR>0</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
           <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
-          <pFcarmOut></pFcarmOut>
-          <pFcarmGrp></pFcarmGrp>
-          <pFcArmRoot></pFcArmRoot>
-          <FcArmLst>0</FcArmLst>
         </Utilities>
         <TargetArm>
           <ArmMisc>
@@ -605,6 +595,11 @@
               <FilePath>../src/sampleAcquisition.c</FilePath>
             </File>
             <File>
+              <FileName>sampleAcquisition.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\sampleAcquisition.h</FilePath>
+            </File>
+            <File>
               <FileName>uartComm.c</FileName>
               <FileType>1</FileType>
               <FilePath>../src/uartComm.c</FilePath>
@@ -634,11 +629,6 @@
               <FileType>5</FileType>
               <FilePath>..\..\common-sources\src\serialFrame.h</FilePath>
             </File>
-            <File>
-              <FileName>sampleAcquisition.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\src\sampleAcquisition.h</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -660,9 +650,9 @@
               <FilePath>../src/signalFilter.c</FilePath>
             </File>
             <File>
-              <FileName>signalFilter.h</FileName>
+              <FileName>SIGNALFILTER.H</FileName>
               <FileType>5</FileType>
-              <FilePath>..\src\signalFilter.h</FilePath>
+              <FilePath>..\src\SIGNALFILTER.H</FilePath>
             </File>
           </Files>
         </Group>
@@ -692,7 +682,6 @@
           <SLE66AMisc></SLE66AMisc>
           <SLE66LinkerMisc></SLE66LinkerMisc>
           <SFDFile></SFDFile>
-          <bCustSvd>0</bCustSvd>
           <UseEnv>0</UseEnv>
           <BinPath></BinPath>
           <IncludePath></IncludePath>
@@ -760,7 +749,6 @@
           <StopOnExitCode>3</StopOnExitCode>
           <CustomArgument></CustomArgument>
           <IncludeLibraryModules></IncludeLibraryModules>
-          <ComprImg>1</ComprImg>
         </CommonProperty>
         <DllOption>
           <SimDllName>SARMCM3.DLL</SimDllName>
@@ -790,7 +778,6 @@
             <RestoreFunctions>1</RestoreFunctions>
             <RestoreToolbox>1</RestoreToolbox>
             <LimitSpeedToRealTime>0</LimitSpeedToRealTime>
-            <RestoreSysVw>1</RestoreSysVw>
           </Simulator>
           <Target>
             <UseTarget>0</UseTarget>
@@ -802,8 +789,6 @@
             <RestoreFunctions>0</RestoreFunctions>
             <RestoreToolbox>1</RestoreToolbox>
             <RestoreTracepoints>0</RestoreTracepoints>
-            <RestoreSysVw>1</RestoreSysVw>
-            <UsePdscDebugDescription>1</UsePdscDebugDescription>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
           <TargetSelection>0</TargetSelection>
@@ -832,14 +817,9 @@
             <Capability>1</Capability>
             <DriverSelection>4096</DriverSelection>
           </Flash1>
-          <bUseTDR>0</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
           <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
-          <pFcarmOut></pFcarmOut>
-          <pFcarmGrp></pFcarmGrp>
-          <pFcArmRoot></pFcArmRoot>
-          <FcArmLst>0</FcArmLst>
         </Utilities>
         <TargetArm>
           <ArmMisc>
@@ -1267,6 +1247,11 @@
               <FilePath>../src/sampleAcquisition.c</FilePath>
             </File>
             <File>
+              <FileName>sampleAcquisition.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\src\sampleAcquisition.h</FilePath>
+            </File>
+            <File>
               <FileName>uartComm.c</FileName>
               <FileType>1</FileType>
               <FilePath>../src/uartComm.c</FilePath>
@@ -1296,11 +1281,6 @@
               <FileType>5</FileType>
               <FilePath>..\..\common-sources\src\serialFrame.h</FilePath>
             </File>
-            <File>
-              <FileName>sampleAcquisition.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\src\sampleAcquisition.h</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -1322,9 +1302,9 @@
               <FilePath>../src/signalFilter.c</FilePath>
             </File>
             <File>
-              <FileName>signalFilter.h</FileName>
+              <FileName>SIGNALFILTER.H</FileName>
               <FileType>5</FileType>
-              <FilePath>..\src\signalFilter.h</FilePath>
+              <FilePath>..\src\SIGNALFILTER.H</FilePath>
             </File>
           </Files>
         </Group>

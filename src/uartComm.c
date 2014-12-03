@@ -127,7 +127,7 @@ uint8_t uartCommSendData( uint8_t * array, uint16_t size )
 { 		
 	uint8_t errorCode = 0;
 	uint16_t idChar = 0;
-		
+	GPIO_Set(GPIOB, 5);
 	for (idChar = 0; idChar < size; idChar++ )
 	{
 			// Affichage du caractere 
@@ -138,7 +138,7 @@ uint8_t uartCommSendData( uint8_t * array, uint16_t size )
 	{
 		uartCommToggleLEDStatus();
 	}	
-	
+	GPIO_Clear(GPIOB, 5);
 	return errorCode;
 }
 
