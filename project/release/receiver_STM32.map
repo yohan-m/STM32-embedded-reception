@@ -37,6 +37,7 @@ HSEStartUpStatus    0x1               ./release/hw_config.o
 Enable_Fct_IT_Compare_Match_TIM4_Voie3
                     0x1               ../drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
 adcBuffer           0x100             ./release/sampleacquisition.o
+xfunc_in            0x4               ./release/xprintf.o
 SaveState           0x2               ./release/usb_init.o
 Enable_Fct_IT_Compare_Match_TIM1_Voie1
                     0x1               ../drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
@@ -44,6 +45,7 @@ converted           0x15              ./release/serialframe.o
 Enable_Fct_IT_Compare_Match_TIM3_Voie4
                     0x1               ../drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
 USART_Tx_Buffer     0x800             ./release/hw_config.o
+xfunc_out           0x4               ./release/xprintf.o
 wIstr               0x2               ./release/usb_istr.o
 pProperty           0x4               ./release/usb_init.o
 PTR_Function_USART1
@@ -100,17 +102,27 @@ Linker script and memory map
 LOAD ./release/startup-gcc.o
 LOAD ./release/clock.o
 LOAD ./release/usart.o
+LOAD ./release/xprintf.o
 LOAD ./release/misc.o
 LOAD ./release/stm32f10x_adc.o
 LOAD ./release/stm32f10x_bkp.o
+LOAD ./release/stm32f10x_can.o
+LOAD ./release/stm32f10x_cec.o
+LOAD ./release/stm32f10x_crc.o
+LOAD ./release/stm32f10x_dac.o
+LOAD ./release/stm32f10x_dbgmcu.o
 LOAD ./release/stm32f10x_dma.o
 LOAD ./release/stm32f10x_exti.o
 LOAD ./release/stm32f10x_flash.o
+LOAD ./release/stm32f10x_fsmc.o
 LOAD ./release/stm32f10x_gpio.o
+LOAD ./release/stm32f10x_i2c.o
 LOAD ./release/stm32f10x_iwdg.o
+LOAD ./release/stm32f10x_pwr.o
 LOAD ./release/stm32f10x_rcc.o
 LOAD ./release/stm32f10x_rtc.o
 LOAD ./release/stm32f10x_sdio.o
+LOAD ./release/stm32f10x_spi.o
 LOAD ./release/stm32f10x_tim.o
 LOAD ./release/stm32f10x_usart.o
 LOAD ./release/stm32f10x_wwdg.o
@@ -150,7 +162,7 @@ LOAD c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-no
 LOAD c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/lib/thumb2\libm.a
 END GROUP
 
-.text           0x08000000     0xa558
+.text           0x08000000     0xbf78
  *(.isr_vector)
  .isr_vector    0x08000000       0xec ./release/startup-gcc.o
                 0x08000000                __isr_vector
@@ -217,615 +229,778 @@ END GROUP
                 0x080003a0                USART2_IRQHandler
                 0x080003d0                USART3_IRQHandler
                 0x0800040c                Active_Interrupt_Received_Data_available
- .text          0x080004a0       0xc0 ./release/misc.o
-                0x080004a0                NVIC_PriorityGroupConfig
-                0x080004b4                NVIC_Init
-                0x0800051c                NVIC_SetVectorTable
-                0x08000530                NVIC_SystemLPConfig
-                0x08000548                SysTick_CLKSourceConfig
- .text          0x08000560      0x378 ./release/stm32f10x_adc.o
-                0x08000560                ADC_DeInit
-                0x080005bc                ADC_Init
-                0x08000604                ADC_StructInit
-                0x08000616                ADC_Cmd
-                0x08000628                ADC_DMACmd
-                0x0800063a                ADC_ITConfig
-                0x0800064c                ADC_ResetCalibration
-                0x08000656                ADC_GetResetCalibrationStatus
-                0x0800065e                ADC_StartCalibration
-                0x08000668                ADC_GetCalibrationStatus
-                0x08000670                ADC_SoftwareStartConvCmd
-                0x08000682                ADC_GetSoftwareStartConvStatus
-                0x0800068a                ADC_DiscModeChannelCountConfig
-                0x0800069a                ADC_DiscModeCmd
-                0x080006ac                ADC_RegularChannelConfig
-                0x08000748                ADC_ExternalTrigConvCmd
-                0x0800075a                ADC_GetConversionValue
-                0x08000760                ADC_GetDualModeConversionValue
-                0x0800076c                ADC_AutoInjectedConvCmd
-                0x0800077e                ADC_InjectedDiscModeCmd
-                0x08000790                ADC_ExternalTrigInjectedConvConfig
-                0x0800079c                ADC_ExternalTrigInjectedConvCmd
-                0x080007ae                ADC_SoftwareStartInjectedConvCmd
-                0x080007c0                ADC_GetSoftwareStartInjectedConvCmdStatus
-                0x080007c8                ADC_InjectedChannelConfig
-                0x0800082c                ADC_InjectedSequencerLengthConfig
-                0x0800083c                ADC_SetInjectedOffset
-                0x08000852                ADC_GetInjectedConversionValue
-                0x0800086c                ADC_AnalogWatchdogCmd
-                0x0800087c                ADC_AnalogWatchdogThresholdsConfig
-                0x08000882                ADC_AnalogWatchdogSingleChannelConfig
-                0x0800088e                ADC_TempSensorVrefintCmd
-                0x080008a8                ADC_GetFlagStatus
-                0x080008b4                ADC_ClearFlag
-                0x080008ba                ADC_GetITStatus
-                0x080008d0                ADC_ClearITPendingBit
- .text          0x080008d8       0xe0 ./release/stm32f10x_bkp.o
-                0x080008d8                BKP_DeInit
-                0x080008ea                BKP_TamperPinLevelConfig
-                0x080008f4                BKP_TamperPinCmd
-                0x08000900                BKP_ITConfig
-                0x0800090c                BKP_RTCOutputConfig
-                0x08000924                BKP_SetRTCCalibrationValue
-                0x0800093c                BKP_WriteBackupRegister
-                0x08000958                BKP_ReadBackupRegister
-                0x08000978                BKP_GetFlagStatus
-                0x08000984                BKP_ClearFlag
-                0x08000998                BKP_GetITStatus
-                0x080009a4                BKP_ClearITPendingBit
- .text          0x080009b8      0x1e0 ./release/stm32f10x_dma.o
-                0x080009b8                DMA_DeInit
-                0x08000ab0                DMA_Init
-                0x08000aee                DMA_StructInit
-                0x08000b08                DMA_Cmd
-                0x08000b1e                DMA_ITConfig
-                0x08000b2e                DMA_SetCurrDataCounter
-                0x08000b32                DMA_GetCurrDataCounter
-                0x08000b38                DMA_GetFlagStatus
-                0x08000b54                DMA_ClearFlag
-                0x08000b68                DMA_GetITStatus
-                0x08000b84                DMA_ClearITPendingBit
- .text          0x08000b98       0xf8 ./release/stm32f10x_exti.o
-                0x08000b98                EXTI_DeInit
-                0x08000bb4                EXTI_Init
-                0x08000c2c                EXTI_StructInit
-                0x08000c3a                EXTI_GenerateSWInterrupt
-                0x08000c48                EXTI_GetFlagStatus
-                0x08000c5c                EXTI_ClearFlag
-                0x08000c68                EXTI_GetITStatus
-                0x08000c84                EXTI_ClearITPendingBit
- .text          0x08000c90      0x538 ./release/stm32f10x_flash.o
-                0x08000c90                FLASH_SetLatency
-                0x08000ca4                FLASH_HalfCycleAccessCmd
-                0x08000cbc                FLASH_PrefetchBufferCmd
-                0x08000cd4                FLASH_Unlock
-                0x08000cec                FLASH_UnlockBank1
-                0x08000d04                FLASH_Lock
-                0x08000d14                FLASH_LockBank1
-                0x08000d24                FLASH_GetUserOptionByte
-                0x08000d30                FLASH_GetWriteProtectionOptionByte
-                0x08000d3c                FLASH_GetReadOutProtectionStatus
-                0x08000d4c                FLASH_GetPrefetchBufferStatus
-                0x08000d5c                FLASH_ITConfig
-                0x08000d74                FLASH_GetFlagStatus
-                0x08000d94                FLASH_ClearFlag
-                0x08000da0                FLASH_GetStatus
-                0x08000dc8                FLASH_GetBank1Status
-                0x08000df0                FLASH_WaitForLastOperation
-                0x08000e14                FLASH_UserOptionByteConfig
-                0x08000e6c                FLASH_ReadOutProtection
-                0x08000efc                FLASH_EnableWriteProtection
-                0x08000fa8                FLASH_ProgramOptionByteData
-                0x08000ff0                FLASH_ProgramHalfWord
-                0x08001028                FLASH_ProgramWord
-                0x08001078                FLASH_EraseOptionBytes
-                0x080010f8                FLASH_EraseAllPages
-                0x08001130                FLASH_ErasePage
-                0x0800116c                FLASH_WaitForLastBank1Operation
-                0x08001190                FLASH_EraseAllBank1Pages
- .text          0x080011c8      0x290 ./release/stm32f10x_gpio.o
-                0x080011c8                GPIO_DeInit
-                0x08001274                GPIO_AFIODeInit
-                0x0800128a                GPIO_Init
-                0x08001332                GPIO_StructInit
-                0x08001342                GPIO_ReadInputDataBit
-                0x0800134e                GPIO_ReadInputData
-                0x08001354                GPIO_ReadOutputDataBit
-                0x08001360                GPIO_ReadOutputData
-                0x08001366                GPIO_SetBits
-                0x0800136a                GPIO_ResetBits
-                0x0800136e                GPIO_WriteBit
-                0x08001378                GPIO_Write
-                0x0800137c                GPIO_PinLockConfig
-                0x0800138c                GPIO_EventOutputConfig
-                0x080013a8                GPIO_EventOutputCmd
-                0x080013b4                GPIO_PinRemapConfig
-                0x08001418                GPIO_EXTILineConfig
-                0x0800144c                GPIO_ETH_MediaInterfaceConfig
- .text          0x08001458       0x58 ./release/stm32f10x_iwdg.o
-                0x08001458                IWDG_WriteAccessCmd
-                0x08001464                IWDG_SetPrescaler
-                0x08001470                IWDG_SetReload
-                0x0800147c                IWDG_ReloadCounter
-                0x0800148c                IWDG_Enable
-                0x0800149c                IWDG_GetFlagStatus
- .text          0x080014b0      0x344 ./release/stm32f10x_rcc.o
-                0x080014b0                RCC_DeInit
-                0x080014f0                RCC_HSEConfig
-                0x08001528                RCC_AdjustHSICalibrationValue
-                0x0800153c                RCC_HSICmd
-                0x08001548                RCC_PLLConfig
-                0x0800155c                RCC_PLLCmd
-                0x08001568                RCC_SYSCLKConfig
-                0x0800157c                RCC_GetSYSCLKSource
-                0x0800158c                RCC_HCLKConfig
-                0x080015a0                RCC_PCLK1Config
-                0x080015b4                RCC_PCLK2Config
-                0x080015c8                RCC_ITConfig
-                0x080015e0                RCC_USBCLKConfig
-                0x080015ec                RCC_ADCCLKConfig
-                0x08001600                RCC_LSEConfig
-                0x08001620                RCC_LSICmd
-                0x0800162c                RCC_RTCCLKConfig
-                0x0800163c                RCC_RTCCLKCmd
-                0x08001648                RCC_GetClocksFreq
-                0x080016d4                RCC_AHBPeriphClockCmd
-                0x080016ec                RCC_APB2PeriphClockCmd
-                0x08001704                RCC_APB1PeriphClockCmd
-                0x0800171c                RCC_APB2PeriphResetCmd
-                0x08001734                RCC_APB1PeriphResetCmd
-                0x0800174c                RCC_BackupResetCmd
-                0x08001758                RCC_ClockSecuritySystemCmd
-                0x08001764                RCC_MCOConfig
-                0x08001770                RCC_GetFlagStatus
-                0x08001798                RCC_WaitForHSEStartUp
-                0x080017c4                RCC_ClearFlag
-                0x080017d4                RCC_GetITStatus
-                0x080017e8                RCC_ClearITPendingBit
- .text          0x080017f4      0x158 ./release/stm32f10x_rtc.o
-                0x080017f4                RTC_ITConfig
-                0x0800180c                RTC_EnterConfigMode
-                0x08001820                RTC_ExitConfigMode
-                0x08001834                RTC_GetCounter
-                0x08001848                RTC_SetCounter
-                0x08001864                RTC_SetPrescaler
-                0x08001884                RTC_SetAlarm
-                0x080018a0                RTC_GetDivider
-                0x080018b8                RTC_WaitForLastTask
-                0x080018cc                RTC_WaitForSynchro
-                0x080018ec                RTC_GetFlagStatus
-                0x08001900                RTC_ClearFlag
-                0x08001914                RTC_GetITStatus
-                0x08001938                RTC_ClearITPendingBit
- .text          0x0800194c      0x234 ./release/stm32f10x_sdio.o
-                0x0800194c                SDIO_DeInit
-                0x08001970                SDIO_Init
-                0x080019a0                SDIO_StructInit
-                0x080019b0                SDIO_ClockCmd
-                0x080019bc                SDIO_SetPowerState
-                0x080019d4                SDIO_GetPowerState
-                0x080019e4                SDIO_ITConfig
-                0x080019fc                SDIO_DMACmd
-                0x08001a08                SDIO_SendCommand
-                0x08001a34                SDIO_CmdStructInit
-                0x08001a42                SDIO_GetCommandResponse
-                0x08001a50                SDIO_GetResponse
-                0x08001a68                SDIO_DataConfig
-                0x08001a94                SDIO_DataStructInit
-                0x08001aa8                SDIO_GetDataCounter
-                0x08001ab4                SDIO_ReadData
-                0x08001ac0                SDIO_WriteData
-                0x08001acc                SDIO_GetFIFOCount
-                0x08001ad8                SDIO_StartSDIOReadWait
-                0x08001ae4                SDIO_StopSDIOReadWait
-                0x08001af0                SDIO_SetSDIOReadWaitMode
-                0x08001afc                SDIO_SetSDIOOperation
-                0x08001b08                SDIO_SendSDIOSuspendCmd
-                0x08001b14                SDIO_CommandCompletionCmd
-                0x08001b20                SDIO_CEATAITCmd
-                0x08001b34                SDIO_SendCEATACmd
-                0x08001b40                SDIO_GetFlagStatus
-                0x08001b54                SDIO_ClearFlag
-                0x08001b60                SDIO_GetITStatus
-                0x08001b74                SDIO_ClearITPendingBit
- .text          0x08001b80      0xc68 ./release/stm32f10x_tim.o
-                0x08001c60                TIM_DeInit
-                0x08001e0c                TIM_TimeBaseInit
-                0x08001ea0                TIM_OC1Init
-                0x08001f28                TIM_OC2Init
-                0x08001fac                TIM_OC3Init
-                0x08002030                TIM_OC4Init
-                0x08002094                TIM_BDTRConfig
-                0x080020b4                TIM_TimeBaseStructInit
-                0x080020c6                TIM_OCStructInit
-                0x080020da                TIM_ICStructInit
-                0x080020ea                TIM_BDTRStructInit
-                0x080020fc                TIM_Cmd
-                0x08002114                TIM_CtrlPWMOutputs
-                0x0800212e                TIM_ITConfig
-                0x08002140                TIM_GenerateEvent
-                0x08002144                TIM_DMAConfig
-                0x0800214c                TIM_DMACmd
-                0x0800215e                TIM_InternalClockConfig
-                0x0800216c                TIM_ITRxExternalClockConfig
-                0x08002186                TIM_TIxExternalClockConfig
-                0x080021b8                TIM_ETRConfig
-                0x080021cc                TIM_ETRClockMode2Config
-                0x080021e0                TIM_ETRClockMode1Config
-                0x080021fa                TIM_PrescalerConfig
-                0x08002200                TIM_CounterModeConfig
-                0x08002210                TIM_SelectInputTrigger
-                0x08002220                TIM_EncoderInterfaceConfig
-                0x0800225c                TIM_ForcedOC1Config
-                0x0800226c                TIM_ForcedOC2Config
-                0x0800227e                TIM_ForcedOC3Config
-                0x0800228e                TIM_ForcedOC4Config
-                0x080022a0                TIM_ARRPreloadConfig
-                0x080022b8                TIM_SelectCOM
-                0x080022d0                TIM_SelectCCDMA
-                0x080022e8                TIM_CCPreloadControl
-                0x08002300                TIM_OC1PreloadConfig
-                0x08002310                TIM_OC2PreloadConfig
-                0x08002322                TIM_OC3PreloadConfig
-                0x08002332                TIM_OC4PreloadConfig
-                0x08002344                TIM_OC1FastConfig
-                0x08002354                TIM_OC2FastConfig
-                0x08002366                TIM_OC3FastConfig
-                0x08002376                TIM_OC4FastConfig
-                0x08002388                TIM_ClearOC1Ref
-                0x08002398                TIM_ClearOC2Ref
-                0x080023a6                TIM_ClearOC3Ref
-                0x080023b6                TIM_ClearOC4Ref
-                0x080023c4                TIM_OC1PolarityConfig
-                0x080023d4                TIM_OC1NPolarityConfig
-                0x080023e4                TIM_OC2PolarityConfig
-                0x080023f6                TIM_OC2NPolarityConfig
-                0x08002408                TIM_OC3PolarityConfig
-                0x0800241a                TIM_OC3NPolarityConfig
-                0x0800242c                TIM_OC4PolarityConfig
-                0x0800243e                TIM_CCxCmd
-                0x0800245c                TIM_CCxNCmd
-                0x0800247a                TIM_SelectOCxM
-                0x080024be                TIM_UpdateDisableConfig
-                0x080024d6                TIM_UpdateRequestConfig
-                0x080024ee                TIM_SelectHallSensor
-                0x08002506                TIM_SelectOnePulseMode
-                0x0800251c                TIM_SelectOutputTrigger
-                0x08002532                TIM_SelectSlaveMode
-                0x08002548                TIM_SelectMasterSlaveMode
-                0x0800255e                TIM_SetCounter
-                0x08002562                TIM_SetAutoreload
-                0x08002566                TIM_SetCompare1
-                0x0800256a                TIM_SetCompare2
-                0x0800256e                TIM_SetCompare3
-                0x08002572                TIM_SetCompare4
-                0x08002578                TIM_SetIC1Prescaler
-                0x0800258e                TIM_SetIC2Prescaler
-                0x080025a6                TIM_PWMIConfig
-                0x08002614                TIM_SetIC3Prescaler
-                0x0800262a                TIM_SetIC4Prescaler
-                0x08002642                TIM_ICInit
-                0x0800277c                TIM_SetClockDivision
-                0x08002792                TIM_GetCapture1
-                0x08002798                TIM_GetCapture2
-                0x0800279e                TIM_GetCapture3
-                0x080027a4                TIM_GetCapture4
-                0x080027ac                TIM_GetCounter
-                0x080027b2                TIM_GetPrescaler
-                0x080027b8                TIM_GetFlagStatus
-                0x080027c4                TIM_ClearFlag
-                0x080027ca                TIM_GetITStatus
-                0x080027e0                TIM_ClearITPendingBit
- .text          0x080027e8      0x394 ./release/stm32f10x_usart.o
-                0x080027e8                USART_DeInit
-                0x08002880                USART_Init
-                0x08002928                USART_StructInit
-                0x0800293e                USART_ClockInit
-                0x0800295c                USART_ClockStructInit
-                0x08002968                USART_Cmd
-                0x08002980                USART_ITConfig
-                0x080029b2                USART_DMACmd
-                0x080029c4                USART_SetAddress
-                0x080029da                USART_WakeUpConfig
-                0x080029f0                USART_ReceiverWakeUpCmd
-                0x08002a08                USART_LINBreakDetectLengthConfig
-                0x08002a1e                USART_LINCmd
-                0x08002a36                USART_SendData
-                0x08002a3e                USART_ReceiveData
-                0x08002a46                USART_SendBreak
-                0x08002a52                USART_SetGuardTime
-                0x08002a64                USART_SetPrescaler
-                0x08002a76                USART_SmartCardCmd
-                0x08002a8e                USART_SmartCardNACKCmd
-                0x08002aa6                USART_HalfDuplexCmd
-                0x08002abe                USART_OverSampling8Cmd
-                0x08002ad4                USART_OneBitMethodCmd
-                0x08002aec                USART_IrDAConfig
-                0x08002b02                USART_IrDACmd
-                0x08002b1a                USART_GetFlagStatus
-                0x08002b26                USART_ClearFlag
-                0x08002b2c                USART_GetITStatus
-                0x08002b6c                USART_ClearITPendingBit
- .text          0x08002b7c       0x98 ./release/stm32f10x_wwdg.o
-                0x08002b7c                WWDG_DeInit
-                0x08002b96                WWDG_SetPrescaler
-                0x08002ba8                WWDG_SetWindowValue
-                0x08002bd0                WWDG_EnableIT
-                0x08002bdc                WWDG_SetCounter
-                0x08002bec                WWDG_Enable
-                0x08002bfc                WWDG_GetFlagStatus
-                0x08002c08                WWDG_ClearFlag
- .text          0x08002c14      0x22c ./release/hw_config.o
-                0x08002c3e                Set_System
-                0x08002c6c                Set_USBClock
-                0x08002c82                Enter_LowPowerMode
-                0x08002c90                Leave_LowPowerMode
-                0x08002cac                USB_Interrupts_Config
-                0x08002cd4                USB_Cable_Config
-                0x08002cf0                USB_To_USART_Send_Data
-                0x08002d24                USB_Receive
-                0x08002d4c                USB_GetTxSize
-                0x08002d58                Handle_USBAsynchXfer
-                0x08002dd8                USB_Send
-                0x08002df8                Get_SerialNum
-                0x08002e34                USB_GetState
- .text          0x08002e40        0x0 ./release/otgd_fs_cal.o
- .text          0x08002e40        0x0 ./release/otgd_fs_dev.o
- .text          0x08002e40        0x0 ./release/otgd_fs_int.o
- .text          0x08002e40        0x0 ./release/otgd_fs_pcd.o
- .text          0x08002e40        0x4 ./release/stm32f10x_it.o
-                0x08002e40                USB_LP_CAN1_RX0_IRQHandler
- .text          0x08002e44      0x854 ./release/usb_core.o
-                0x08002e44                Standard_GetConfiguration
-                0x08002e68                Standard_GetInterface
-                0x08002e8c                Standard_GetStatus
-                0x08002fc8                Standard_SetConfiguration
-                0x08003000                Standard_SetInterface
-                0x08003048                Standard_ClearFeature
-                0x08003124                Standard_SetEndPointFeature
-                0x080031ac                Standard_SetDeviceFeature
-                0x080031d0                Standard_GetDescriptorData
-                0x080031ec                Post0_Process
-                0x0800322c                Out0_Process
-                0x08003300                Setup0_Process
-                0x080035f4                SetDeviceAddress
-                0x08003634                In0_Process
-                0x08003694                NOP_Process
- .text          0x08003698        0x0 ./release/usb_desc.o
- .text          0x08003698       0xbc ./release/usb_endp.o
-                0x08003698                EP1_IN_Callback
-                0x080036fc                EP3_OUT_Callback
-                0x08003720                SOF_Callback
- .text          0x08003754       0x38 ./release/usb_init.o
-                0x08003754                USB_Init
- .text          0x0800378c      0x1f4 ./release/usb_int.o
-                0x0800378c                CTR_LP
-                0x08003910                CTR_HP
- .text          0x08003980       0x78 ./release/usb_istr.o
-                0x08003980                USB_Istr
- .text          0x080039f8       0x52 ./release/usb_mem.o
-                0x080039f8                UserToPMABufferCopy
-                0x08003a26                PMAToUserBufferCopy
- *fill*         0x08003a4a        0x2 
- .text          0x08003a4c      0x238 ./release/usb_prop.o
-                0x08003a4c                Virtual_Com_Port_SetConfiguration
-                0x08003a64                Virtual_Com_Port_SetDeviceAddress
-                0x08003a70                Virtual_Com_Port_Status_In
-                0x08003a84                Virtual_Com_Port_Status_Out
-                0x08003a86                Virtual_Com_Port_Data_Setup
-                0x08003ae4                Virtual_Com_Port_NoData_Setup
-                0x08003b08                Virtual_Com_Port_Get_Interface_Setting
-                0x08003b16                Virtual_Com_Port_GetLineCoding
-                0x08003b30                Virtual_Com_Port_SetLineCoding
-                0x08003b48                Virtual_Com_Port_GetStringDescriptor
-                0x08003b68                Virtual_Com_Port_GetConfigDescriptor
-                0x08003b74                Virtual_Com_Port_GetDeviceDescriptor
-                0x08003b80                Virtual_Com_Port_Reset
-                0x08003c60                Virtual_Com_Port_init
- .text          0x08003c84      0x118 ./release/usb_pwr.o
-                0x08003c84                PowerOn
-                0x08003cb4                PowerOff
-                0x08003cd8                Suspend
-                0x08003cf8                Resume_Init
-                0x08003d18                Resume
- .text          0x08003d9c      0x794 ./release/usb_regs.o
-                0x08003d9c                SetCNTR
-                0x08003da8                GetCNTR
-                0x08003db4                SetISTR
-                0x08003dc0                GetISTR
-                0x08003dcc                GetFNR
-                0x08003dd8                SetDADDR
-                0x08003de4                GetDADDR
-                0x08003df0                SetBTABLE
-                0x08003e00                GetBTABLE
-                0x08003e0c                SetENDPOINT
-                0x08003e1a                GetENDPOINT
-                0x08003e2a                SetEPType
-                0x08003e42                GetEPType
-                0x08003e54                SetEPTxStatus
-                0x08003e8e                SetEPRxStatus
-                0x08003ec8                SetDouBleBuffEPStall
-                0x08003eec                GetEPTxStatus
-                0x08003efe                GetEPRxStatus
-                0x08003f10                SetEPTxValid
-                0x08003f32                SetEPRxValid
-                0x08003f54                SetEP_KIND
-                0x08003f72                ClearEP_KIND
-                0x08003f90                Clear_Status_Out
-                0x08003fae                Set_Status_Out
-                0x08003fcc                SetEPDoubleBuff
-                0x08003fea                ClearEPDoubleBuff
-                0x08004008                GetTxStallStatus
-                0x08004022                GetRxStallStatus
-                0x0800403c                ClearEP_CTR_RX
-                0x08004052                ClearEP_CTR_TX
-                0x08004068                ToggleDTOG_RX
-                0x08004086                ToggleDTOG_TX
-                0x080040a4                ClearDTOG_RX
-                0x080040c8                ClearDTOG_TX
-                0x080040ec                SetEPAddress
-                0x0800410c                GetEPAddress
-                0x0800411e                SetEPTxAddr
-                0x08004140                SetEPRxAddr
-                0x08004160                GetEPTxAddr
-                0x0800417c                GetEPRxAddr
-                0x08004198                SetEPTxCount
-                0x080041b4                SetEPCountRxReg
-                0x080041d8                SetEPRxCount
-                0x08004214                GetEPTxCount
-                0x08004234                GetEPRxCount
-                0x08004254                SetEPDblBuffAddr
-                0x0800428c                SetEPDblBuf0Addr
-                0x080042ac                SetEPDblBuf1Addr
-                0x080042cc                GetEPDblBuf0Addr
-                0x080042e8                GetEPDblBuf1Addr
-                0x08004304                SetEPDblBuffCount
-                0x080043ac                SetEPDblBuf0Count
-                0x08004404                SetEPDblBuf1Count
-                0x0800445c                GetEPDblBuf0Count
-                0x0800447c                GetEPDblBuf1Count
-                0x0800449c                GetEPDblBufDir
-                0x080044dc                FreeUserBuffer
-                0x0800451e                ToWord
-                0x08004524                ByteSwap
- .text          0x08004530       0x6c ./release/usb_sil.o
-                0x08004530                USB_SIL_Init
-                0x08004550                USB_SIL_Write
-                0x08004578                USB_SIL_Read
- .text          0x0800459c      0x1f8 ./release/lib_crc.o
-                0x0800459c                update_crc_ccitt
-                0x080045f8                update_crc_sick
-                0x0800461c                update_crc_16
-                0x0800467c                update_crc_kermit
-                0x080046dc                update_crc_dnp
-                0x0800473c                update_crc_32
- .text          0x08004794      0x270 ./release/sampleacquisition.o
-                0x08004794                setLEDAcquisition
-                0x080047a8                RCC_Configuration
-                0x080047c8                GPIO_Configuration
-                0x08004824                DMA_Configuration
-                0x0800487c                ADC_Configuration
-                0x080048f0                TIMER_Configuration
-                0x0800494c                IT_Configuration
-                0x080049a0                DMAChannel1_IRQHandler
-                0x080049e4                sampleAcquisitionInit
- .text          0x08004a04       0xc4 ./release/uartcomm.o
-                0x08004a04                uartCommSendChar
-                0x08004a10                uartCommToggleLEDStatus
-                0x08004a20                uartCommInit
-                0x08004a64                uartCommSendData
-                0x08004aa4                uartCommSendTimes
- .text          0x08004ac8       0xe2 ./release/usbcomm.o
-                0x08004ac8                setLEDComUSB
-                0x08004aca                usbCommInit
-                0x08004ae6                usbCommSendChar
-                0x08004aea                usbCommSendData
-                0x08004b04                usbCommSendTimes
-                0x08004b36                usbCommSendCoefficients
-                0x08004b70                usbCommSendCoefficients64
- *fill*         0x08004baa        0x2 
- .text          0x08004bac      0x26c ./release/serialframe.o
-                0x08004bac                serialFrameToUint
-                0x08004c1c                serialFrameFromUint
-                0x08004c9c                createCRC
-                0x08004cb6                serialFrameToChar
-                0x08004d18                retrieveReadFrame
-                0x08004d64                createUsartFrame
-                0x08004de4                createSendableFrame
- .text          0x08004e18        0x2 ./release/main.o
-                0x08004e18                Clignote
- *fill*         0x08004e1a        0x2 
- .text.startup  0x08004e1c       0x48 ./release/main.o
-                0x08004e1c                main
- .text          0x08004e64      0x458 ./release/signalfilter.o
-                0x08004e64                signalTraitementInit
-                0x08004ea0                signalProcessing
-                0x08005288                squaredRootHomeMade
- *fill*         0x080052bc        0x4 
- .text          0x080052c0     0x20d0 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
-                0x080052c0                Timer_1234_Init
-                0x080054d8                Active_IT_Debordement_Timer
-                0x080056b0                Active_IT_Compare_Timer
-                0x08005bd8                PWM_Init
-                0x08005de8                PWM_Complementaire_Timer1
-                0x08005e94                Timer_Inc_Init
-                0x08006070                Capture_Init
-                0x080064d0                TIM1_CC_IRQHandler
-                0x08006810                TIM1_UP_IRQHandler
-                0x08006858                TIM2_IRQHandler
-                0x08006b7c                TIM3_IRQHandler
-                0x08006f30                TIM4_IRQHandler
-                0x080072e4                Lire_Duree_Pulse
- .text          0x08007390      0x25c ../drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
-                0x08007390                GPIO_Configure
- .text          0x080075ec      0x370 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_addsubdf3.o)
-                0x080075ec                __aeabi_drsub
-                0x080075f4                __aeabi_dsub
-                0x080075f4                __subdf3
-                0x080075f8                __aeabi_dadd
-                0x080075f8                __adddf3
-                0x08007870                __floatunsidf
-                0x08007870                __aeabi_ui2d
-                0x08007890                __floatsidf
-                0x08007890                __aeabi_i2d
-                0x080078b4                __aeabi_f2d
-                0x080078b4                __extendsfdf2
-                0x080078f0                __floatundidf
-                0x080078f0                __aeabi_ul2d
-                0x08007900                __floatdidf
-                0x08007900                __aeabi_l2d
- .text          0x0800795c      0x424 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_muldivdf3.o)
-                0x0800795c                __aeabi_dmul
-                0x0800795c                __muldf3
-                0x08007bb0                __divdf3
-                0x08007bb0                __aeabi_ddiv
- .text          0x08007d80       0x50 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_fixdfsi.o)
-                0x08007d80                __aeabi_d2iz
-                0x08007d80                __fixdfsi
- .text          0x08007dd0       0xa0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_truncdfsf2.o)
-                0x08007dd0                __truncdfsf2
-                0x08007dd0                __aeabi_d2f
- .text          0x08007e70      0x21c c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_addsubsf3.o)
-                0x08007e70                __aeabi_frsub
-                0x08007e78                __subsf3
-                0x08007e78                __aeabi_fsub
-                0x08007e7c                __aeabi_fadd
-                0x08007e7c                __addsf3
-                0x08007fdc                __aeabi_ui2f
-                0x08007fdc                __floatunsisf
-                0x08007fe4                __aeabi_i2f
-                0x08007fe4                __floatsisf
-                0x08008000                __aeabi_ul2f
-                0x08008000                __floatundisf
-                0x08008010                __aeabi_l2f
-                0x08008010                __floatdisf
- .text          0x0800808c      0x2a0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_muldivsf3.o)
-                0x0800808c                __mulsf3
-                0x0800808c                __aeabi_fmul
-                0x080081f4                __aeabi_fdiv
-                0x080081f4                __divsf3
- .text          0x0800832c       0xec c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_cmpsf2.o)
-                0x0800832c                __gesf2
-                0x0800832c                __gtsf2
-                0x08008334                __lesf2
-                0x08008334                __ltsf2
-                0x0800833c                __nesf2
-                0x0800833c                __eqsf2
-                0x0800833c                __cmpsf2
-                0x0800839c                __aeabi_cfrcmple
-                0x080083a4                __aeabi_cfcmpeq
-                0x080083a4                __aeabi_cfcmple
-                0x080083b4                __aeabi_fcmpeq
-                0x080083c8                __aeabi_fcmplt
-                0x080083dc                __aeabi_fcmple
-                0x080083f0                __aeabi_fcmpge
-                0x08008404                __aeabi_fcmpgt
- .text          0x08008418       0x4c c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_fixsfsi.o)
-                0x08008418                __aeabi_f2iz
-                0x08008418                __fixsfsi
- .text          0x08008464       0x40 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_fixunssfsi.o)
-                0x08008464                __fixunssfsi
-                0x08008464                __aeabi_f2uiz
+ .text          0x080004a0      0x420 ./release/xprintf.o
+                0x080004a0                xputc
+                0x080004d0                xputs
+                0x08000694                xfputs
+                0x080006b8                xprintf
+                0x080006d0                xsprintf
+                0x080006fc                xfprintf
+                0x08000724                put_dump
+                0x080007b0                xgets
+                0x08000800                xfgets
+                0x08000818                xatoi
+ .text          0x080008c0       0xc0 ./release/misc.o
+                0x080008c0                NVIC_PriorityGroupConfig
+                0x080008d4                NVIC_Init
+                0x0800093c                NVIC_SetVectorTable
+                0x08000950                NVIC_SystemLPConfig
+                0x08000968                SysTick_CLKSourceConfig
+ .text          0x08000980      0x378 ./release/stm32f10x_adc.o
+                0x08000980                ADC_DeInit
+                0x080009dc                ADC_Init
+                0x08000a24                ADC_StructInit
+                0x08000a36                ADC_Cmd
+                0x08000a48                ADC_DMACmd
+                0x08000a5a                ADC_ITConfig
+                0x08000a6c                ADC_ResetCalibration
+                0x08000a76                ADC_GetResetCalibrationStatus
+                0x08000a7e                ADC_StartCalibration
+                0x08000a88                ADC_GetCalibrationStatus
+                0x08000a90                ADC_SoftwareStartConvCmd
+                0x08000aa2                ADC_GetSoftwareStartConvStatus
+                0x08000aaa                ADC_DiscModeChannelCountConfig
+                0x08000aba                ADC_DiscModeCmd
+                0x08000acc                ADC_RegularChannelConfig
+                0x08000b68                ADC_ExternalTrigConvCmd
+                0x08000b7a                ADC_GetConversionValue
+                0x08000b80                ADC_GetDualModeConversionValue
+                0x08000b8c                ADC_AutoInjectedConvCmd
+                0x08000b9e                ADC_InjectedDiscModeCmd
+                0x08000bb0                ADC_ExternalTrigInjectedConvConfig
+                0x08000bbc                ADC_ExternalTrigInjectedConvCmd
+                0x08000bce                ADC_SoftwareStartInjectedConvCmd
+                0x08000be0                ADC_GetSoftwareStartInjectedConvCmdStatus
+                0x08000be8                ADC_InjectedChannelConfig
+                0x08000c4c                ADC_InjectedSequencerLengthConfig
+                0x08000c5c                ADC_SetInjectedOffset
+                0x08000c72                ADC_GetInjectedConversionValue
+                0x08000c8c                ADC_AnalogWatchdogCmd
+                0x08000c9c                ADC_AnalogWatchdogThresholdsConfig
+                0x08000ca2                ADC_AnalogWatchdogSingleChannelConfig
+                0x08000cae                ADC_TempSensorVrefintCmd
+                0x08000cc8                ADC_GetFlagStatus
+                0x08000cd4                ADC_ClearFlag
+                0x08000cda                ADC_GetITStatus
+                0x08000cf0                ADC_ClearITPendingBit
+ .text          0x08000cf8       0xe0 ./release/stm32f10x_bkp.o
+                0x08000cf8                BKP_DeInit
+                0x08000d0a                BKP_TamperPinLevelConfig
+                0x08000d14                BKP_TamperPinCmd
+                0x08000d20                BKP_ITConfig
+                0x08000d2c                BKP_RTCOutputConfig
+                0x08000d44                BKP_SetRTCCalibrationValue
+                0x08000d5c                BKP_WriteBackupRegister
+                0x08000d78                BKP_ReadBackupRegister
+                0x08000d98                BKP_GetFlagStatus
+                0x08000da4                BKP_ClearFlag
+                0x08000db8                BKP_GetITStatus
+                0x08000dc4                BKP_ClearITPendingBit
+ .text          0x08000dd8      0x738 ./release/stm32f10x_can.o
+                0x08000dd8                CAN_DeInit
+                0x08000e0c                CAN_Init
+                0x08000ee2                CAN_FilterInit
+                0x08000fc8                CAN_StructInit
+                0x08000fe8                CAN_SlaveStartBank
+                0x08001024                CAN_DBGFreeze
+                0x08001036                CAN_TTComModeCmd
+                0x0800108e                CAN_Transmit
+                0x08001146                CAN_TransmitStatus
+                0x08001194                CAN_CancelTransmit
+                0x080011ba                CAN_Receive
+                0x08001246                CAN_FIFORelease
+                0x0800125c                CAN_MessagePending
+                0x08001272                CAN_OperatingModeRequest
+                0x080012fa                CAN_Sleep
+                0x08001314                CAN_WakeUp
+                0x08001336                CAN_GetLastErrorCode
+                0x0800133e                CAN_GetReceiveErrorCounter
+                0x08001344                CAN_GetLSBTransmitErrorCounter
+                0x0800134c                CAN_ITConfig
+                0x0800135c                CAN_GetFlagStatus
+                0x08001390                CAN_ClearFlag
+                0x080013c4                CAN_GetITStatus
+                0x08001492                CAN_ClearITPendingBit
+ .text          0x08001510      0x114 ./release/stm32f10x_cec.o
+                0x08001510                CEC_DeInit
+                0x0800152a                CEC_Init
+                0x08001548                CEC_Cmd
+                0x08001560                CEC_ITConfig
+                0x0800156c                CEC_OwnAddressConfig
+                0x08001578                CEC_SetPrescaler
+                0x08001584                CEC_SendDataByte
+                0x08001590                CEC_ReceiveDataByte
+                0x0800159c                CEC_StartOfMessage
+                0x080015a8                CEC_EndOfMessageCmd
+                0x080015b4                CEC_GetFlagStatus
+                0x080015d8                CEC_ClearFlag
+                0x080015f4                CEC_GetITStatus
+                0x08001608                CEC_ClearITPendingBit
+ .text          0x08001624       0x5c ./release/stm32f10x_crc.o
+                0x08001624                CRC_ResetDR
+                0x08001630                CRC_CalcCRC
+                0x0800163c                CRC_CalcBlockCRC
+                0x0800165c                CRC_GetCRC
+                0x08001668                CRC_SetIDRegister
+                0x08001674                CRC_GetIDRegister
+ .text          0x08001680      0x170 ./release/stm32f10x_dac.o
+                0x08001680                DAC_DeInit
+                0x0800169a                DAC_Init
+                0x080016c8                DAC_StructInit
+                0x080016d4                DAC_Cmd
+                0x080016f8                DAC_DMACmd
+                0x0800171c                DAC_SoftwareTriggerCmd
+                0x08001740                DAC_DualSoftwareTriggerCmd
+                0x08001758                DAC_WaveGenerationCmd
+                0x08001774                DAC_SetChannel1Data
+                0x08001794                DAC_SetChannel2Data
+                0x080017b4                DAC_SetDualChannelData
+                0x080017cc                DAC_GetDataOutputValue
+ .text          0x080017f0       0x34 ./release/stm32f10x_dbgmcu.o
+                0x080017f0                DBGMCU_GetREVID
+                0x080017fc                DBGMCU_GetDEVID
+                0x0800180c                DBGMCU_Config
+ .text          0x08001824      0x1e0 ./release/stm32f10x_dma.o
+                0x08001824                DMA_DeInit
+                0x0800191c                DMA_Init
+                0x0800195a                DMA_StructInit
+                0x08001974                DMA_Cmd
+                0x0800198a                DMA_ITConfig
+                0x0800199a                DMA_SetCurrDataCounter
+                0x0800199e                DMA_GetCurrDataCounter
+                0x080019a4                DMA_GetFlagStatus
+                0x080019c0                DMA_ClearFlag
+                0x080019d4                DMA_GetITStatus
+                0x080019f0                DMA_ClearITPendingBit
+ .text          0x08001a04       0xf8 ./release/stm32f10x_exti.o
+                0x08001a04                EXTI_DeInit
+                0x08001a20                EXTI_Init
+                0x08001a98                EXTI_StructInit
+                0x08001aa6                EXTI_GenerateSWInterrupt
+                0x08001ab4                EXTI_GetFlagStatus
+                0x08001ac8                EXTI_ClearFlag
+                0x08001ad4                EXTI_GetITStatus
+                0x08001af0                EXTI_ClearITPendingBit
+ .text          0x08001afc      0x538 ./release/stm32f10x_flash.o
+                0x08001afc                FLASH_SetLatency
+                0x08001b10                FLASH_HalfCycleAccessCmd
+                0x08001b28                FLASH_PrefetchBufferCmd
+                0x08001b40                FLASH_Unlock
+                0x08001b58                FLASH_UnlockBank1
+                0x08001b70                FLASH_Lock
+                0x08001b80                FLASH_LockBank1
+                0x08001b90                FLASH_GetUserOptionByte
+                0x08001b9c                FLASH_GetWriteProtectionOptionByte
+                0x08001ba8                FLASH_GetReadOutProtectionStatus
+                0x08001bb8                FLASH_GetPrefetchBufferStatus
+                0x08001bc8                FLASH_ITConfig
+                0x08001be0                FLASH_GetFlagStatus
+                0x08001c00                FLASH_ClearFlag
+                0x08001c0c                FLASH_GetStatus
+                0x08001c34                FLASH_GetBank1Status
+                0x08001c5c                FLASH_WaitForLastOperation
+                0x08001c80                FLASH_UserOptionByteConfig
+                0x08001cd8                FLASH_ReadOutProtection
+                0x08001d68                FLASH_EnableWriteProtection
+                0x08001e14                FLASH_ProgramOptionByteData
+                0x08001e5c                FLASH_ProgramHalfWord
+                0x08001e94                FLASH_ProgramWord
+                0x08001ee4                FLASH_EraseOptionBytes
+                0x08001f64                FLASH_EraseAllPages
+                0x08001f9c                FLASH_ErasePage
+                0x08001fd8                FLASH_WaitForLastBank1Operation
+                0x08001ffc                FLASH_EraseAllBank1Pages
+ .text          0x08002034      0x470 ./release/stm32f10x_fsmc.o
+                0x08002034                FSMC_NORSRAMDeInit
+                0x08002062                FSMC_NANDDeInit
+                0x08002084                FSMC_PCCARDDeInit
+                0x080020a0                FSMC_NORSRAMInit
+                0x0800216c                FSMC_NANDInit
+                0x080021d4                FSMC_PCCARDInit
+                0x0800223c                FSMC_NORSRAMStructInit
+                0x0800228a                FSMC_NANDStructInit
+                0x080022b4                FSMC_PCCARDStructInit
+                0x080022de                FSMC_NORSRAMCmd
+                0x08002300                FSMC_NANDCmd
+                0x08002334                FSMC_PCCARDCmd
+                0x08002354                FSMC_NANDECCCmd
+                0x08002388                FSMC_GetECC
+                0x0800239c                FSMC_ITConfig
+                0x080023e4                FSMC_GetFlagStatus
+                0x08002410                FSMC_ClearFlag
+                0x08002440                FSMC_GetITStatus
+                0x08002474                FSMC_ClearITPendingBit
+ .text          0x080024a4      0x290 ./release/stm32f10x_gpio.o
+                0x080024a4                GPIO_DeInit
+                0x08002550                GPIO_AFIODeInit
+                0x08002566                GPIO_Init
+                0x0800260e                GPIO_StructInit
+                0x0800261e                GPIO_ReadInputDataBit
+                0x0800262a                GPIO_ReadInputData
+                0x08002630                GPIO_ReadOutputDataBit
+                0x0800263c                GPIO_ReadOutputData
+                0x08002642                GPIO_SetBits
+                0x08002646                GPIO_ResetBits
+                0x0800264a                GPIO_WriteBit
+                0x08002654                GPIO_Write
+                0x08002658                GPIO_PinLockConfig
+                0x08002668                GPIO_EventOutputConfig
+                0x08002684                GPIO_EventOutputCmd
+                0x08002690                GPIO_PinRemapConfig
+                0x080026f4                GPIO_EXTILineConfig
+                0x08002728                GPIO_ETH_MediaInterfaceConfig
+ .text          0x08002734      0x3a0 ./release/stm32f10x_i2c.o
+                0x08002734                I2C_DeInit
+                0x08002768                I2C_Init
+                0x08002830                I2C_StructInit
+                0x0800284c                I2C_Cmd
+                0x08002864                I2C_DMACmd
+                0x0800287c                I2C_DMALastTransferCmd
+                0x08002894                I2C_GenerateSTART
+                0x080028ac                I2C_GenerateSTOP
+                0x080028c4                I2C_AcknowledgeConfig
+                0x080028dc                I2C_OwnAddress2Config
+                0x080028ee                I2C_DualAddressCmd
+                0x08002906                I2C_GeneralCallCmd
+                0x0800291e                I2C_ITConfig
+                0x08002930                I2C_SendData
+                0x08002934                I2C_ReceiveData
+                0x0800293a                I2C_Send7bitAddress
+                0x0800294a                I2C_ReadRegister
+                0x08002962                I2C_SoftwareResetCmd
+                0x08002978                I2C_NACKPositionConfig
+                0x08002994                I2C_SMBusAlertConfig
+                0x080029b0                I2C_TransmitPEC
+                0x080029c8                I2C_PECPositionConfig
+                0x080029e4                I2C_CalculatePEC
+                0x080029fc                I2C_GetPEC
+                0x08002a04                I2C_ARPCmd
+                0x08002a1c                I2C_StretchClockCmd
+                0x08002a34                I2C_FastModeDutyCycleConfig
+                0x08002a50                I2C_CheckEvent
+                0x08002a68                I2C_GetLastEvent
+                0x08002a78                I2C_GetFlagStatus
+                0x08002aac                I2C_ClearFlag
+                0x08002ab2                I2C_GetITStatus
+                0x08002ace                I2C_ClearITPendingBit
+ .text          0x08002ad4       0x58 ./release/stm32f10x_iwdg.o
+                0x08002ad4                IWDG_WriteAccessCmd
+                0x08002ae0                IWDG_SetPrescaler
+                0x08002aec                IWDG_SetReload
+                0x08002af8                IWDG_ReloadCounter
+                0x08002b08                IWDG_Enable
+                0x08002b18                IWDG_GetFlagStatus
+ .text          0x08002b2c       0xd0 ./release/stm32f10x_pwr.o
+                0x08002b2c                PWR_DeInit
+                0x08002b46                PWR_BackupAccessCmd
+                0x08002b50                PWR_PVDCmd
+                0x08002b5c                PWR_PVDLevelConfig
+                0x08002b70                PWR_WakeUpPinCmd
+                0x08002b7c                PWR_EnterSTOPMode
+                0x08002bb0                PWR_EnterSTANDBYMode
+                0x08002bd8                PWR_GetFlagStatus
+                0x08002bec                PWR_ClearFlag
+ .text          0x08002bfc      0x344 ./release/stm32f10x_rcc.o
+                0x08002bfc                RCC_DeInit
+                0x08002c3c                RCC_HSEConfig
+                0x08002c74                RCC_AdjustHSICalibrationValue
+                0x08002c88                RCC_HSICmd
+                0x08002c94                RCC_PLLConfig
+                0x08002ca8                RCC_PLLCmd
+                0x08002cb4                RCC_SYSCLKConfig
+                0x08002cc8                RCC_GetSYSCLKSource
+                0x08002cd8                RCC_HCLKConfig
+                0x08002cec                RCC_PCLK1Config
+                0x08002d00                RCC_PCLK2Config
+                0x08002d14                RCC_ITConfig
+                0x08002d2c                RCC_USBCLKConfig
+                0x08002d38                RCC_ADCCLKConfig
+                0x08002d4c                RCC_LSEConfig
+                0x08002d6c                RCC_LSICmd
+                0x08002d78                RCC_RTCCLKConfig
+                0x08002d88                RCC_RTCCLKCmd
+                0x08002d94                RCC_GetClocksFreq
+                0x08002e20                RCC_AHBPeriphClockCmd
+                0x08002e38                RCC_APB2PeriphClockCmd
+                0x08002e50                RCC_APB1PeriphClockCmd
+                0x08002e68                RCC_APB2PeriphResetCmd
+                0x08002e80                RCC_APB1PeriphResetCmd
+                0x08002e98                RCC_BackupResetCmd
+                0x08002ea4                RCC_ClockSecuritySystemCmd
+                0x08002eb0                RCC_MCOConfig
+                0x08002ebc                RCC_GetFlagStatus
+                0x08002ee4                RCC_WaitForHSEStartUp
+                0x08002f10                RCC_ClearFlag
+                0x08002f20                RCC_GetITStatus
+                0x08002f34                RCC_ClearITPendingBit
+ .text          0x08002f40      0x158 ./release/stm32f10x_rtc.o
+                0x08002f40                RTC_ITConfig
+                0x08002f58                RTC_EnterConfigMode
+                0x08002f6c                RTC_ExitConfigMode
+                0x08002f80                RTC_GetCounter
+                0x08002f94                RTC_SetCounter
+                0x08002fb0                RTC_SetPrescaler
+                0x08002fd0                RTC_SetAlarm
+                0x08002fec                RTC_GetDivider
+                0x08003004                RTC_WaitForLastTask
+                0x08003018                RTC_WaitForSynchro
+                0x08003038                RTC_GetFlagStatus
+                0x0800304c                RTC_ClearFlag
+                0x08003060                RTC_GetITStatus
+                0x08003084                RTC_ClearITPendingBit
+ .text          0x08003098      0x234 ./release/stm32f10x_sdio.o
+                0x08003098                SDIO_DeInit
+                0x080030bc                SDIO_Init
+                0x080030ec                SDIO_StructInit
+                0x080030fc                SDIO_ClockCmd
+                0x08003108                SDIO_SetPowerState
+                0x08003120                SDIO_GetPowerState
+                0x08003130                SDIO_ITConfig
+                0x08003148                SDIO_DMACmd
+                0x08003154                SDIO_SendCommand
+                0x08003180                SDIO_CmdStructInit
+                0x0800318e                SDIO_GetCommandResponse
+                0x0800319c                SDIO_GetResponse
+                0x080031b4                SDIO_DataConfig
+                0x080031e0                SDIO_DataStructInit
+                0x080031f4                SDIO_GetDataCounter
+                0x08003200                SDIO_ReadData
+                0x0800320c                SDIO_WriteData
+                0x08003218                SDIO_GetFIFOCount
+                0x08003224                SDIO_StartSDIOReadWait
+                0x08003230                SDIO_StopSDIOReadWait
+                0x0800323c                SDIO_SetSDIOReadWaitMode
+                0x08003248                SDIO_SetSDIOOperation
+                0x08003254                SDIO_SendSDIOSuspendCmd
+                0x08003260                SDIO_CommandCompletionCmd
+                0x0800326c                SDIO_CEATAITCmd
+                0x08003280                SDIO_SendCEATACmd
+                0x0800328c                SDIO_GetFlagStatus
+                0x080032a0                SDIO_ClearFlag
+                0x080032ac                SDIO_GetITStatus
+                0x080032c0                SDIO_ClearITPendingBit
+ .text          0x080032cc      0x2bc ./release/stm32f10x_spi.o
+                0x080032cc                SPI_I2S_DeInit
+                0x08003330                SPI_Init
+                0x0800336c                I2S_Init
+                0x0800340a                SPI_StructInit
+                0x08003422                I2S_StructInit
+                0x08003434                SPI_Cmd
+                0x0800344c                I2S_Cmd
+                0x08003464                SPI_I2S_ITConfig
+                0x08003484                SPI_I2S_DMACmd
+                0x08003496                SPI_I2S_SendData
+                0x0800349a                SPI_I2S_ReceiveData
+                0x080034a0                SPI_NSSInternalSoftwareConfig
+                0x080034be                SPI_SSOutputCmd
+                0x080034d6                SPI_DataSizeConfig
+                0x080034ec                SPI_TransmitCRC
+                0x080034f8                SPI_CalculateCRC
+                0x08003510                SPI_GetCRC
+                0x0800351c                SPI_GetCRCPolynomial
+                0x08003522                SPI_BiDirectionalLineConfig
+                0x0800353e                SPI_I2S_GetFlagStatus
+                0x0800354a                SPI_I2S_ClearFlag
+                0x08003550                SPI_I2S_GetITStatus
+                0x08003578                SPI_I2S_ClearITPendingBit
+ .text          0x08003588      0xc68 ./release/stm32f10x_tim.o
+                0x08003668                TIM_DeInit
+                0x08003814                TIM_TimeBaseInit
+                0x080038a8                TIM_OC1Init
+                0x08003930                TIM_OC2Init
+                0x080039b4                TIM_OC3Init
+                0x08003a38                TIM_OC4Init
+                0x08003a9c                TIM_BDTRConfig
+                0x08003abc                TIM_TimeBaseStructInit
+                0x08003ace                TIM_OCStructInit
+                0x08003ae2                TIM_ICStructInit
+                0x08003af2                TIM_BDTRStructInit
+                0x08003b04                TIM_Cmd
+                0x08003b1c                TIM_CtrlPWMOutputs
+                0x08003b36                TIM_ITConfig
+                0x08003b48                TIM_GenerateEvent
+                0x08003b4c                TIM_DMAConfig
+                0x08003b54                TIM_DMACmd
+                0x08003b66                TIM_InternalClockConfig
+                0x08003b74                TIM_ITRxExternalClockConfig
+                0x08003b8e                TIM_TIxExternalClockConfig
+                0x08003bc0                TIM_ETRConfig
+                0x08003bd4                TIM_ETRClockMode2Config
+                0x08003be8                TIM_ETRClockMode1Config
+                0x08003c02                TIM_PrescalerConfig
+                0x08003c08                TIM_CounterModeConfig
+                0x08003c18                TIM_SelectInputTrigger
+                0x08003c28                TIM_EncoderInterfaceConfig
+                0x08003c64                TIM_ForcedOC1Config
+                0x08003c74                TIM_ForcedOC2Config
+                0x08003c86                TIM_ForcedOC3Config
+                0x08003c96                TIM_ForcedOC4Config
+                0x08003ca8                TIM_ARRPreloadConfig
+                0x08003cc0                TIM_SelectCOM
+                0x08003cd8                TIM_SelectCCDMA
+                0x08003cf0                TIM_CCPreloadControl
+                0x08003d08                TIM_OC1PreloadConfig
+                0x08003d18                TIM_OC2PreloadConfig
+                0x08003d2a                TIM_OC3PreloadConfig
+                0x08003d3a                TIM_OC4PreloadConfig
+                0x08003d4c                TIM_OC1FastConfig
+                0x08003d5c                TIM_OC2FastConfig
+                0x08003d6e                TIM_OC3FastConfig
+                0x08003d7e                TIM_OC4FastConfig
+                0x08003d90                TIM_ClearOC1Ref
+                0x08003da0                TIM_ClearOC2Ref
+                0x08003dae                TIM_ClearOC3Ref
+                0x08003dbe                TIM_ClearOC4Ref
+                0x08003dcc                TIM_OC1PolarityConfig
+                0x08003ddc                TIM_OC1NPolarityConfig
+                0x08003dec                TIM_OC2PolarityConfig
+                0x08003dfe                TIM_OC2NPolarityConfig
+                0x08003e10                TIM_OC3PolarityConfig
+                0x08003e22                TIM_OC3NPolarityConfig
+                0x08003e34                TIM_OC4PolarityConfig
+                0x08003e46                TIM_CCxCmd
+                0x08003e64                TIM_CCxNCmd
+                0x08003e82                TIM_SelectOCxM
+                0x08003ec6                TIM_UpdateDisableConfig
+                0x08003ede                TIM_UpdateRequestConfig
+                0x08003ef6                TIM_SelectHallSensor
+                0x08003f0e                TIM_SelectOnePulseMode
+                0x08003f24                TIM_SelectOutputTrigger
+                0x08003f3a                TIM_SelectSlaveMode
+                0x08003f50                TIM_SelectMasterSlaveMode
+                0x08003f66                TIM_SetCounter
+                0x08003f6a                TIM_SetAutoreload
+                0x08003f6e                TIM_SetCompare1
+                0x08003f72                TIM_SetCompare2
+                0x08003f76                TIM_SetCompare3
+                0x08003f7a                TIM_SetCompare4
+                0x08003f80                TIM_SetIC1Prescaler
+                0x08003f96                TIM_SetIC2Prescaler
+                0x08003fae                TIM_PWMIConfig
+                0x0800401c                TIM_SetIC3Prescaler
+                0x08004032                TIM_SetIC4Prescaler
+                0x0800404a                TIM_ICInit
+                0x08004184                TIM_SetClockDivision
+                0x0800419a                TIM_GetCapture1
+                0x080041a0                TIM_GetCapture2
+                0x080041a6                TIM_GetCapture3
+                0x080041ac                TIM_GetCapture4
+                0x080041b4                TIM_GetCounter
+                0x080041ba                TIM_GetPrescaler
+                0x080041c0                TIM_GetFlagStatus
+                0x080041cc                TIM_ClearFlag
+                0x080041d2                TIM_GetITStatus
+                0x080041e8                TIM_ClearITPendingBit
+ .text          0x080041f0      0x394 ./release/stm32f10x_usart.o
+                0x080041f0                USART_DeInit
+                0x08004288                USART_Init
+                0x08004330                USART_StructInit
+                0x08004346                USART_ClockInit
+                0x08004364                USART_ClockStructInit
+                0x08004370                USART_Cmd
+                0x08004388                USART_ITConfig
+                0x080043ba                USART_DMACmd
+                0x080043cc                USART_SetAddress
+                0x080043e2                USART_WakeUpConfig
+                0x080043f8                USART_ReceiverWakeUpCmd
+                0x08004410                USART_LINBreakDetectLengthConfig
+                0x08004426                USART_LINCmd
+                0x0800443e                USART_SendData
+                0x08004446                USART_ReceiveData
+                0x0800444e                USART_SendBreak
+                0x0800445a                USART_SetGuardTime
+                0x0800446c                USART_SetPrescaler
+                0x0800447e                USART_SmartCardCmd
+                0x08004496                USART_SmartCardNACKCmd
+                0x080044ae                USART_HalfDuplexCmd
+                0x080044c6                USART_OverSampling8Cmd
+                0x080044dc                USART_OneBitMethodCmd
+                0x080044f4                USART_IrDAConfig
+                0x0800450a                USART_IrDACmd
+                0x08004522                USART_GetFlagStatus
+                0x0800452e                USART_ClearFlag
+                0x08004534                USART_GetITStatus
+                0x08004574                USART_ClearITPendingBit
+ .text          0x08004584       0x98 ./release/stm32f10x_wwdg.o
+                0x08004584                WWDG_DeInit
+                0x0800459e                WWDG_SetPrescaler
+                0x080045b0                WWDG_SetWindowValue
+                0x080045d8                WWDG_EnableIT
+                0x080045e4                WWDG_SetCounter
+                0x080045f4                WWDG_Enable
+                0x08004604                WWDG_GetFlagStatus
+                0x08004610                WWDG_ClearFlag
+ .text          0x0800461c      0x22c ./release/hw_config.o
+                0x08004646                Set_System
+                0x08004674                Set_USBClock
+                0x0800468a                Enter_LowPowerMode
+                0x08004698                Leave_LowPowerMode
+                0x080046b4                USB_Interrupts_Config
+                0x080046dc                USB_Cable_Config
+                0x080046f8                USB_To_USART_Send_Data
+                0x0800472c                USB_Receive
+                0x08004754                USB_GetTxSize
+                0x08004760                Handle_USBAsynchXfer
+                0x080047e0                USB_Send
+                0x08004800                Get_SerialNum
+                0x0800483c                USB_GetState
+ .text          0x08004848        0x0 ./release/otgd_fs_cal.o
+ .text          0x08004848        0x0 ./release/otgd_fs_dev.o
+ .text          0x08004848        0x0 ./release/otgd_fs_int.o
+ .text          0x08004848        0x0 ./release/otgd_fs_pcd.o
+ .text          0x08004848        0x4 ./release/stm32f10x_it.o
+                0x08004848                USB_LP_CAN1_RX0_IRQHandler
+ .text          0x0800484c      0x854 ./release/usb_core.o
+                0x0800484c                Standard_GetConfiguration
+                0x08004870                Standard_GetInterface
+                0x08004894                Standard_GetStatus
+                0x080049d0                Standard_SetConfiguration
+                0x08004a08                Standard_SetInterface
+                0x08004a50                Standard_ClearFeature
+                0x08004b2c                Standard_SetEndPointFeature
+                0x08004bb4                Standard_SetDeviceFeature
+                0x08004bd8                Standard_GetDescriptorData
+                0x08004bf4                Post0_Process
+                0x08004c34                Out0_Process
+                0x08004d08                Setup0_Process
+                0x08004ffc                SetDeviceAddress
+                0x0800503c                In0_Process
+                0x0800509c                NOP_Process
+ .text          0x080050a0        0x0 ./release/usb_desc.o
+ .text          0x080050a0       0xbc ./release/usb_endp.o
+                0x080050a0                EP1_IN_Callback
+                0x08005104                EP3_OUT_Callback
+                0x08005128                SOF_Callback
+ .text          0x0800515c       0x38 ./release/usb_init.o
+                0x0800515c                USB_Init
+ .text          0x08005194      0x1f4 ./release/usb_int.o
+                0x08005194                CTR_LP
+                0x08005318                CTR_HP
+ .text          0x08005388       0x78 ./release/usb_istr.o
+                0x08005388                USB_Istr
+ .text          0x08005400       0x52 ./release/usb_mem.o
+                0x08005400                UserToPMABufferCopy
+                0x0800542e                PMAToUserBufferCopy
+ *fill*         0x08005452        0x2 
+ .text          0x08005454      0x238 ./release/usb_prop.o
+                0x08005454                Virtual_Com_Port_SetConfiguration
+                0x0800546c                Virtual_Com_Port_SetDeviceAddress
+                0x08005478                Virtual_Com_Port_Status_In
+                0x0800548c                Virtual_Com_Port_Status_Out
+                0x0800548e                Virtual_Com_Port_Data_Setup
+                0x080054ec                Virtual_Com_Port_NoData_Setup
+                0x08005510                Virtual_Com_Port_Get_Interface_Setting
+                0x0800551e                Virtual_Com_Port_GetLineCoding
+                0x08005538                Virtual_Com_Port_SetLineCoding
+                0x08005550                Virtual_Com_Port_GetStringDescriptor
+                0x08005570                Virtual_Com_Port_GetConfigDescriptor
+                0x0800557c                Virtual_Com_Port_GetDeviceDescriptor
+                0x08005588                Virtual_Com_Port_Reset
+                0x08005668                Virtual_Com_Port_init
+ .text          0x0800568c      0x118 ./release/usb_pwr.o
+                0x0800568c                PowerOn
+                0x080056bc                PowerOff
+                0x080056e0                Suspend
+                0x08005700                Resume_Init
+                0x08005720                Resume
+ .text          0x080057a4      0x794 ./release/usb_regs.o
+                0x080057a4                SetCNTR
+                0x080057b0                GetCNTR
+                0x080057bc                SetISTR
+                0x080057c8                GetISTR
+                0x080057d4                GetFNR
+                0x080057e0                SetDADDR
+                0x080057ec                GetDADDR
+                0x080057f8                SetBTABLE
+                0x08005808                GetBTABLE
+                0x08005814                SetENDPOINT
+                0x08005822                GetENDPOINT
+                0x08005832                SetEPType
+                0x0800584a                GetEPType
+                0x0800585c                SetEPTxStatus
+                0x08005896                SetEPRxStatus
+                0x080058d0                SetDouBleBuffEPStall
+                0x080058f4                GetEPTxStatus
+                0x08005906                GetEPRxStatus
+                0x08005918                SetEPTxValid
+                0x0800593a                SetEPRxValid
+                0x0800595c                SetEP_KIND
+                0x0800597a                ClearEP_KIND
+                0x08005998                Clear_Status_Out
+                0x080059b6                Set_Status_Out
+                0x080059d4                SetEPDoubleBuff
+                0x080059f2                ClearEPDoubleBuff
+                0x08005a10                GetTxStallStatus
+                0x08005a2a                GetRxStallStatus
+                0x08005a44                ClearEP_CTR_RX
+                0x08005a5a                ClearEP_CTR_TX
+                0x08005a70                ToggleDTOG_RX
+                0x08005a8e                ToggleDTOG_TX
+                0x08005aac                ClearDTOG_RX
+                0x08005ad0                ClearDTOG_TX
+                0x08005af4                SetEPAddress
+                0x08005b14                GetEPAddress
+                0x08005b26                SetEPTxAddr
+                0x08005b48                SetEPRxAddr
+                0x08005b68                GetEPTxAddr
+                0x08005b84                GetEPRxAddr
+                0x08005ba0                SetEPTxCount
+                0x08005bbc                SetEPCountRxReg
+                0x08005be0                SetEPRxCount
+                0x08005c1c                GetEPTxCount
+                0x08005c3c                GetEPRxCount
+                0x08005c5c                SetEPDblBuffAddr
+                0x08005c94                SetEPDblBuf0Addr
+                0x08005cb4                SetEPDblBuf1Addr
+                0x08005cd4                GetEPDblBuf0Addr
+                0x08005cf0                GetEPDblBuf1Addr
+                0x08005d0c                SetEPDblBuffCount
+                0x08005db4                SetEPDblBuf0Count
+                0x08005e0c                SetEPDblBuf1Count
+                0x08005e64                GetEPDblBuf0Count
+                0x08005e84                GetEPDblBuf1Count
+                0x08005ea4                GetEPDblBufDir
+                0x08005ee4                FreeUserBuffer
+                0x08005f26                ToWord
+                0x08005f2c                ByteSwap
+ .text          0x08005f38       0x6c ./release/usb_sil.o
+                0x08005f38                USB_SIL_Init
+                0x08005f58                USB_SIL_Write
+                0x08005f80                USB_SIL_Read
+ .text          0x08005fa4      0x1f8 ./release/lib_crc.o
+                0x08005fa4                update_crc_ccitt
+                0x08006000                update_crc_sick
+                0x08006024                update_crc_16
+                0x08006084                update_crc_kermit
+                0x080060e4                update_crc_dnp
+                0x08006144                update_crc_32
+ .text          0x0800619c      0x270 ./release/sampleacquisition.o
+                0x0800619c                setLEDAcquisition
+                0x080061b0                RCC_Configuration
+                0x080061d0                GPIO_Configuration
+                0x0800622c                DMA_Configuration
+                0x08006284                ADC_Configuration
+                0x080062f8                TIMER_Configuration
+                0x08006354                IT_Configuration
+                0x080063a8                DMAChannel1_IRQHandler
+                0x080063ec                sampleAcquisitionInit
+ .text          0x0800640c       0xc4 ./release/uartcomm.o
+                0x0800640c                uartCommSendChar
+                0x08006418                uartCommToggleLEDStatus
+                0x08006428                uartCommInit
+                0x0800646c                uartCommSendData
+                0x080064ac                uartCommSendTimes
+ .text          0x080064d0       0xe2 ./release/usbcomm.o
+                0x080064d0                setLEDComUSB
+                0x080064d2                usbCommInit
+                0x080064ee                usbCommSendChar
+                0x080064f2                usbCommSendData
+                0x0800650c                usbCommSendTimes
+                0x0800653e                usbCommSendCoefficients
+                0x08006578                usbCommSendCoefficients64
+ *fill*         0x080065b2        0x2 
+ .text          0x080065b4      0x26c ./release/serialframe.o
+                0x080065b4                serialFrameToUint
+                0x08006624                serialFrameFromUint
+                0x080066a4                createCRC
+                0x080066be                serialFrameToChar
+                0x08006720                retrieveReadFrame
+                0x0800676c                createUsartFrame
+                0x080067ec                createSendableFrame
+ .text          0x08006820        0x2 ./release/main.o
+                0x08006820                Clignote
+ *fill*         0x08006822        0x2 
+ .text.startup  0x08006824       0x48 ./release/main.o
+                0x08006824                main
+ .text          0x0800686c      0x458 ./release/signalfilter.o
+                0x0800686c                signalTraitementInit
+                0x080068a8                signalProcessing
+                0x08006c90                squaredRootHomeMade
+ *fill*         0x08006cc4        0x4 
+ .text          0x08006cc8     0x20d0 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+                0x08006cc8                Timer_1234_Init
+                0x08006ee0                Active_IT_Debordement_Timer
+                0x080070b8                Active_IT_Compare_Timer
+                0x080075e0                PWM_Init
+                0x080077f0                PWM_Complementaire_Timer1
+                0x0800789c                Timer_Inc_Init
+                0x08007a78                Capture_Init
+                0x08007ed8                TIM1_CC_IRQHandler
+                0x08008218                TIM1_UP_IRQHandler
+                0x08008260                TIM2_IRQHandler
+                0x08008584                TIM3_IRQHandler
+                0x08008938                TIM4_IRQHandler
+                0x08008cec                Lire_Duree_Pulse
+ .text          0x08008d98      0x25c ../drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
+                0x08008d98                GPIO_Configure
+ .text          0x08008ff4      0x370 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_addsubdf3.o)
+                0x08008ff4                __aeabi_drsub
+                0x08008ffc                __aeabi_dsub
+                0x08008ffc                __subdf3
+                0x08009000                __aeabi_dadd
+                0x08009000                __adddf3
+                0x08009278                __floatunsidf
+                0x08009278                __aeabi_ui2d
+                0x08009298                __floatsidf
+                0x08009298                __aeabi_i2d
+                0x080092bc                __aeabi_f2d
+                0x080092bc                __extendsfdf2
+                0x080092f8                __floatundidf
+                0x080092f8                __aeabi_ul2d
+                0x08009308                __floatdidf
+                0x08009308                __aeabi_l2d
+ .text          0x08009364      0x424 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_muldivdf3.o)
+                0x08009364                __aeabi_dmul
+                0x08009364                __muldf3
+                0x080095b8                __divdf3
+                0x080095b8                __aeabi_ddiv
+ .text          0x08009788       0x50 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_fixdfsi.o)
+                0x08009788                __aeabi_d2iz
+                0x08009788                __fixdfsi
+ .text          0x080097d8       0xa0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_truncdfsf2.o)
+                0x080097d8                __truncdfsf2
+                0x080097d8                __aeabi_d2f
+ .text          0x08009878      0x21c c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_addsubsf3.o)
+                0x08009878                __aeabi_frsub
+                0x08009880                __subsf3
+                0x08009880                __aeabi_fsub
+                0x08009884                __aeabi_fadd
+                0x08009884                __addsf3
+                0x080099e4                __aeabi_ui2f
+                0x080099e4                __floatunsisf
+                0x080099ec                __aeabi_i2f
+                0x080099ec                __floatsisf
+                0x08009a08                __aeabi_ul2f
+                0x08009a08                __floatundisf
+                0x08009a18                __aeabi_l2f
+                0x08009a18                __floatdisf
+ .text          0x08009a94      0x2a0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_muldivsf3.o)
+                0x08009a94                __mulsf3
+                0x08009a94                __aeabi_fmul
+                0x08009bfc                __aeabi_fdiv
+                0x08009bfc                __divsf3
+ .text          0x08009d34       0xec c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_cmpsf2.o)
+                0x08009d34                __gesf2
+                0x08009d34                __gtsf2
+                0x08009d3c                __lesf2
+                0x08009d3c                __ltsf2
+                0x08009d44                __nesf2
+                0x08009d44                __eqsf2
+                0x08009d44                __cmpsf2
+                0x08009da4                __aeabi_cfrcmple
+                0x08009dac                __aeabi_cfcmpeq
+                0x08009dac                __aeabi_cfcmple
+                0x08009dbc                __aeabi_fcmpeq
+                0x08009dd0                __aeabi_fcmplt
+                0x08009de4                __aeabi_fcmple
+                0x08009df8                __aeabi_fcmpge
+                0x08009e0c                __aeabi_fcmpgt
+ .text          0x08009e20       0x4c c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_fixsfsi.o)
+                0x08009e20                __aeabi_f2iz
+                0x08009e20                __fixsfsi
+ .text          0x08009e6c       0x40 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_fixunssfsi.o)
+                0x08009e6c                __fixunssfsi
+                0x08009e6c                __aeabi_f2uiz
  *(.init)
  *(.fini)
  *crtbegin.o(.ctors)
@@ -839,69 +1014,81 @@ END GROUP
  *(SORT(.dtors.*))
  *(.dtors)
  *(.rodata*)
- .rodata        0x080084a4       0xb1 ./release/usb_desc.o
-                0x080084a4                Virtual_Com_Port_StringProduct
-                0x080084d6                Virtual_Com_Port_StringVendor
-                0x080084fc                Virtual_Com_Port_StringLangID
-                0x08008500                Virtual_Com_Port_ConfigDescriptor
-                0x08008543                Virtual_Com_Port_DeviceDescriptor
- *fill*         0x08008555        0x3 
- .rodata        0x08008558     0x2000 ./release/signalfilter.o
-                0x08008558                cos_39500
-                0x08008958                cos_40000
-                0x08008d58                cos_40500
-                0x08009158                cos_41000
-                0x08009558                sin_39500
-                0x08009958                sin_40000
-                0x08009d58                sin_40500
-                0x0800a158                sin_41000
+ .rodata.str1.1
+                0x08009eac       0x1a ./release/xprintf.o
+ .rodata        0x08009ec6       0xb1 ./release/usb_desc.o
+                0x08009ec6                Virtual_Com_Port_StringProduct
+                0x08009ef8                Virtual_Com_Port_StringVendor
+                0x08009f1e                Virtual_Com_Port_StringLangID
+                0x08009f22                Virtual_Com_Port_ConfigDescriptor
+                0x08009f65                Virtual_Com_Port_DeviceDescriptor
+ *fill*         0x08009f77        0x1 
+ .rodata        0x08009f78     0x2000 ./release/signalfilter.o
+                0x08009f78                cos_39500
+                0x0800a378                cos_40000
+                0x0800a778                cos_40500
+                0x0800ab78                cos_41000
+                0x0800af78                sin_39500
+                0x0800b378                sin_40000
+                0x0800b778                sin_40500
+                0x0800bb78                sin_41000
  *(.eh_frame*)
 
-.glue_7         0x0800a558        0x0
+.glue_7         0x0800bf78        0x0
  .glue_7        0x00000000        0x0 linker stubs
 
-.glue_7t        0x0800a558        0x0
+.glue_7t        0x0800bf78        0x0
  .glue_7t       0x00000000        0x0 linker stubs
 
-.vfp11_veneer   0x0800a558        0x0
+.vfp11_veneer   0x0800bf78        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x0800a558        0x0
+.v4_bx          0x0800bf78        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x0800a558        0x0
+.iplt           0x0800bf78        0x0
  .iplt          0x00000000        0x0 ./release/startup-gcc.o
 
-.rel.dyn        0x0800a558        0x0
+.rel.dyn        0x0800bf78        0x0
  .rel.iplt      0x00000000        0x0 ./release/startup-gcc.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x0800a558                __exidx_start = .
+                0x0800bf78                __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x0800a558                __exidx_end = .
-                0x0800a558                __etext = .
+                0x0800bf78                __exidx_end = .
+                0x0800bf78                __etext = .
 
-.data           0x20000000       0xfc load address 0x0800a558
+.data           0x20000000       0xfc load address 0x0800bf78
                 0x20000000                __data_start__ = .
  *(vtable)
  *(.data*)
  .data          0x20000000        0x0 ./release/startup-gcc.o
  .data          0x20000000        0x0 ./release/clock.o
  .data          0x20000000        0x0 ./release/usart.o
+ .data          0x20000000        0x0 ./release/xprintf.o
  .data          0x20000000        0x0 ./release/misc.o
  .data          0x20000000        0x0 ./release/stm32f10x_adc.o
  .data          0x20000000        0x0 ./release/stm32f10x_bkp.o
+ .data          0x20000000        0x0 ./release/stm32f10x_can.o
+ .data          0x20000000        0x0 ./release/stm32f10x_cec.o
+ .data          0x20000000        0x0 ./release/stm32f10x_crc.o
+ .data          0x20000000        0x0 ./release/stm32f10x_dac.o
+ .data          0x20000000        0x0 ./release/stm32f10x_dbgmcu.o
  .data          0x20000000        0x0 ./release/stm32f10x_dma.o
  .data          0x20000000        0x0 ./release/stm32f10x_exti.o
  .data          0x20000000        0x0 ./release/stm32f10x_flash.o
+ .data          0x20000000        0x0 ./release/stm32f10x_fsmc.o
  .data          0x20000000        0x0 ./release/stm32f10x_gpio.o
+ .data          0x20000000        0x0 ./release/stm32f10x_i2c.o
  .data          0x20000000        0x0 ./release/stm32f10x_iwdg.o
+ .data          0x20000000        0x0 ./release/stm32f10x_pwr.o
  .data          0x20000000       0x14 ./release/stm32f10x_rcc.o
  .data          0x20000014        0x0 ./release/stm32f10x_rtc.o
  .data          0x20000014        0x0 ./release/stm32f10x_sdio.o
+ .data          0x20000014        0x0 ./release/stm32f10x_spi.o
  .data          0x20000014        0x0 ./release/stm32f10x_tim.o
  .data          0x20000014        0x0 ./release/stm32f10x_usart.o
  .data          0x20000014        0x0 ./release/stm32f10x_wwdg.o
@@ -970,148 +1157,161 @@ END GROUP
                 0x200000fc                . = ALIGN (0x4)
                 0x200000fc                __data_end__ = .
 
-.igot.plt       0x200000fc        0x0 load address 0x0800a654
+.igot.plt       0x200000fc        0x0 load address 0x0800c074
  .igot.plt      0x00000000        0x0 ./release/startup-gcc.o
 
-.bss            0x200000fc     0x26f4 load address 0x0800a654
+.bss            0x200000fc     0x2700 load address 0x0800c074
                 0x200000fc                __bss_start__ = .
  *(.bss*)
  .bss           0x200000fc        0x0 ./release/startup-gcc.o
  .bss           0x200000fc        0x0 ./release/clock.o
  .bss           0x200000fc        0x0 ./release/usart.o
- .bss           0x200000fc        0x0 ./release/misc.o
- .bss           0x200000fc        0x0 ./release/stm32f10x_adc.o
- .bss           0x200000fc        0x0 ./release/stm32f10x_bkp.o
- .bss           0x200000fc        0x0 ./release/stm32f10x_dma.o
- .bss           0x200000fc        0x0 ./release/stm32f10x_exti.o
- .bss           0x200000fc        0x0 ./release/stm32f10x_flash.o
- .bss           0x200000fc        0x0 ./release/stm32f10x_gpio.o
- .bss           0x200000fc        0x0 ./release/stm32f10x_iwdg.o
- .bss           0x200000fc        0x0 ./release/stm32f10x_rcc.o
- .bss           0x200000fc        0x0 ./release/stm32f10x_rtc.o
- .bss           0x200000fc        0x0 ./release/stm32f10x_sdio.o
- .bss           0x200000fc        0x0 ./release/stm32f10x_tim.o
- .bss           0x200000fc        0x0 ./release/stm32f10x_usart.o
- .bss           0x200000fc        0x0 ./release/stm32f10x_wwdg.o
- .bss           0x200000fc       0x1c ./release/hw_config.o
-                0x200000fc                USART_Tx_ptr_in
-                0x20000100                USART_Tx_length
-                0x20000104                USART_Tx_ptr_out
-                0x20000108                USB_Tx_State
-                0x2000010c                USART_Rx_ptr_out
-                0x20000110                USART_Rx_ptr_in
-                0x20000114                USART_Rx_length
- .bss           0x20000118        0x0 ./release/otgd_fs_cal.o
- .bss           0x20000118        0x0 ./release/otgd_fs_dev.o
- .bss           0x20000118        0x0 ./release/otgd_fs_int.o
- .bss           0x20000118        0x0 ./release/otgd_fs_pcd.o
- .bss           0x20000118        0x0 ./release/stm32f10x_it.o
- .bss           0x20000118        0x1 ./release/usb_core.o
-                0x20000118                Data_Mul_MaxPacketSize
- .bss           0x20000119        0x0 ./release/usb_desc.o
- *fill*         0x20000119        0x3 
- .bss           0x2000011c        0x4 ./release/usb_endp.o
- .bss           0x20000120        0x0 ./release/usb_init.o
- .bss           0x20000120        0x0 ./release/usb_int.o
- .bss           0x20000120        0x1 ./release/usb_istr.o
-                0x20000120                bIntPackSOF
- .bss           0x20000121        0x0 ./release/usb_mem.o
- .bss           0x20000121        0x1 ./release/usb_prop.o
-                0x20000121                Request
- *fill*         0x20000122        0x2 
- .bss           0x20000124        0x4 ./release/usb_pwr.o
-                0x20000124                bDeviceState
- .bss           0x20000128        0x0 ./release/usb_regs.o
- .bss           0x20000128        0x0 ./release/usb_sil.o
- .bss           0x20000128      0xc14 ./release/lib_crc.o
- .bss           0x20000d3c        0x2 ./release/sampleacquisition.o
-                0x20000d3c                idDataToProcess
- .bss           0x20000d3e        0x0 ./release/uartcomm.o
- .bss           0x20000d3e        0x0 ./release/usbcomm.o
- .bss           0x20000d3e        0x2 ./release/serialframe.o
-                0x20000d3e                currentUsartSeqNum
- .bss           0x20000d40        0x0 ./release/main.o
- .bss           0x20000d40      0x80c ./release/signalfilter.o
- .bss           0x2000154c       0x90 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
- .bss           0x200015dc        0x0 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
- .bss           0x200015dc        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_addsubdf3.o)
- .bss           0x200015dc        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_muldivdf3.o)
- .bss           0x200015dc        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_fixdfsi.o)
- .bss           0x200015dc        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_truncdfsf2.o)
- .bss           0x200015dc        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_addsubsf3.o)
- .bss           0x200015dc        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_muldivsf3.o)
- .bss           0x200015dc        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_cmpsf2.o)
- .bss           0x200015dc        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_fixsfsi.o)
- .bss           0x200015dc        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_fixunssfsi.o)
+ .bss           0x200000fc        0x4 ./release/xprintf.o
+ .bss           0x20000100        0x0 ./release/misc.o
+ .bss           0x20000100        0x0 ./release/stm32f10x_adc.o
+ .bss           0x20000100        0x0 ./release/stm32f10x_bkp.o
+ .bss           0x20000100        0x0 ./release/stm32f10x_can.o
+ .bss           0x20000100        0x0 ./release/stm32f10x_cec.o
+ .bss           0x20000100        0x0 ./release/stm32f10x_crc.o
+ .bss           0x20000100        0x0 ./release/stm32f10x_dac.o
+ .bss           0x20000100        0x0 ./release/stm32f10x_dbgmcu.o
+ .bss           0x20000100        0x0 ./release/stm32f10x_dma.o
+ .bss           0x20000100        0x0 ./release/stm32f10x_exti.o
+ .bss           0x20000100        0x0 ./release/stm32f10x_flash.o
+ .bss           0x20000100        0x0 ./release/stm32f10x_fsmc.o
+ .bss           0x20000100        0x0 ./release/stm32f10x_gpio.o
+ .bss           0x20000100        0x0 ./release/stm32f10x_i2c.o
+ .bss           0x20000100        0x0 ./release/stm32f10x_iwdg.o
+ .bss           0x20000100        0x0 ./release/stm32f10x_pwr.o
+ .bss           0x20000100        0x0 ./release/stm32f10x_rcc.o
+ .bss           0x20000100        0x0 ./release/stm32f10x_rtc.o
+ .bss           0x20000100        0x0 ./release/stm32f10x_sdio.o
+ .bss           0x20000100        0x0 ./release/stm32f10x_spi.o
+ .bss           0x20000100        0x0 ./release/stm32f10x_tim.o
+ .bss           0x20000100        0x0 ./release/stm32f10x_usart.o
+ .bss           0x20000100        0x0 ./release/stm32f10x_wwdg.o
+ .bss           0x20000100       0x1c ./release/hw_config.o
+                0x20000100                USART_Tx_ptr_in
+                0x20000104                USART_Tx_length
+                0x20000108                USART_Tx_ptr_out
+                0x2000010c                USB_Tx_State
+                0x20000110                USART_Rx_ptr_out
+                0x20000114                USART_Rx_ptr_in
+                0x20000118                USART_Rx_length
+ .bss           0x2000011c        0x0 ./release/otgd_fs_cal.o
+ .bss           0x2000011c        0x0 ./release/otgd_fs_dev.o
+ .bss           0x2000011c        0x0 ./release/otgd_fs_int.o
+ .bss           0x2000011c        0x0 ./release/otgd_fs_pcd.o
+ .bss           0x2000011c        0x0 ./release/stm32f10x_it.o
+ .bss           0x2000011c        0x1 ./release/usb_core.o
+                0x2000011c                Data_Mul_MaxPacketSize
+ .bss           0x2000011d        0x0 ./release/usb_desc.o
+ *fill*         0x2000011d        0x3 
+ .bss           0x20000120        0x4 ./release/usb_endp.o
+ .bss           0x20000124        0x0 ./release/usb_init.o
+ .bss           0x20000124        0x0 ./release/usb_int.o
+ .bss           0x20000124        0x1 ./release/usb_istr.o
+                0x20000124                bIntPackSOF
+ .bss           0x20000125        0x0 ./release/usb_mem.o
+ .bss           0x20000125        0x1 ./release/usb_prop.o
+                0x20000125                Request
+ *fill*         0x20000126        0x2 
+ .bss           0x20000128        0x4 ./release/usb_pwr.o
+                0x20000128                bDeviceState
+ .bss           0x2000012c        0x0 ./release/usb_regs.o
+ .bss           0x2000012c        0x0 ./release/usb_sil.o
+ .bss           0x2000012c      0xc14 ./release/lib_crc.o
+ .bss           0x20000d40        0x2 ./release/sampleacquisition.o
+                0x20000d40                idDataToProcess
+ .bss           0x20000d42        0x0 ./release/uartcomm.o
+ .bss           0x20000d42        0x0 ./release/usbcomm.o
+ .bss           0x20000d42        0x2 ./release/serialframe.o
+                0x20000d42                currentUsartSeqNum
+ .bss           0x20000d44        0x0 ./release/main.o
+ .bss           0x20000d44      0x80c ./release/signalfilter.o
+ .bss           0x20001550       0x90 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+ .bss           0x200015e0        0x0 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
+ .bss           0x200015e0        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_addsubdf3.o)
+ .bss           0x200015e0        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_muldivdf3.o)
+ .bss           0x200015e0        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_fixdfsi.o)
+ .bss           0x200015e0        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_truncdfsf2.o)
+ .bss           0x200015e0        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_addsubsf3.o)
+ .bss           0x200015e0        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_muldivsf3.o)
+ .bss           0x200015e0        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_cmpsf2.o)
+ .bss           0x200015e0        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_fixsfsi.o)
+ .bss           0x200015e0        0x0 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_fixunssfsi.o)
  *(COMMON)
- COMMON         0x200015dc        0xc ./release/usart.o
-                0x200015dc                PTR_Function_USART1
-                0x200015e0                PTR_Function_USART2
-                0x200015e4                PTR_Function_USART3
- COMMON         0x200015e8     0x1014 ./release/hw_config.o
-                0x200015e8                HSEStartUpStatus
-                0x200015e9                USART_Tx_Buffer
-                0x20001de9                USART_Rx_Buffer
-                0x200025ec                USART_InitStructure
- COMMON         0x200025fc        0x2 ./release/usb_core.o
-                0x200025fc                StatusInfo
- COMMON         0x200025fe       0x80 ./release/usb_endp.o
-                0x200025fe                USB_Tx_Buffer
-                0x2000263e                USB_Rx_Buffer
- *fill*         0x2000267e        0x2 
- COMMON         0x20002680       0x32 ./release/usb_init.o
-                0x20002680                SaveState
-                0x20002684                pProperty
-                0x20002688                EPindex
-                0x2000268c                Device_Info
-                0x200026a8                pUser_Standard_Requests
-                0x200026ac                pInformation
-                0x200026b0                wInterrupt_Mask
- COMMON         0x200026b2        0x4 ./release/usb_int.o
-                0x200026b2                SaveRState
-                0x200026b4                SaveTState
- COMMON         0x200026b6        0x2 ./release/usb_istr.o
-                0x200026b6                wIstr
- COMMON         0x200026b8        0x2 ./release/usb_pwr.o
-                0x200026b8                ResumeS
- COMMON         0x200026ba      0x100 ./release/sampleacquisition.o
-                0x200026ba                adcBuffer
- COMMON         0x200027ba       0x15 ./release/serialframe.o
-                0x200027ba                converted
- *fill*         0x200027cf        0x1 
- COMMON         0x200027d0       0x10 ./release/signalfilter.o
-                0x200027d0                outputFilters
- COMMON         0x200027e0       0x10 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
-                0x200027e0                Enable_Fct_IT_Compare_Match_TIM3_Voie1
-                0x200027e1                Enable_Fct_IT_Compare_Match_TIM1_Voie3
-                0x200027e2                Enable_Fct_IT_Compare_Match_TIM2_Voie1
-                0x200027e3                Enable_Fct_IT_Compare_Match_TIM4_Voie3
-                0x200027e4                Enable_Fct_IT_Compare_Match_TIM1_Voie1
-                0x200027e5                Enable_Fct_IT_Compare_Match_TIM3_Voie4
-                0x200027e6                Enable_Fct_IT_Compare_Match_TIM4_Voie1
-                0x200027e7                Enable_Fct_IT_Compare_Match_TIM3_Voie2
-                0x200027e8                Enable_Fct_IT_Compare_Match_TIM2_Voie3
-                0x200027e9                Enable_Fct_IT_Compare_Match_TIM1_Voie4
-                0x200027ea                Enable_Fct_IT_Compare_Match_TIM4_Voie4
-                0x200027eb                Enable_Fct_IT_Compare_Match_TIM2_Voie4
-                0x200027ec                Enable_Fct_IT_Compare_Match_TIM3_Voie3
-                0x200027ed                Enable_Fct_IT_Compare_Match_TIM2_Voie2
-                0x200027ee                Enable_Fct_IT_Compare_Match_TIM1_Voie2
-                0x200027ef                Enable_Fct_IT_Compare_Match_TIM4_Voie2
-                0x200027f0                __bss_end__ = .
+ COMMON         0x200015e0        0xc ./release/usart.o
+                0x200015e0                PTR_Function_USART1
+                0x200015e4                PTR_Function_USART2
+                0x200015e8                PTR_Function_USART3
+ COMMON         0x200015ec        0x8 ./release/xprintf.o
+                0x200015ec                xfunc_in
+                0x200015f0                xfunc_out
+ COMMON         0x200015f4     0x1014 ./release/hw_config.o
+                0x200015f4                HSEStartUpStatus
+                0x200015f5                USART_Tx_Buffer
+                0x20001df5                USART_Rx_Buffer
+                0x200025f8                USART_InitStructure
+ COMMON         0x20002608        0x2 ./release/usb_core.o
+                0x20002608                StatusInfo
+ COMMON         0x2000260a       0x80 ./release/usb_endp.o
+                0x2000260a                USB_Tx_Buffer
+                0x2000264a                USB_Rx_Buffer
+ *fill*         0x2000268a        0x2 
+ COMMON         0x2000268c       0x32 ./release/usb_init.o
+                0x2000268c                SaveState
+                0x20002690                pProperty
+                0x20002694                EPindex
+                0x20002698                Device_Info
+                0x200026b4                pUser_Standard_Requests
+                0x200026b8                pInformation
+                0x200026bc                wInterrupt_Mask
+ COMMON         0x200026be        0x4 ./release/usb_int.o
+                0x200026be                SaveRState
+                0x200026c0                SaveTState
+ COMMON         0x200026c2        0x2 ./release/usb_istr.o
+                0x200026c2                wIstr
+ COMMON         0x200026c4        0x2 ./release/usb_pwr.o
+                0x200026c4                ResumeS
+ COMMON         0x200026c6      0x100 ./release/sampleacquisition.o
+                0x200026c6                adcBuffer
+ COMMON         0x200027c6       0x15 ./release/serialframe.o
+                0x200027c6                converted
+ *fill*         0x200027db        0x1 
+ COMMON         0x200027dc       0x10 ./release/signalfilter.o
+                0x200027dc                outputFilters
+ COMMON         0x200027ec       0x10 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+                0x200027ec                Enable_Fct_IT_Compare_Match_TIM3_Voie1
+                0x200027ed                Enable_Fct_IT_Compare_Match_TIM1_Voie3
+                0x200027ee                Enable_Fct_IT_Compare_Match_TIM2_Voie1
+                0x200027ef                Enable_Fct_IT_Compare_Match_TIM4_Voie3
+                0x200027f0                Enable_Fct_IT_Compare_Match_TIM1_Voie1
+                0x200027f1                Enable_Fct_IT_Compare_Match_TIM3_Voie4
+                0x200027f2                Enable_Fct_IT_Compare_Match_TIM4_Voie1
+                0x200027f3                Enable_Fct_IT_Compare_Match_TIM3_Voie2
+                0x200027f4                Enable_Fct_IT_Compare_Match_TIM2_Voie3
+                0x200027f5                Enable_Fct_IT_Compare_Match_TIM1_Voie4
+                0x200027f6                Enable_Fct_IT_Compare_Match_TIM4_Voie4
+                0x200027f7                Enable_Fct_IT_Compare_Match_TIM2_Voie4
+                0x200027f8                Enable_Fct_IT_Compare_Match_TIM3_Voie3
+                0x200027f9                Enable_Fct_IT_Compare_Match_TIM2_Voie2
+                0x200027fa                Enable_Fct_IT_Compare_Match_TIM1_Voie2
+                0x200027fb                Enable_Fct_IT_Compare_Match_TIM4_Voie2
+                0x200027fc                __bss_end__ = .
 
-.heap           0x200027f0      0x800
-                0x200027f0                __end__ = .
-                0x200027f0                end = __end__
-                0x200027f0                _end = __end__
+.heap           0x20002800      0x800
+                0x20002800                __end__ = .
+                0x20002800                end = __end__
+                0x20002800                _end = __end__
  *(.heap*)
- .heap          0x200027f0      0x800 ./release/startup-gcc.o
-                0x200027f0                __HeapBase
-                0x20002ff0                __HeapLimit = .
+ .heap          0x20002800      0x800 ./release/startup-gcc.o
+                0x20002800                __HeapBase
+                0x20003000                __HeapLimit = .
 
-.stack_dummy    0x200027f0      0xc00
+.stack_dummy    0x20002800      0xc00
  *(.stack)
- .stack         0x200027f0      0xc00 ./release/startup-gcc.o
+ .stack         0x20002800      0xc00 ./release/startup-gcc.o
                 0x20005000                __StackTop = (ORIGIN (RAM) + 0x5000)
                 0x20004400                __StackLimit = (__StackTop - SIZEOF (.stack_dummy))
                 0x20005000                PROVIDE (__stack, __StackTop)
@@ -1127,119 +1327,149 @@ OUTPUT(./release/receiver_STM32.elf elf32-littlearm)
  .ARM.attributes
                 0x00000054       0x33 ./release/usart.o
  .ARM.attributes
-                0x00000087       0x33 ./release/misc.o
+                0x00000087       0x33 ./release/xprintf.o
  .ARM.attributes
-                0x000000ba       0x33 ./release/stm32f10x_adc.o
+                0x000000ba       0x33 ./release/misc.o
  .ARM.attributes
-                0x000000ed       0x33 ./release/stm32f10x_bkp.o
+                0x000000ed       0x33 ./release/stm32f10x_adc.o
  .ARM.attributes
-                0x00000120       0x33 ./release/stm32f10x_dma.o
+                0x00000120       0x33 ./release/stm32f10x_bkp.o
  .ARM.attributes
-                0x00000153       0x33 ./release/stm32f10x_exti.o
+                0x00000153       0x33 ./release/stm32f10x_can.o
  .ARM.attributes
-                0x00000186       0x33 ./release/stm32f10x_flash.o
+                0x00000186       0x33 ./release/stm32f10x_cec.o
  .ARM.attributes
-                0x000001b9       0x33 ./release/stm32f10x_gpio.o
+                0x000001b9       0x33 ./release/stm32f10x_crc.o
  .ARM.attributes
-                0x000001ec       0x33 ./release/stm32f10x_iwdg.o
+                0x000001ec       0x33 ./release/stm32f10x_dac.o
  .ARM.attributes
-                0x0000021f       0x33 ./release/stm32f10x_rcc.o
+                0x0000021f       0x33 ./release/stm32f10x_dbgmcu.o
  .ARM.attributes
-                0x00000252       0x33 ./release/stm32f10x_rtc.o
+                0x00000252       0x33 ./release/stm32f10x_dma.o
  .ARM.attributes
-                0x00000285       0x33 ./release/stm32f10x_sdio.o
+                0x00000285       0x33 ./release/stm32f10x_exti.o
  .ARM.attributes
-                0x000002b8       0x33 ./release/stm32f10x_tim.o
+                0x000002b8       0x33 ./release/stm32f10x_flash.o
  .ARM.attributes
-                0x000002eb       0x33 ./release/stm32f10x_usart.o
+                0x000002eb       0x33 ./release/stm32f10x_fsmc.o
  .ARM.attributes
-                0x0000031e       0x33 ./release/stm32f10x_wwdg.o
+                0x0000031e       0x33 ./release/stm32f10x_gpio.o
  .ARM.attributes
-                0x00000351       0x33 ./release/hw_config.o
+                0x00000351       0x33 ./release/stm32f10x_i2c.o
  .ARM.attributes
-                0x00000384       0x33 ./release/otgd_fs_cal.o
+                0x00000384       0x33 ./release/stm32f10x_iwdg.o
  .ARM.attributes
-                0x000003b7       0x33 ./release/otgd_fs_dev.o
+                0x000003b7       0x33 ./release/stm32f10x_pwr.o
  .ARM.attributes
-                0x000003ea       0x33 ./release/otgd_fs_int.o
+                0x000003ea       0x33 ./release/stm32f10x_rcc.o
  .ARM.attributes
-                0x0000041d       0x33 ./release/otgd_fs_pcd.o
+                0x0000041d       0x33 ./release/stm32f10x_rtc.o
  .ARM.attributes
-                0x00000450       0x33 ./release/stm32f10x_it.o
+                0x00000450       0x33 ./release/stm32f10x_sdio.o
  .ARM.attributes
-                0x00000483       0x33 ./release/usb_core.o
+                0x00000483       0x33 ./release/stm32f10x_spi.o
  .ARM.attributes
-                0x000004b6       0x33 ./release/usb_desc.o
+                0x000004b6       0x33 ./release/stm32f10x_tim.o
  .ARM.attributes
-                0x000004e9       0x33 ./release/usb_endp.o
+                0x000004e9       0x33 ./release/stm32f10x_usart.o
  .ARM.attributes
-                0x0000051c       0x33 ./release/usb_init.o
+                0x0000051c       0x33 ./release/stm32f10x_wwdg.o
  .ARM.attributes
-                0x0000054f       0x33 ./release/usb_int.o
+                0x0000054f       0x33 ./release/hw_config.o
  .ARM.attributes
-                0x00000582       0x33 ./release/usb_istr.o
+                0x00000582       0x33 ./release/otgd_fs_cal.o
  .ARM.attributes
-                0x000005b5       0x33 ./release/usb_mem.o
+                0x000005b5       0x33 ./release/otgd_fs_dev.o
  .ARM.attributes
-                0x000005e8       0x33 ./release/usb_prop.o
+                0x000005e8       0x33 ./release/otgd_fs_int.o
  .ARM.attributes
-                0x0000061b       0x33 ./release/usb_pwr.o
+                0x0000061b       0x33 ./release/otgd_fs_pcd.o
  .ARM.attributes
-                0x0000064e       0x33 ./release/usb_regs.o
+                0x0000064e       0x33 ./release/stm32f10x_it.o
  .ARM.attributes
-                0x00000681       0x33 ./release/usb_sil.o
+                0x00000681       0x33 ./release/usb_core.o
  .ARM.attributes
-                0x000006b4       0x33 ./release/lib_crc.o
+                0x000006b4       0x33 ./release/usb_desc.o
  .ARM.attributes
-                0x000006e7       0x33 ./release/sampleacquisition.o
+                0x000006e7       0x33 ./release/usb_endp.o
  .ARM.attributes
-                0x0000071a       0x33 ./release/uartcomm.o
+                0x0000071a       0x33 ./release/usb_init.o
  .ARM.attributes
-                0x0000074d       0x33 ./release/usbcomm.o
+                0x0000074d       0x33 ./release/usb_int.o
  .ARM.attributes
-                0x00000780       0x33 ./release/serialframe.o
+                0x00000780       0x33 ./release/usb_istr.o
  .ARM.attributes
-                0x000007b3       0x33 ./release/main.o
+                0x000007b3       0x33 ./release/usb_mem.o
  .ARM.attributes
-                0x000007e6       0x33 ./release/signalfilter.o
+                0x000007e6       0x33 ./release/usb_prop.o
  .ARM.attributes
-                0x00000819       0x31 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+                0x00000819       0x33 ./release/usb_pwr.o
  .ARM.attributes
-                0x0000084a       0x31 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
+                0x0000084c       0x33 ./release/usb_regs.o
  .ARM.attributes
-                0x0000087b       0x19 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_addsubdf3.o)
+                0x0000087f       0x33 ./release/usb_sil.o
  .ARM.attributes
-                0x00000894       0x19 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_muldivdf3.o)
+                0x000008b2       0x33 ./release/lib_crc.o
  .ARM.attributes
-                0x000008ad       0x19 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_fixdfsi.o)
+                0x000008e5       0x33 ./release/sampleacquisition.o
  .ARM.attributes
-                0x000008c6       0x19 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_truncdfsf2.o)
+                0x00000918       0x33 ./release/uartcomm.o
  .ARM.attributes
-                0x000008df       0x19 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_addsubsf3.o)
+                0x0000094b       0x33 ./release/usbcomm.o
  .ARM.attributes
-                0x000008f8       0x19 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_muldivsf3.o)
+                0x0000097e       0x33 ./release/serialframe.o
  .ARM.attributes
-                0x00000911       0x19 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_cmpsf2.o)
+                0x000009b1       0x33 ./release/main.o
  .ARM.attributes
-                0x0000092a       0x19 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_fixsfsi.o)
+                0x000009e4       0x33 ./release/signalfilter.o
  .ARM.attributes
-                0x00000943       0x19 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_fixunssfsi.o)
+                0x00000a17       0x31 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+ .ARM.attributes
+                0x00000a48       0x31 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
+ .ARM.attributes
+                0x00000a79       0x19 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_addsubdf3.o)
+ .ARM.attributes
+                0x00000a92       0x19 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_muldivdf3.o)
+ .ARM.attributes
+                0x00000aab       0x19 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_fixdfsi.o)
+ .ARM.attributes
+                0x00000ac4       0x19 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_truncdfsf2.o)
+ .ARM.attributes
+                0x00000add       0x19 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_addsubsf3.o)
+ .ARM.attributes
+                0x00000af6       0x19 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_muldivsf3.o)
+ .ARM.attributes
+                0x00000b0f       0x19 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_cmpsf2.o)
+ .ARM.attributes
+                0x00000b28       0x19 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_fixsfsi.o)
+ .ARM.attributes
+                0x00000b41       0x19 c:/program files (x86)/codesourcery/sourcery g++ lite/bin/../lib/gcc/arm-none-eabi/4.7.3/thumb2\libgcc.a(_arm_fixunssfsi.o)
 
 .comment        0x00000000       0x86
  .comment       0x00000000       0x30 ./release/clock.o
                                  0x31 (size before relaxing)
  .comment       0x00000000       0x31 ./release/usart.o
+ .comment       0x00000000       0x31 ./release/xprintf.o
  .comment       0x00000000       0x31 ./release/misc.o
  .comment       0x00000000       0x31 ./release/stm32f10x_adc.o
  .comment       0x00000000       0x31 ./release/stm32f10x_bkp.o
+ .comment       0x00000000       0x31 ./release/stm32f10x_can.o
+ .comment       0x00000000       0x31 ./release/stm32f10x_cec.o
+ .comment       0x00000000       0x31 ./release/stm32f10x_crc.o
+ .comment       0x00000000       0x31 ./release/stm32f10x_dac.o
+ .comment       0x00000000       0x31 ./release/stm32f10x_dbgmcu.o
  .comment       0x00000000       0x31 ./release/stm32f10x_dma.o
  .comment       0x00000000       0x31 ./release/stm32f10x_exti.o
  .comment       0x00000000       0x31 ./release/stm32f10x_flash.o
+ .comment       0x00000000       0x31 ./release/stm32f10x_fsmc.o
  .comment       0x00000000       0x31 ./release/stm32f10x_gpio.o
+ .comment       0x00000000       0x31 ./release/stm32f10x_i2c.o
  .comment       0x00000000       0x31 ./release/stm32f10x_iwdg.o
+ .comment       0x00000000       0x31 ./release/stm32f10x_pwr.o
  .comment       0x00000000       0x31 ./release/stm32f10x_rcc.o
  .comment       0x00000000       0x31 ./release/stm32f10x_rtc.o
  .comment       0x00000000       0x31 ./release/stm32f10x_sdio.o
+ .comment       0x00000000       0x31 ./release/stm32f10x_spi.o
  .comment       0x00000000       0x31 ./release/stm32f10x_tim.o
  .comment       0x00000000       0x31 ./release/stm32f10x_usart.o
  .comment       0x00000000       0x31 ./release/stm32f10x_wwdg.o
@@ -1270,134 +1500,164 @@ OUTPUT(./release/receiver_STM32.elf elf32-littlearm)
  .comment       0x00000030       0x2b ../drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
  .comment       0x0000005b       0x2b ../drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
 
-.debug_line     0x00000000     0x56cf
+.debug_line     0x00000000     0x716c
  .debug_line    0x00000000       0x91 ./release/startup-gcc.o
  .debug_line    0x00000091      0x13d ./release/clock.o
- .debug_line    0x000001ce      0x1c1 ./release/usart.o
- .debug_line    0x0000038f      0x1c9 ./release/misc.o
- .debug_line    0x00000558      0x321 ./release/stm32f10x_adc.o
- .debug_line    0x00000879      0x1e7 ./release/stm32f10x_bkp.o
- .debug_line    0x00000a60      0x22a ./release/stm32f10x_dma.o
- .debug_line    0x00000c8a      0x1fc ./release/stm32f10x_exti.o
- .debug_line    0x00000e86      0x368 ./release/stm32f10x_flash.o
- .debug_line    0x000011ee      0x2a1 ./release/stm32f10x_gpio.o
- .debug_line    0x0000148f      0x1b1 ./release/stm32f10x_iwdg.o
- .debug_line    0x00001640      0x2ae ./release/stm32f10x_rcc.o
- .debug_line    0x000018ee      0x204 ./release/stm32f10x_rtc.o
- .debug_line    0x00001af2      0x29e ./release/stm32f10x_sdio.o
- .debug_line    0x00001d90      0x620 ./release/stm32f10x_tim.o
- .debug_line    0x000023b0      0x310 ./release/stm32f10x_usart.o
- .debug_line    0x000026c0      0x1d3 ./release/stm32f10x_wwdg.o
- .debug_line    0x00002893      0x313 ./release/hw_config.o
- .debug_line    0x00002ba6        0x0 ./release/otgd_fs_cal.o
- .debug_line    0x00002ba6        0x0 ./release/otgd_fs_dev.o
- .debug_line    0x00002ba6        0x0 ./release/otgd_fs_int.o
- .debug_line    0x00002ba6        0x0 ./release/otgd_fs_pcd.o
- .debug_line    0x00002ba6      0x16f ./release/stm32f10x_it.o
- .debug_line    0x00002d15      0x3fe ./release/usb_core.o
- .debug_line    0x00003113      0x113 ./release/usb_desc.o
- .debug_line    0x00003226      0x1ca ./release/usb_endp.o
- .debug_line    0x000033f0      0x172 ./release/usb_init.o
- .debug_line    0x00003562      0x1f3 ./release/usb_int.o
- .debug_line    0x00003755      0x19d ./release/usb_istr.o
- .debug_line    0x000038f2      0x159 ./release/usb_mem.o
- .debug_line    0x00003a4b      0x275 ./release/usb_prop.o
- .debug_line    0x00003cc0      0x201 ./release/usb_pwr.o
- .debug_line    0x00003ec1      0x492 ./release/usb_regs.o
- .debug_line    0x00004353      0x1a1 ./release/usb_sil.o
- .debug_line    0x000044f4       0xf2 ./release/lib_crc.o
- .debug_line    0x000045e6      0x2a3 ./release/sampleacquisition.o
- .debug_line    0x00004889      0x19f ./release/uartcomm.o
- .debug_line    0x00004a28      0x1f4 ./release/usbcomm.o
- .debug_line    0x00004c1c      0x1aa ./release/serialframe.o
- .debug_line    0x00004dc6      0x18c ./release/main.o
- .debug_line    0x00004f52      0x376 ./release/signalfilter.o
- .debug_line    0x000052c8      0x2d3 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
- .debug_line    0x0000559b      0x134 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
+ .debug_line    0x000001ce      0x1ca ./release/usart.o
+ .debug_line    0x00000398      0x28f ./release/xprintf.o
+ .debug_line    0x00000627      0x1d2 ./release/misc.o
+ .debug_line    0x000007f9      0x32a ./release/stm32f10x_adc.o
+ .debug_line    0x00000b23      0x1f0 ./release/stm32f10x_bkp.o
+ .debug_line    0x00000d13      0x3f7 ./release/stm32f10x_can.o
+ .debug_line    0x0000110a      0x227 ./release/stm32f10x_cec.o
+ .debug_line    0x00001331      0x1cc ./release/stm32f10x_crc.o
+ .debug_line    0x000014fd      0x224 ./release/stm32f10x_dac.o
+ .debug_line    0x00001721      0x1b0 ./release/stm32f10x_dbgmcu.o
+ .debug_line    0x000018d1      0x233 ./release/stm32f10x_dma.o
+ .debug_line    0x00001b04      0x205 ./release/stm32f10x_exti.o
+ .debug_line    0x00001d09      0x371 ./release/stm32f10x_flash.o
+ .debug_line    0x0000207a      0x330 ./release/stm32f10x_fsmc.o
+ .debug_line    0x000023aa      0x2aa ./release/stm32f10x_gpio.o
+ .debug_line    0x00002654      0x312 ./release/stm32f10x_i2c.o
+ .debug_line    0x00002966      0x1ba ./release/stm32f10x_iwdg.o
+ .debug_line    0x00002b20      0x215 ./release/stm32f10x_pwr.o
+ .debug_line    0x00002d35      0x2b7 ./release/stm32f10x_rcc.o
+ .debug_line    0x00002fec      0x20d ./release/stm32f10x_rtc.o
+ .debug_line    0x000031f9      0x2a7 ./release/stm32f10x_sdio.o
+ .debug_line    0x000034a0      0x2e2 ./release/stm32f10x_spi.o
+ .debug_line    0x00003782      0x629 ./release/stm32f10x_tim.o
+ .debug_line    0x00003dab      0x319 ./release/stm32f10x_usart.o
+ .debug_line    0x000040c4      0x1dc ./release/stm32f10x_wwdg.o
+ .debug_line    0x000042a0      0x31c ./release/hw_config.o
+ .debug_line    0x000045bc        0x0 ./release/otgd_fs_cal.o
+ .debug_line    0x000045bc        0x0 ./release/otgd_fs_dev.o
+ .debug_line    0x000045bc        0x0 ./release/otgd_fs_int.o
+ .debug_line    0x000045bc        0x0 ./release/otgd_fs_pcd.o
+ .debug_line    0x000045bc      0x178 ./release/stm32f10x_it.o
+ .debug_line    0x00004734      0x407 ./release/usb_core.o
+ .debug_line    0x00004b3b      0x11c ./release/usb_desc.o
+ .debug_line    0x00004c57      0x1d3 ./release/usb_endp.o
+ .debug_line    0x00004e2a      0x17b ./release/usb_init.o
+ .debug_line    0x00004fa5      0x1fc ./release/usb_int.o
+ .debug_line    0x000051a1      0x1a6 ./release/usb_istr.o
+ .debug_line    0x00005347      0x162 ./release/usb_mem.o
+ .debug_line    0x000054a9      0x27e ./release/usb_prop.o
+ .debug_line    0x00005727      0x20a ./release/usb_pwr.o
+ .debug_line    0x00005931      0x49b ./release/usb_regs.o
+ .debug_line    0x00005dcc      0x1aa ./release/usb_sil.o
+ .debug_line    0x00005f76       0xf2 ./release/lib_crc.o
+ .debug_line    0x00006068      0x2ac ./release/sampleacquisition.o
+ .debug_line    0x00006314      0x1a8 ./release/uartcomm.o
+ .debug_line    0x000064bc      0x1f4 ./release/usbcomm.o
+ .debug_line    0x000066b0      0x1b3 ./release/serialframe.o
+ .debug_line    0x00006863      0x18c ./release/main.o
+ .debug_line    0x000069ef      0x376 ./release/signalfilter.o
+ .debug_line    0x00006d65      0x2d3 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+ .debug_line    0x00007038      0x134 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
 
-.debug_info     0x00000000    0x116c5
- .debug_info    0x00000000       0x85 ./release/startup-gcc.o
- .debug_info    0x00000085      0x560 ./release/clock.o
- .debug_info    0x000005e5      0x6b1 ./release/usart.o
- .debug_info    0x00000c96      0x592 ./release/misc.o
- .debug_info    0x00001228      0xc97 ./release/stm32f10x_adc.o
- .debug_info    0x00001ebf      0x8bd ./release/stm32f10x_bkp.o
- .debug_info    0x0000277c      0x4a4 ./release/stm32f10x_dma.o
- .debug_info    0x00002c20      0x369 ./release/stm32f10x_exti.o
- .debug_info    0x00002f89      0xaa9 ./release/stm32f10x_flash.o
- .debug_info    0x00003a32      0x838 ./release/stm32f10x_gpio.o
- .debug_info    0x0000426a      0x203 ./release/stm32f10x_iwdg.o
- .debug_info    0x0000446d      0x93c ./release/stm32f10x_rcc.o
- .debug_info    0x00004da9      0x4b5 ./release/stm32f10x_rtc.o
- .debug_info    0x0000525e      0x896 ./release/stm32f10x_sdio.o
- .debug_info    0x00005af4     0x2299 ./release/stm32f10x_tim.o
- .debug_info    0x00007d8d      0xb7d ./release/stm32f10x_usart.o
- .debug_info    0x0000890a      0x299 ./release/stm32f10x_wwdg.o
- .debug_info    0x00008ba3      0xb8b ./release/hw_config.o
- .debug_info    0x0000972e       0xbf ./release/stm32f10x_it.o
- .debug_info    0x000097ed      0xf1e ./release/usb_core.o
- .debug_info    0x0000a70b      0x179 ./release/usb_desc.o
- .debug_info    0x0000a884      0x328 ./release/usb_endp.o
- .debug_info    0x0000abac      0x495 ./release/usb_init.o
- .debug_info    0x0000b041      0x1fb ./release/usb_int.o
- .debug_info    0x0000b23c      0x2ab ./release/usb_istr.o
- .debug_info    0x0000b4e7      0x1c0 ./release/usb_mem.o
- .debug_info    0x0000b6a7      0xc6d ./release/usb_prop.o
- .debug_info    0x0000c314      0x35b ./release/usb_pwr.o
- .debug_info    0x0000c66f      0xdeb ./release/usb_regs.o
- .debug_info    0x0000d45a      0x295 ./release/usb_sil.o
- .debug_info    0x0000d6ef      0x573 ./release/lib_crc.o
- .debug_info    0x0000dc62     0x11da ./release/sampleacquisition.o
- .debug_info    0x0000ee3c      0x4ff ./release/uartcomm.o
- .debug_info    0x0000f33b      0x5d2 ./release/usbcomm.o
- .debug_info    0x0000f90d      0x465 ./release/serialframe.o
- .debug_info    0x0000fd72      0x4fc ./release/main.o
- .debug_info    0x0001026e      0x5f8 ./release/signalfilter.o
- .debug_info    0x00010866      0xbf9 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
- .debug_info    0x0001145f      0x266 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
+.debug_info     0x00000000    0x15ce1
+ .debug_info    0x00000000       0x82 ./release/startup-gcc.o
+ .debug_info    0x00000082      0x560 ./release/clock.o
+ .debug_info    0x000005e2      0x6b1 ./release/usart.o
+ .debug_info    0x00000c93      0x6f8 ./release/xprintf.o
+ .debug_info    0x0000138b      0x592 ./release/misc.o
+ .debug_info    0x0000191d      0xc97 ./release/stm32f10x_adc.o
+ .debug_info    0x000025b4      0x8bd ./release/stm32f10x_bkp.o
+ .debug_info    0x00002e71      0xce3 ./release/stm32f10x_can.o
+ .debug_info    0x00003b54      0x493 ./release/stm32f10x_cec.o
+ .debug_info    0x00003fe7      0x206 ./release/stm32f10x_crc.o
+ .debug_info    0x000041ed      0x537 ./release/stm32f10x_dac.o
+ .debug_info    0x00004724      0x15e ./release/stm32f10x_dbgmcu.o
+ .debug_info    0x00004882      0x4a4 ./release/stm32f10x_dma.o
+ .debug_info    0x00004d26      0x369 ./release/stm32f10x_exti.o
+ .debug_info    0x0000508f      0xaa9 ./release/stm32f10x_flash.o
+ .debug_info    0x00005b38      0x9aa ./release/stm32f10x_fsmc.o
+ .debug_info    0x000064e2      0x838 ./release/stm32f10x_gpio.o
+ .debug_info    0x00006d1a      0xc1e ./release/stm32f10x_i2c.o
+ .debug_info    0x00007938      0x203 ./release/stm32f10x_iwdg.o
+ .debug_info    0x00007b3b      0x501 ./release/stm32f10x_pwr.o
+ .debug_info    0x0000803c      0x93c ./release/stm32f10x_rcc.o
+ .debug_info    0x00008978      0x4b5 ./release/stm32f10x_rtc.o
+ .debug_info    0x00008e2d      0x896 ./release/stm32f10x_sdio.o
+ .debug_info    0x000096c3      0xa4d ./release/stm32f10x_spi.o
+ .debug_info    0x0000a110     0x2299 ./release/stm32f10x_tim.o
+ .debug_info    0x0000c3a9      0xb7d ./release/stm32f10x_usart.o
+ .debug_info    0x0000cf26      0x299 ./release/stm32f10x_wwdg.o
+ .debug_info    0x0000d1bf      0xb8b ./release/hw_config.o
+ .debug_info    0x0000dd4a       0xbf ./release/stm32f10x_it.o
+ .debug_info    0x0000de09      0xf1e ./release/usb_core.o
+ .debug_info    0x0000ed27      0x179 ./release/usb_desc.o
+ .debug_info    0x0000eea0      0x328 ./release/usb_endp.o
+ .debug_info    0x0000f1c8      0x495 ./release/usb_init.o
+ .debug_info    0x0000f65d      0x1fb ./release/usb_int.o
+ .debug_info    0x0000f858      0x2ab ./release/usb_istr.o
+ .debug_info    0x0000fb03      0x1c0 ./release/usb_mem.o
+ .debug_info    0x0000fcc3      0xc6d ./release/usb_prop.o
+ .debug_info    0x00010930      0x35b ./release/usb_pwr.o
+ .debug_info    0x00010c8b      0xdeb ./release/usb_regs.o
+ .debug_info    0x00011a76      0x295 ./release/usb_sil.o
+ .debug_info    0x00011d0b      0x573 ./release/lib_crc.o
+ .debug_info    0x0001227e     0x11da ./release/sampleacquisition.o
+ .debug_info    0x00013458      0x4ff ./release/uartcomm.o
+ .debug_info    0x00013957      0x5d2 ./release/usbcomm.o
+ .debug_info    0x00013f29      0x465 ./release/serialframe.o
+ .debug_info    0x0001438e      0x4fc ./release/main.o
+ .debug_info    0x0001488a      0x5f8 ./release/signalfilter.o
+ .debug_info    0x00014e82      0xbf9 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+ .debug_info    0x00015a7b      0x266 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
 
-.debug_abbrev   0x00000000     0x403b
+.debug_abbrev   0x00000000     0x52f5
  .debug_abbrev  0x00000000       0x14 ./release/startup-gcc.o
  .debug_abbrev  0x00000014      0x125 ./release/clock.o
  .debug_abbrev  0x00000139      0x228 ./release/usart.o
- .debug_abbrev  0x00000361      0x152 ./release/misc.o
- .debug_abbrev  0x000004b3      0x213 ./release/stm32f10x_adc.o
- .debug_abbrev  0x000006c6      0x1b5 ./release/stm32f10x_bkp.o
- .debug_abbrev  0x0000087b      0x180 ./release/stm32f10x_dma.o
- .debug_abbrev  0x000009fb      0x17c ./release/stm32f10x_exti.o
- .debug_abbrev  0x00000b77      0x227 ./release/stm32f10x_flash.o
- .debug_abbrev  0x00000d9e      0x20f ./release/stm32f10x_gpio.o
- .debug_abbrev  0x00000fad      0x112 ./release/stm32f10x_iwdg.o
- .debug_abbrev  0x000010bf      0x209 ./release/stm32f10x_rcc.o
- .debug_abbrev  0x000012c8      0x1b7 ./release/stm32f10x_rtc.o
- .debug_abbrev  0x0000147f      0x21f ./release/stm32f10x_sdio.o
- .debug_abbrev  0x0000169e      0x301 ./release/stm32f10x_tim.o
- .debug_abbrev  0x0000199f      0x230 ./release/stm32f10x_usart.o
- .debug_abbrev  0x00001bcf      0x15a ./release/stm32f10x_wwdg.o
- .debug_abbrev  0x00001d29      0x340 ./release/hw_config.o
- .debug_abbrev  0x00002069       0x88 ./release/stm32f10x_it.o
- .debug_abbrev  0x000020f1      0x3ea ./release/usb_core.o
- .debug_abbrev  0x000024db       0x75 ./release/usb_desc.o
- .debug_abbrev  0x00002550      0x183 ./release/usb_endp.o
- .debug_abbrev  0x000026d3      0x120 ./release/usb_init.o
- .debug_abbrev  0x000027f3       0xe5 ./release/usb_int.o
- .debug_abbrev  0x000028d8      0x118 ./release/usb_istr.o
- .debug_abbrev  0x000029f0       0xae ./release/usb_mem.o
- .debug_abbrev  0x00002a9e      0x2ac ./release/usb_prop.o
- .debug_abbrev  0x00002d4a      0x1a4 ./release/usb_pwr.o
- .debug_abbrev  0x00002eee      0x20b ./release/usb_regs.o
- .debug_abbrev  0x000030f9      0x134 ./release/usb_sil.o
- .debug_abbrev  0x0000322d      0x16c ./release/lib_crc.o
- .debug_abbrev  0x00003399      0x219 ./release/sampleacquisition.o
- .debug_abbrev  0x000035b2      0x193 ./release/uartcomm.o
- .debug_abbrev  0x00003745      0x1f4 ./release/usbcomm.o
- .debug_abbrev  0x00003939      0x178 ./release/serialframe.o
- .debug_abbrev  0x00003ab1      0x131 ./release/main.o
- .debug_abbrev  0x00003be2      0x1ff ./release/signalfilter.o
- .debug_abbrev  0x00003de1      0x18a ../drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
- .debug_abbrev  0x00003f6b       0xd0 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
+ .debug_abbrev  0x00000361      0x278 ./release/xprintf.o
+ .debug_abbrev  0x000005d9      0x152 ./release/misc.o
+ .debug_abbrev  0x0000072b      0x213 ./release/stm32f10x_adc.o
+ .debug_abbrev  0x0000093e      0x1b5 ./release/stm32f10x_bkp.o
+ .debug_abbrev  0x00000af3      0x28b ./release/stm32f10x_can.o
+ .debug_abbrev  0x00000d7e      0x200 ./release/stm32f10x_cec.o
+ .debug_abbrev  0x00000f7e      0x141 ./release/stm32f10x_crc.o
+ .debug_abbrev  0x000010bf      0x1ee ./release/stm32f10x_dac.o
+ .debug_abbrev  0x000012ad       0xef ./release/stm32f10x_dbgmcu.o
+ .debug_abbrev  0x0000139c      0x180 ./release/stm32f10x_dma.o
+ .debug_abbrev  0x0000151c      0x17c ./release/stm32f10x_exti.o
+ .debug_abbrev  0x00001698      0x227 ./release/stm32f10x_flash.o
+ .debug_abbrev  0x000018bf      0x1c4 ./release/stm32f10x_fsmc.o
+ .debug_abbrev  0x00001a83      0x20f ./release/stm32f10x_gpio.o
+ .debug_abbrev  0x00001c92      0x1ec ./release/stm32f10x_i2c.o
+ .debug_abbrev  0x00001e7e      0x112 ./release/stm32f10x_iwdg.o
+ .debug_abbrev  0x00001f90      0x1d1 ./release/stm32f10x_pwr.o
+ .debug_abbrev  0x00002161      0x209 ./release/stm32f10x_rcc.o
+ .debug_abbrev  0x0000236a      0x1b7 ./release/stm32f10x_rtc.o
+ .debug_abbrev  0x00002521      0x21f ./release/stm32f10x_sdio.o
+ .debug_abbrev  0x00002740      0x218 ./release/stm32f10x_spi.o
+ .debug_abbrev  0x00002958      0x301 ./release/stm32f10x_tim.o
+ .debug_abbrev  0x00002c59      0x230 ./release/stm32f10x_usart.o
+ .debug_abbrev  0x00002e89      0x15a ./release/stm32f10x_wwdg.o
+ .debug_abbrev  0x00002fe3      0x340 ./release/hw_config.o
+ .debug_abbrev  0x00003323       0x88 ./release/stm32f10x_it.o
+ .debug_abbrev  0x000033ab      0x3ea ./release/usb_core.o
+ .debug_abbrev  0x00003795       0x75 ./release/usb_desc.o
+ .debug_abbrev  0x0000380a      0x183 ./release/usb_endp.o
+ .debug_abbrev  0x0000398d      0x120 ./release/usb_init.o
+ .debug_abbrev  0x00003aad       0xe5 ./release/usb_int.o
+ .debug_abbrev  0x00003b92      0x118 ./release/usb_istr.o
+ .debug_abbrev  0x00003caa       0xae ./release/usb_mem.o
+ .debug_abbrev  0x00003d58      0x2ac ./release/usb_prop.o
+ .debug_abbrev  0x00004004      0x1a4 ./release/usb_pwr.o
+ .debug_abbrev  0x000041a8      0x20b ./release/usb_regs.o
+ .debug_abbrev  0x000043b3      0x134 ./release/usb_sil.o
+ .debug_abbrev  0x000044e7      0x16c ./release/lib_crc.o
+ .debug_abbrev  0x00004653      0x219 ./release/sampleacquisition.o
+ .debug_abbrev  0x0000486c      0x193 ./release/uartcomm.o
+ .debug_abbrev  0x000049ff      0x1f4 ./release/usbcomm.o
+ .debug_abbrev  0x00004bf3      0x178 ./release/serialframe.o
+ .debug_abbrev  0x00004d6b      0x131 ./release/main.o
+ .debug_abbrev  0x00004e9c      0x1ff ./release/signalfilter.o
+ .debug_abbrev  0x0000509b      0x18a ../drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+ .debug_abbrev  0x00005225       0xd0 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
 
-.debug_aranges  0x00000000      0x4e0
+.debug_aranges  0x00000000      0x620
  .debug_aranges
                 0x00000000       0x20 ./release/startup-gcc.o
  .debug_aranges
@@ -1405,232 +1665,292 @@ OUTPUT(./release/receiver_STM32.elf elf32-littlearm)
  .debug_aranges
                 0x00000040       0x20 ./release/usart.o
  .debug_aranges
-                0x00000060       0x20 ./release/misc.o
+                0x00000060       0x20 ./release/xprintf.o
  .debug_aranges
-                0x00000080       0x20 ./release/stm32f10x_adc.o
+                0x00000080       0x20 ./release/misc.o
  .debug_aranges
-                0x000000a0       0x20 ./release/stm32f10x_bkp.o
+                0x000000a0       0x20 ./release/stm32f10x_adc.o
  .debug_aranges
-                0x000000c0       0x20 ./release/stm32f10x_dma.o
+                0x000000c0       0x20 ./release/stm32f10x_bkp.o
  .debug_aranges
-                0x000000e0       0x20 ./release/stm32f10x_exti.o
+                0x000000e0       0x20 ./release/stm32f10x_can.o
  .debug_aranges
-                0x00000100       0x20 ./release/stm32f10x_flash.o
+                0x00000100       0x20 ./release/stm32f10x_cec.o
  .debug_aranges
-                0x00000120       0x20 ./release/stm32f10x_gpio.o
+                0x00000120       0x20 ./release/stm32f10x_crc.o
  .debug_aranges
-                0x00000140       0x20 ./release/stm32f10x_iwdg.o
+                0x00000140       0x20 ./release/stm32f10x_dac.o
  .debug_aranges
-                0x00000160       0x20 ./release/stm32f10x_rcc.o
+                0x00000160       0x20 ./release/stm32f10x_dbgmcu.o
  .debug_aranges
-                0x00000180       0x20 ./release/stm32f10x_rtc.o
+                0x00000180       0x20 ./release/stm32f10x_dma.o
  .debug_aranges
-                0x000001a0       0x20 ./release/stm32f10x_sdio.o
+                0x000001a0       0x20 ./release/stm32f10x_exti.o
  .debug_aranges
-                0x000001c0       0x20 ./release/stm32f10x_tim.o
+                0x000001c0       0x20 ./release/stm32f10x_flash.o
  .debug_aranges
-                0x000001e0       0x20 ./release/stm32f10x_usart.o
+                0x000001e0       0x20 ./release/stm32f10x_fsmc.o
  .debug_aranges
-                0x00000200       0x20 ./release/stm32f10x_wwdg.o
+                0x00000200       0x20 ./release/stm32f10x_gpio.o
  .debug_aranges
-                0x00000220       0x20 ./release/hw_config.o
+                0x00000220       0x20 ./release/stm32f10x_i2c.o
  .debug_aranges
-                0x00000240       0x20 ./release/stm32f10x_it.o
+                0x00000240       0x20 ./release/stm32f10x_iwdg.o
  .debug_aranges
-                0x00000260       0x20 ./release/usb_core.o
+                0x00000260       0x20 ./release/stm32f10x_pwr.o
  .debug_aranges
-                0x00000280       0x18 ./release/usb_desc.o
+                0x00000280       0x20 ./release/stm32f10x_rcc.o
  .debug_aranges
-                0x00000298       0x20 ./release/usb_endp.o
+                0x000002a0       0x20 ./release/stm32f10x_rtc.o
  .debug_aranges
-                0x000002b8       0x20 ./release/usb_init.o
+                0x000002c0       0x20 ./release/stm32f10x_sdio.o
  .debug_aranges
-                0x000002d8       0x20 ./release/usb_int.o
+                0x000002e0       0x20 ./release/stm32f10x_spi.o
  .debug_aranges
-                0x000002f8       0x20 ./release/usb_istr.o
+                0x00000300       0x20 ./release/stm32f10x_tim.o
  .debug_aranges
-                0x00000318       0x20 ./release/usb_mem.o
+                0x00000320       0x20 ./release/stm32f10x_usart.o
  .debug_aranges
-                0x00000338       0x20 ./release/usb_prop.o
+                0x00000340       0x20 ./release/stm32f10x_wwdg.o
  .debug_aranges
-                0x00000358       0x20 ./release/usb_pwr.o
+                0x00000360       0x20 ./release/hw_config.o
  .debug_aranges
-                0x00000378       0x20 ./release/usb_regs.o
+                0x00000380       0x20 ./release/stm32f10x_it.o
  .debug_aranges
-                0x00000398       0x20 ./release/usb_sil.o
+                0x000003a0       0x20 ./release/usb_core.o
  .debug_aranges
-                0x000003b8       0x20 ./release/lib_crc.o
+                0x000003c0       0x18 ./release/usb_desc.o
  .debug_aranges
-                0x000003d8       0x20 ./release/sampleacquisition.o
+                0x000003d8       0x20 ./release/usb_endp.o
  .debug_aranges
-                0x000003f8       0x20 ./release/uartcomm.o
+                0x000003f8       0x20 ./release/usb_init.o
  .debug_aranges
-                0x00000418       0x20 ./release/usbcomm.o
+                0x00000418       0x20 ./release/usb_int.o
  .debug_aranges
-                0x00000438       0x20 ./release/serialframe.o
+                0x00000438       0x20 ./release/usb_istr.o
  .debug_aranges
-                0x00000458       0x28 ./release/main.o
+                0x00000458       0x20 ./release/usb_mem.o
  .debug_aranges
-                0x00000480       0x20 ./release/signalfilter.o
+                0x00000478       0x20 ./release/usb_prop.o
  .debug_aranges
-                0x000004a0       0x20 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+                0x00000498       0x20 ./release/usb_pwr.o
  .debug_aranges
-                0x000004c0       0x20 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
+                0x000004b8       0x20 ./release/usb_regs.o
+ .debug_aranges
+                0x000004d8       0x20 ./release/usb_sil.o
+ .debug_aranges
+                0x000004f8       0x20 ./release/lib_crc.o
+ .debug_aranges
+                0x00000518       0x20 ./release/sampleacquisition.o
+ .debug_aranges
+                0x00000538       0x20 ./release/uartcomm.o
+ .debug_aranges
+                0x00000558       0x20 ./release/usbcomm.o
+ .debug_aranges
+                0x00000578       0x20 ./release/serialframe.o
+ .debug_aranges
+                0x00000598       0x28 ./release/main.o
+ .debug_aranges
+                0x000005c0       0x20 ./release/signalfilter.o
+ .debug_aranges
+                0x000005e0       0x20 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+ .debug_aranges
+                0x00000600       0x20 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
 
-.debug_loc      0x00000000     0x8e8f
+.debug_loc      0x00000000     0xbbaf
  .debug_loc     0x00000000       0x21 ./release/clock.o
  .debug_loc     0x00000021      0x493 ./release/usart.o
- .debug_loc     0x000004b4      0x190 ./release/misc.o
- .debug_loc     0x00000644      0xa2d ./release/stm32f10x_adc.o
- .debug_loc     0x00001071      0x198 ./release/stm32f10x_bkp.o
- .debug_loc     0x00001209      0x1ae ./release/stm32f10x_dma.o
- .debug_loc     0x000013b7      0x1c0 ./release/stm32f10x_exti.o
- .debug_loc     0x00001577      0x9e4 ./release/stm32f10x_flash.o
- .debug_loc     0x00001f5b      0x5d0 ./release/stm32f10x_gpio.o
- .debug_loc     0x0000252b       0x62 ./release/stm32f10x_iwdg.o
- .debug_loc     0x0000258d      0x6e3 ./release/stm32f10x_rcc.o
- .debug_loc     0x00002c70      0x265 ./release/stm32f10x_rtc.o
- .debug_loc     0x00002ed5      0x2e9 ./release/stm32f10x_sdio.o
- .debug_loc     0x000031be     0x1ccd ./release/stm32f10x_tim.o
- .debug_loc     0x00004e8b      0x71f ./release/stm32f10x_usart.o
- .debug_loc     0x000055aa      0x130 ./release/stm32f10x_wwdg.o
- .debug_loc     0x000056da      0x29b ./release/hw_config.o
- .debug_loc     0x00005975      0x9c6 ./release/usb_core.o
- .debug_loc     0x0000633b       0xa8 ./release/usb_endp.o
- .debug_loc     0x000063e3       0x20 ./release/usb_init.o
- .debug_loc     0x00006403      0x178 ./release/usb_int.o
- .debug_loc     0x0000657b       0x20 ./release/usb_istr.o
- .debug_loc     0x0000659b      0x191 ./release/usb_mem.o
- .debug_loc     0x0000672c      0x203 ./release/usb_prop.o
- .debug_loc     0x0000692f      0x136 ./release/usb_pwr.o
- .debug_loc     0x00006a65      0xc5b ./release/usb_regs.o
- .debug_loc     0x000076c0      0x120 ./release/usb_sil.o
- .debug_loc     0x000077e0      0x52c ./release/lib_crc.o
- .debug_loc     0x00007d0c      0x145 ./release/sampleacquisition.o
- .debug_loc     0x00007e51      0x1ba ./release/uartcomm.o
- .debug_loc     0x0000800b      0x2de ./release/usbcomm.o
- .debug_loc     0x000082e9      0x609 ./release/serialframe.o
- .debug_loc     0x000088f2       0x20 ./release/main.o
- .debug_loc     0x00008912      0x27b ./release/signalfilter.o
- .debug_loc     0x00008b8d      0x2cb ../drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
- .debug_loc     0x00008e58       0x37 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
+ .debug_loc     0x000004b4      0xac1 ./release/xprintf.o
+ .debug_loc     0x00000f75      0x190 ./release/misc.o
+ .debug_loc     0x00001105      0xa2d ./release/stm32f10x_adc.o
+ .debug_loc     0x00001b32      0x198 ./release/stm32f10x_bkp.o
+ .debug_loc     0x00001cca      0x804 ./release/stm32f10x_can.o
+ .debug_loc     0x000024ce      0x233 ./release/stm32f10x_cec.o
+ .debug_loc     0x00002701       0x7f ./release/stm32f10x_crc.o
+ .debug_loc     0x00002780      0x3dc ./release/stm32f10x_dac.o
+ .debug_loc     0x00002b5c       0x3a ./release/stm32f10x_dbgmcu.o
+ .debug_loc     0x00002b96      0x1ae ./release/stm32f10x_dma.o
+ .debug_loc     0x00002d44      0x1c0 ./release/stm32f10x_exti.o
+ .debug_loc     0x00002f04      0x9e4 ./release/stm32f10x_flash.o
+ .debug_loc     0x000038e8      0x470 ./release/stm32f10x_fsmc.o
+ .debug_loc     0x00003d58      0x5d0 ./release/stm32f10x_gpio.o
+ .debug_loc     0x00004328      0x80d ./release/stm32f10x_i2c.o
+ .debug_loc     0x00004b35       0x62 ./release/stm32f10x_iwdg.o
+ .debug_loc     0x00004b97      0x131 ./release/stm32f10x_pwr.o
+ .debug_loc     0x00004cc8      0x6e3 ./release/stm32f10x_rcc.o
+ .debug_loc     0x000053ab      0x265 ./release/stm32f10x_rtc.o
+ .debug_loc     0x00005610      0x2e9 ./release/stm32f10x_sdio.o
+ .debug_loc     0x000058f9      0x5e5 ./release/stm32f10x_spi.o
+ .debug_loc     0x00005ede     0x1ccd ./release/stm32f10x_tim.o
+ .debug_loc     0x00007bab      0x71f ./release/stm32f10x_usart.o
+ .debug_loc     0x000082ca      0x130 ./release/stm32f10x_wwdg.o
+ .debug_loc     0x000083fa      0x29b ./release/hw_config.o
+ .debug_loc     0x00008695      0x9c6 ./release/usb_core.o
+ .debug_loc     0x0000905b       0xa8 ./release/usb_endp.o
+ .debug_loc     0x00009103       0x20 ./release/usb_init.o
+ .debug_loc     0x00009123      0x178 ./release/usb_int.o
+ .debug_loc     0x0000929b       0x20 ./release/usb_istr.o
+ .debug_loc     0x000092bb      0x191 ./release/usb_mem.o
+ .debug_loc     0x0000944c      0x203 ./release/usb_prop.o
+ .debug_loc     0x0000964f      0x136 ./release/usb_pwr.o
+ .debug_loc     0x00009785      0xc5b ./release/usb_regs.o
+ .debug_loc     0x0000a3e0      0x120 ./release/usb_sil.o
+ .debug_loc     0x0000a500      0x52c ./release/lib_crc.o
+ .debug_loc     0x0000aa2c      0x145 ./release/sampleacquisition.o
+ .debug_loc     0x0000ab71      0x1ba ./release/uartcomm.o
+ .debug_loc     0x0000ad2b      0x2de ./release/usbcomm.o
+ .debug_loc     0x0000b009      0x609 ./release/serialframe.o
+ .debug_loc     0x0000b612       0x20 ./release/main.o
+ .debug_loc     0x0000b632      0x27b ./release/signalfilter.o
+ .debug_loc     0x0000b8ad      0x2cb ../drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+ .debug_loc     0x0000bb78       0x37 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
 
-.debug_str      0x00000000     0x5d11
- .debug_str     0x00000000      0x2cb ./release/clock.o
-                                0x314 (size before relaxing)
- .debug_str     0x000002cb      0x23a ./release/usart.o
-                                0x40b (size before relaxing)
- .debug_str     0x00000505      0x205 ./release/misc.o
-                                0x37a (size before relaxing)
- .debug_str     0x0000070a      0x56a ./release/stm32f10x_adc.o
-                                0x6c3 (size before relaxing)
- .debug_str     0x00000c74      0x346 ./release/stm32f10x_bkp.o
-                                0x579 (size before relaxing)
- .debug_str     0x00000fba      0x225 ./release/stm32f10x_dma.o
-                                0x372 (size before relaxing)
- .debug_str     0x000011df      0x1ce ./release/stm32f10x_exti.o
-                                0x30f (size before relaxing)
- .debug_str     0x000013ad      0x410 ./release/stm32f10x_flash.o
-                                0x599 (size before relaxing)
- .debug_str     0x000017bd      0x385 ./release/stm32f10x_gpio.o
-                                0x4e1 (size before relaxing)
- .debug_str     0x00001b42       0xe9 ./release/stm32f10x_iwdg.o
-                                0x20d (size before relaxing)
- .debug_str     0x00001c2b      0x3e4 ./release/stm32f10x_rcc.o
-                                0x5cb (size before relaxing)
- .debug_str     0x0000200f      0x1a1 ./release/stm32f10x_rtc.o
-                                0x353 (size before relaxing)
- .debug_str     0x000021b0      0x487 ./release/stm32f10x_sdio.o
-                                0x5ec (size before relaxing)
- .debug_str     0x00002637      0xad1 ./release/stm32f10x_tim.o
-                                0xdbc (size before relaxing)
- .debug_str     0x00003108      0x41e ./release/stm32f10x_usart.o
-                                0x681 (size before relaxing)
- .debug_str     0x00003526       0xe5 ./release/stm32f10x_wwdg.o
-                                0x240 (size before relaxing)
- .debug_str     0x0000360b      0x6d0 ./release/hw_config.o
-                                0xacc (size before relaxing)
- .debug_str     0x00003cdb       0x6c ./release/stm32f10x_it.o
-                                0x154 (size before relaxing)
- .debug_str     0x00003d47      0x727 ./release/usb_core.o
-                                0xa94 (size before relaxing)
- .debug_str     0x0000446e       0xe3 ./release/usb_desc.o
-                                0x1f1 (size before relaxing)
- .debug_str     0x00004551       0xbe ./release/usb_endp.o
-                                0x2c8 (size before relaxing)
- .debug_str     0x0000460f       0x6f ./release/usb_init.o
-                                0x4e8 (size before relaxing)
- .debug_str     0x0000467e       0x73 ./release/usb_int.o
-                                0x1c4 (size before relaxing)
- .debug_str     0x000046f1       0x50 ./release/usb_istr.o
-                                0x2c1 (size before relaxing)
- .debug_str     0x00004741       0x73 ./release/usb_mem.o
-                                0x19d (size before relaxing)
- .debug_str     0x000047b4      0x2e2 ./release/usb_prop.o
-                                0x9cd (size before relaxing)
- .debug_str     0x00004a96      0x111 ./release/usb_pwr.o
-                                0x345 (size before relaxing)
- .debug_str     0x00004ba7      0x33f ./release/usb_regs.o
-                                0x525 (size before relaxing)
- .debug_str     0x00004ee6       0x74 ./release/usb_sil.o
-                                0x205 (size before relaxing)
- .debug_str     0x00004f5a      0x182 ./release/lib_crc.o
+.debug_str      0x00000000     0x769b
+ .debug_str     0x00000000      0x2b9 ./release/clock.o
+                                0x311 (size before relaxing)
+ .debug_str     0x000002b9      0x27e ./release/usart.o
+                                0x415 (size before relaxing)
+ .debug_str     0x00000537       0xbc ./release/xprintf.o
+                                0x16b (size before relaxing)
+ .debug_str     0x000005f3      0x205 ./release/misc.o
+                                0x384 (size before relaxing)
+ .debug_str     0x000007f8      0x560 ./release/stm32f10x_adc.o
+                                0x6cd (size before relaxing)
+ .debug_str     0x00000d58      0x346 ./release/stm32f10x_bkp.o
+                                0x583 (size before relaxing)
+ .debug_str     0x0000109e      0x54a ./release/stm32f10x_can.o
+                                0x700 (size before relaxing)
+ .debug_str     0x000015e8      0x1bb ./release/stm32f10x_cec.o
+                                0x348 (size before relaxing)
+ .debug_str     0x000017a3       0xcb ./release/stm32f10x_crc.o
+                                0x1f6 (size before relaxing)
+ .debug_str     0x0000186e      0x21c ./release/stm32f10x_dac.o
+                                0x381 (size before relaxing)
+ .debug_str     0x00001a8a       0x9f ./release/stm32f10x_dbgmcu.o
+                                0x1c2 (size before relaxing)
+ .debug_str     0x00001b29      0x225 ./release/stm32f10x_dma.o
+                                0x37c (size before relaxing)
+ .debug_str     0x00001d4e      0x1ce ./release/stm32f10x_exti.o
+                                0x319 (size before relaxing)
+ .debug_str     0x00001f1c      0x40a ./release/stm32f10x_flash.o
+                                0x5a3 (size before relaxing)
+ .debug_str     0x00002326      0x5dc ./release/stm32f10x_fsmc.o
+                                0x73f (size before relaxing)
+ .debug_str     0x00002902      0x385 ./release/stm32f10x_gpio.o
+                                0x4eb (size before relaxing)
+ .debug_str     0x00002c87      0x44b ./release/stm32f10x_i2c.o
+                                0x64a (size before relaxing)
+ .debug_str     0x000030d2       0xe9 ./release/stm32f10x_iwdg.o
+                                0x217 (size before relaxing)
+ .debug_str     0x000031bb      0x129 ./release/stm32f10x_pwr.o
+                                0x2f4 (size before relaxing)
+ .debug_str     0x000032e4      0x34c ./release/stm32f10x_rcc.o
+                                0x5d5 (size before relaxing)
+ .debug_str     0x00003630      0x1a1 ./release/stm32f10x_rtc.o
+                                0x35d (size before relaxing)
+ .debug_str     0x000037d1      0x487 ./release/stm32f10x_sdio.o
+                                0x5f6 (size before relaxing)
+ .debug_str     0x00003c58      0x372 ./release/stm32f10x_spi.o
+                                0x5f8 (size before relaxing)
+ .debug_str     0x00003fca      0xac8 ./release/stm32f10x_tim.o
+                                0xdc6 (size before relaxing)
+ .debug_str     0x00004a92      0x41e ./release/stm32f10x_usart.o
+                                0x68b (size before relaxing)
+ .debug_str     0x00004eb0       0xe5 ./release/stm32f10x_wwdg.o
+                                0x24a (size before relaxing)
+ .debug_str     0x00004f95      0x6d0 ./release/hw_config.o
+                                0xad6 (size before relaxing)
+ .debug_str     0x00005665       0x6c ./release/stm32f10x_it.o
+                                0x15e (size before relaxing)
+ .debug_str     0x000056d1      0x727 ./release/usb_core.o
+                                0xa9e (size before relaxing)
+ .debug_str     0x00005df8       0xe3 ./release/usb_desc.o
                                 0x1fb (size before relaxing)
- .debug_str     0x000050dc      0x14d ./release/sampleacquisition.o
-                                0xc8a (size before relaxing)
- .debug_str     0x00005229       0xc8 ./release/uartcomm.o
-                                0x25a (size before relaxing)
- .debug_str     0x000052f1       0xae ./release/usbcomm.o
-                                0x2b0 (size before relaxing)
- .debug_str     0x0000539f       0xf2 ./release/serialframe.o
-                                0x210 (size before relaxing)
- .debug_str     0x00005491       0x48 ./release/main.o
-                                0x2cf (size before relaxing)
- .debug_str     0x000054d9      0x210 ./release/signalfilter.o
-                                0x3c7 (size before relaxing)
- .debug_str     0x000056e9      0x5ee ../drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+ .debug_str     0x00005edb       0xbe ./release/usb_endp.o
+                                0x2d2 (size before relaxing)
+ .debug_str     0x00005f99       0x6f ./release/usb_init.o
+                                0x4f2 (size before relaxing)
+ .debug_str     0x00006008       0x73 ./release/usb_int.o
+                                0x1ce (size before relaxing)
+ .debug_str     0x0000607b       0x50 ./release/usb_istr.o
+                                0x2cb (size before relaxing)
+ .debug_str     0x000060cb       0x73 ./release/usb_mem.o
+                                0x1a7 (size before relaxing)
+ .debug_str     0x0000613e      0x2e2 ./release/usb_prop.o
+                                0x9d7 (size before relaxing)
+ .debug_str     0x00006420      0x111 ./release/usb_pwr.o
+                                0x34f (size before relaxing)
+ .debug_str     0x00006531      0x33f ./release/usb_regs.o
+                                0x52f (size before relaxing)
+ .debug_str     0x00006870       0x74 ./release/usb_sil.o
+                                0x20f (size before relaxing)
+ .debug_str     0x000068e4      0x182 ./release/lib_crc.o
+                                0x205 (size before relaxing)
+ .debug_str     0x00006a66      0x14d ./release/sampleacquisition.o
+                                0xc94 (size before relaxing)
+ .debug_str     0x00006bb3       0xc8 ./release/uartcomm.o
+                                0x264 (size before relaxing)
+ .debug_str     0x00006c7b       0xae ./release/usbcomm.o
+                                0x2ad (size before relaxing)
+ .debug_str     0x00006d29       0xf2 ./release/serialframe.o
+                                0x21a (size before relaxing)
+ .debug_str     0x00006e1b       0x48 ./release/main.o
+                                0x2cc (size before relaxing)
+ .debug_str     0x00006e63      0x210 ./release/signalfilter.o
+                                0x3c4 (size before relaxing)
+ .debug_str     0x00007073      0x5ee ../drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
                                 0x84f (size before relaxing)
- .debug_str     0x00005cd7       0x3a ../drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
+ .debug_str     0x00007661       0x3a ../drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
                                 0x19c (size before relaxing)
 
-.debug_frame    0x00000000     0x2938
+.debug_frame    0x00000000     0x3504
  .debug_frame   0x00000000       0x70 ./release/clock.o
  .debug_frame   0x00000070       0xd0 ./release/usart.o
- .debug_frame   0x00000140       0x68 ./release/misc.o
- .debug_frame   0x000001a8      0x280 ./release/stm32f10x_adc.o
- .debug_frame   0x00000428       0xe0 ./release/stm32f10x_bkp.o
- .debug_frame   0x00000508       0xcc ./release/stm32f10x_dma.o
- .debug_frame   0x000005d4       0x98 ./release/stm32f10x_exti.o
- .debug_frame   0x0000066c      0x254 ./release/stm32f10x_flash.o
- .debug_frame   0x000008c0      0x174 ./release/stm32f10x_gpio.o
- .debug_frame   0x00000a34       0x70 ./release/stm32f10x_iwdg.o
- .debug_frame   0x00000aa4      0x224 ./release/stm32f10x_rcc.o
- .debug_frame   0x00000cc8      0x108 ./release/stm32f10x_rtc.o
- .debug_frame   0x00000dd0      0x20c ./release/stm32f10x_sdio.o
- .debug_frame   0x00000fdc      0x65c ./release/stm32f10x_tim.o
- .debug_frame   0x00001638      0x20c ./release/stm32f10x_usart.o
- .debug_frame   0x00001844       0x9c ./release/stm32f10x_wwdg.o
- .debug_frame   0x000018e0      0x140 ./release/hw_config.o
- .debug_frame   0x00001a20       0x20 ./release/stm32f10x_it.o
- .debug_frame   0x00001a40      0x19c ./release/usb_core.o
- .debug_frame   0x00001bdc       0x54 ./release/usb_endp.o
- .debug_frame   0x00001c30       0x28 ./release/usb_init.o
- .debug_frame   0x00001c58       0x50 ./release/usb_int.o
- .debug_frame   0x00001ca8       0x2c ./release/usb_istr.o
- .debug_frame   0x00001cd4       0x44 ./release/usb_mem.o
- .debug_frame   0x00001d18      0x108 ./release/usb_prop.o
- .debug_frame   0x00001e20       0x84 ./release/usb_pwr.o
- .debug_frame   0x00001ea4      0x3d0 ./release/usb_regs.o
- .debug_frame   0x00002274       0x58 ./release/usb_sil.o
- .debug_frame   0x000022cc       0xb0 ./release/lib_crc.o
- .debug_frame   0x0000237c       0xfc ./release/sampleacquisition.o
- .debug_frame   0x00002478       0x8c ./release/uartcomm.o
- .debug_frame   0x00002504       0xc4 ./release/usbcomm.o
- .debug_frame   0x000025c8       0xf4 ./release/serialframe.o
- .debug_frame   0x000026bc       0x38 ./release/main.o
- .debug_frame   0x000026f4       0x70 ./release/signalfilter.o
- .debug_frame   0x00002764      0x1a8 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
- .debug_frame   0x0000290c       0x2c ../drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
+ .debug_frame   0x00000140      0x170 ./release/xprintf.o
+ .debug_frame   0x000002b0       0x68 ./release/misc.o
+ .debug_frame   0x00000318      0x280 ./release/stm32f10x_adc.o
+ .debug_frame   0x00000598       0xe0 ./release/stm32f10x_bkp.o
+ .debug_frame   0x00000678      0x1bc ./release/stm32f10x_can.o
+ .debug_frame   0x00000834      0x100 ./release/stm32f10x_cec.o
+ .debug_frame   0x00000934       0x78 ./release/stm32f10x_crc.o
+ .debug_frame   0x000009ac       0xf0 ./release/stm32f10x_dac.o
+ .debug_frame   0x00000a9c       0x40 ./release/stm32f10x_dbgmcu.o
+ .debug_frame   0x00000adc       0xcc ./release/stm32f10x_dma.o
+ .debug_frame   0x00000ba8       0x98 ./release/stm32f10x_exti.o
+ .debug_frame   0x00000c40      0x254 ./release/stm32f10x_flash.o
+ .debug_frame   0x00000e94      0x168 ./release/stm32f10x_fsmc.o
+ .debug_frame   0x00000ffc      0x174 ./release/stm32f10x_gpio.o
+ .debug_frame   0x00001170      0x240 ./release/stm32f10x_i2c.o
+ .debug_frame   0x000013b0       0x70 ./release/stm32f10x_iwdg.o
+ .debug_frame   0x00001420       0xa8 ./release/stm32f10x_pwr.o
+ .debug_frame   0x000014c8      0x224 ./release/stm32f10x_rcc.o
+ .debug_frame   0x000016ec      0x108 ./release/stm32f10x_rtc.o
+ .debug_frame   0x000017f4      0x20c ./release/stm32f10x_sdio.o
+ .debug_frame   0x00001a00      0x1a8 ./release/stm32f10x_spi.o
+ .debug_frame   0x00001ba8      0x65c ./release/stm32f10x_tim.o
+ .debug_frame   0x00002204      0x20c ./release/stm32f10x_usart.o
+ .debug_frame   0x00002410       0x9c ./release/stm32f10x_wwdg.o
+ .debug_frame   0x000024ac      0x140 ./release/hw_config.o
+ .debug_frame   0x000025ec       0x20 ./release/stm32f10x_it.o
+ .debug_frame   0x0000260c      0x19c ./release/usb_core.o
+ .debug_frame   0x000027a8       0x54 ./release/usb_endp.o
+ .debug_frame   0x000027fc       0x28 ./release/usb_init.o
+ .debug_frame   0x00002824       0x50 ./release/usb_int.o
+ .debug_frame   0x00002874       0x2c ./release/usb_istr.o
+ .debug_frame   0x000028a0       0x44 ./release/usb_mem.o
+ .debug_frame   0x000028e4      0x108 ./release/usb_prop.o
+ .debug_frame   0x000029ec       0x84 ./release/usb_pwr.o
+ .debug_frame   0x00002a70      0x3d0 ./release/usb_regs.o
+ .debug_frame   0x00002e40       0x58 ./release/usb_sil.o
+ .debug_frame   0x00002e98       0xb0 ./release/lib_crc.o
+ .debug_frame   0x00002f48       0xfc ./release/sampleacquisition.o
+ .debug_frame   0x00003044       0x8c ./release/uartcomm.o
+ .debug_frame   0x000030d0       0xc4 ./release/usbcomm.o
+ .debug_frame   0x00003194       0xf4 ./release/serialframe.o
+ .debug_frame   0x00003288       0x38 ./release/main.o
+ .debug_frame   0x000032c0       0x70 ./release/signalfilter.o
+ .debug_frame   0x00003330      0x1a8 ../drivers\libDrivers_STM32F103_107_Jan_2013.a(timer_1234.o)
+ .debug_frame   0x000034d8       0x2c ../drivers\libDrivers_STM32F103_107_Jan_2013.a(gpio.o)
 
 .debug_ranges   0x00000000      0x1b8
  .debug_ranges  0x00000000       0x60 ./release/stm32f10x_tim.o
