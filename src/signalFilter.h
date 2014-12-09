@@ -18,23 +18,27 @@
 	*
 	*****************************************************************************/
 
-#define FREQUENCY_THRESHOLD					{1500,1500,1500,1500}
-#define POSITION_VIRGULE						9
+#define FREQUENCY_THRESHOLD					{15000,15000,15000,15000}//{4000,4000,4000,4000}
+#define POSITION_VIRGULE						10
 
 #define NB_BLOCKS										(256/SIGNAL_HALF_BUFFER_SIZE)
 #define MAX_SIGNAL									1
-#define AVERAGE_SIGNAL              1970
+#define AVERAGE_SIGNAL              2048
+
+#define NB_SAMPLE_CORRELATION				(EMISSION_PERIOD*NB_BLOCKS/2) // Equivalent to 20ms 
+#define NB_CORRELATIONS_FOR_TDOA		((EMISSION_PERIOD+EMISSION_OFF_PERIOD)*NB_BLOCKS/2) // Equivalent to 40ms
 
 #define NB_BEACONS									4
 
-#define EMISSION_PERIOD 						1 //ms
-#define EMISSION_OFF_PERIOD	 				24
+#define EMISSION_PERIOD 						20 //ms
+#define EMISSION_OFF_PERIOD	 				20
 
-#define EMISSION_PERIOD_SAMPLE 			(EMISSION_PERIOD*(256/SIGNAL_HALF_BUFFER_SIZE))	
+#define EMISSION_PERIOD_SAMPLE 			((EMISSION_PERIOD + 17)*(256/SIGNAL_HALF_BUFFER_SIZE))	
 
 #define TDOA_PERIOD 								1000 //ms
-#define TDOA_PERIOD_SAMPLE 					(TDOA_PERIOD/(EMISSION_OFF_PERIOD + EMISSION_PERIOD))
+#define TDOA_PERIOD_SAMPLE 					(TDOA_PERIOD/EMISSION_PERIOD_SAMPLE)
 
+#define REF_BEACON									2 // 3rd beacon
 /******************************************************************************
 	*
 	*   PUBLIC FUNCTIONS
