@@ -156,8 +156,8 @@ uint8_t uartCommSendData( uint8_t * array, uint16_t size )
 uint8_t uartCommSendTimes( uint32_t time1, uint32_t time2, uint32_t time3, uint32_t time4 )
 {
 	
-	uint8_t * frame = createSendableFrame( TIME_FRAME, time1, time2, time3, time4);
+//	uint8_t * frame = createSendableFrame( TIME_FRAME, time1, time2, time3, time4);
 	
-	return uartCommSendData( frame, CONVERTED_SERIAL_FRAME_SIZE );
+	return 0;//uartCommSendData( frame, CONVERTED_SERIAL_FRAME_SIZE );
 	
 }

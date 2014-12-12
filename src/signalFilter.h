@@ -46,13 +46,13 @@
 	*****************************************************************************/
 
 /********************************************************************************
-	* signalTraitementInit
+	* signalTreatmentInit
 	*
 	* Congifure the GPIO for the signal reception
 	*
 	*******************************************************************************/
 
-void signalTraitementInit();
+void signalTreatmentInit();
 
 /********************************************************************************
 	* signalTraitement
@@ -75,8 +75,6 @@ void signalTraitementInit();
 	*******************************************************************************/
 
 uint32_t signalProcessing ();
-
-int32_t squaredRootHomeMade(int32_t numberToSquare, uint16_t maxIteration);
 
 
 #endif

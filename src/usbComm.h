@@ -83,7 +83,7 @@ void usbCommSendData( uint8_t * array, uint16_t size );
 	* @param Time of the 4th emitter in ns
 	* @return Void
 	******************************************************************************/
-void usbCommSendTimes( uint32_t time1, uint32_t time2, uint32_t time3, uint32_t time4 );
+void usbCommSendTimes( int32_t time1, int32_t time2, int32_t time3, int32_t time4, int32_t rss1, int32_t rss2, int32_t rss3, int32_t rss4 );
 
 /*******************************************************************************
 	* usbCommSendCoefficients

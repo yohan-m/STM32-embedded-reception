@@ -2,8 +2,8 @@ release/hw_config.o: \
  ../../common-sources/Pack_USB/STM_USB_Lib/src_usb_md_cdc/hw_config.c \
  ../../common-sources/Pack_USB/STM_USB_Lib/inc_usb_md_cdc/stm32f10x_it.h \
  ../system/stm32f10x.h C:/Keil/ARM/CMSIS/Include/core_cm3.h \
- c:\users\administrateur\desktop\codesourcery\sourcery\ g++\ lite\bin\../lib/gcc/arm-none-eabi/4.7.3/include/stdint.h \
- c:\users\administrateur\desktop\codesourcery\sourcery\ g++\ lite\bin\../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/include/stdint.h \
+ c:\program\ files\ (x86)\codesourcery\sourcery\ g++\ lite\bin\../lib/gcc/arm-none-eabi/4.7.3/include/stdint.h \
+ c:\program\ files\ (x86)\codesourcery\sourcery\ g++\ lite\bin\../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/include/stdint.h \
  C:/Keil/ARM/CMSIS/Include/core_cmInstr.h \
  C:/Keil/ARM/CMSIS/Include/core_cmFunc.h ../system/system_stm32f10x.h \
  ../../common-sources/Pack_USB/STM_USB_Lib/inc_peripherals/stm32f10x_usart.h \
