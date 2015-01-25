@@ -4,11 +4,11 @@
 	*
 	*     This file contains the application for filtering a signal. 
 	*			
-	* 		Last modification : 09 Nov 2014
+	* 		Last modification : 25 Jan 2015
 	*
-	* @author Guillaume Fauxpoint
+	* @author Guillaume Fauxpoint & Miquèl Raynal
 	* @version 0.1
-	* @date 29 Oct 2014
+	* @date 25 Jan 2015
 	*/
 
 
@@ -33,26 +33,7 @@
 	*****************************************************************************/
 
 /********************************************************************************
-	* signalTraitementInit
-	*
-	* Congifure the GPIO for the signal reception
-	*
-	*******************************************************************************/
-
-void signalTreatmentInit()
-{
-
-	
-	/*
-	GPIO_Configure( GPIOB, 6, OUTPUT, OUTPUT_PPULL ); //LED 39,5 kHz
-	GPIO_Configure( GPIOB, 7, OUTPUT, OUTPUT_PPULL );	//LED 40,0 kHz
-	GPIO_Configure( GPIOB, 8, OUTPUT, OUTPUT_PPULL );	//LED 40,5 kHz
-	GPIO_Configure( GPIOB, 9, OUTPUT, OUTPUT_PPULL );	//LED 41,0 kHz
-	*/
-}
-
-/********************************************************************************
-	* signalTraitement
+	* signalProcessing
 	*
 	*  	Filtering a signal. 
 	*		Allow to know if this signal is composed by signals with these following frequencies :
@@ -70,10 +51,6 @@ void signalTreatmentInit()
   * 
 	* @return 0 if working
 	*******************************************************************************/
-
-
-
-
 uint32_t signalProcessing ()					
 {
 	// Count variable
@@ -101,13 +78,10 @@ uint32_t signalProcessing ()
 	
 	uint32_t tempMaximum = 0;
 	uint32_t tempMinimum = -1;
-	uint32_t idBeaconWithLowRSS = 0;
+	uint32_t idBeaconWithLowRSS = 0; // Not really used finally
 	uint32_t idClosestBeacon = 0;
 	
 	static int32_t fuckingTDOA[NB_BEACONS] = {0,0,0,0};
-	int32_t tempTDOA[NB_BEACONS] = {0,0,0,0};
-	static int32_t arrayTDOA[NB_BEACONS][NB_SAMPLE_CORRELATION];
-	static uint32_t idTDOA = 0;
 	static uint8_t readyToSend = 0;
 		
 	int64_t tempResultReal[NB_BEACONS];
@@ -118,35 +92,38 @@ uint32_t signalProcessing ()
 	
 	static int32_t tdoaSaved[NB_BEACONS][5] = {{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0}};
 	static uint8_t idTdoaSaved = 0;
-		
-	//GPIO_WriteBit( GPIOC, 12, 0 );
-	
-	//Search the right block to do the signal processing
+			
+	// A block is a portion of the window where the new signal has to be processed
 	CurrentBlock ++;
 	if (CurrentBlock >= NB_BLOCKS)
 	{
 		CurrentBlock = 0;
 	}
 
-	//Determin the moment to start the cosinus
+	// Determins what part of the hard-saved cosinus has to be used to process the filter
 	IdForCos = CurrentBlock * SIGNAL_HALF_BUFFER_SIZE;
 	
-	//Reset the value of the block output filter
-	for (j=0;j<NB_BEACONS;j++)
+	// Reset the value of some variables
+	for (j = 0; j < NB_BEACONS; j++)
 	{
 		sumBlockReal[j][CurrentBlock] =0;
 		sumBlockImg[j][CurrentBlock] =0;
 		tempResultReal[j] =0;
 		tempResultImg[j] =0 ;
 		tempOuputCorrelation[j] = 0;
-		//fuckingTDOA[j] = 0;
 	}
 	
-	//Get the recorded signal frome the DMA buffer
-	for (i=0;i<SIGNAL_HALF_BUFFER_SIZE;i++)
+	///////////////
+	// FILTERING //
+	///////////////
+	
+	// Get the recorded signal from the DMA buffer
+	for (i = 0; i < SIGNAL_HALF_BUFFER_SIZE; i++)
 	{
+		// Remove the average (ADC is on 12 bits)
 		signalWithoutAverage[i] = ((int32_t) adcBuffer[idDataToProcess + i] - (int32_t)AVERAGE_SIGNAL); // Signal 4.12 signé
 			
+		// Save the real and the imaginary part for each beacon on the current block
 		sumBlockReal[0][CurrentBlock] += signalWithoutAverage[i]*cos_39500[IdForCos + i];	
 		sumBlockReal[1][CurrentBlock] += signalWithoutAverage[i]*cos_40000[IdForCos + i];		
 		sumBlockReal[2][CurrentBlock] += signalWithoutAverage[i]*cos_40500[IdForCos + i];		
@@ -160,12 +137,14 @@ uint32_t signalProcessing ()
 
 	for (i=0;i<NB_BEACONS;i++)
 	{
+		// Add the value of the real and imaginary part of the previously derived blocks
 		for (j=0;j<NB_BLOCKS;j++)
 		{
 			tempResultReal[i] += (int64_t)sumBlockReal[i][j];
 			tempResultImg[i] += (int64_t)sumBlockImg[i][j];
 		}
 
+		// Compute the absolute value
 		if (tempResultReal[i] < 0)
 		{
 			tempResultReal[i] = -1 * tempResultReal[i];
@@ -175,20 +154,28 @@ uint32_t signalProcessing ()
 			tempResultImg[i] = -1 * tempResultImg[i];
 		}
 		
+		// Turn the results into unsigned numbers (winning one bit)
 		utempResultReal[i] = (uint64_t)tempResultReal[i];
 		utempResultImg[i] = (uint64_t)tempResultImg[i];
 		
+		// Derive the signals to the power 2
 		utempResultReal[i] *= utempResultReal[i];
 		utempResultImg[i] *= utempResultImg[i];
 		
+		// The output of the filter is the sum of the real and imaginary coefficients to the power 2
 		outputFilters[i] = (uint32_t)(utempResultReal[i] >> 32) + (uint32_t)(utempResultImg[i] >> 32);			
 		
 		inputCorrelation[i][IdForCorrelation] = outputFilters[i];
 	}
 	
-	for (i=0;i<NB_BEACONS;i++) 
+	/////////////////
+	// CORRELATION //
+	/////////////////
+	
+	for (i = 0; i < NB_BEACONS; i++) 
 	{
-		for (j=0;j< NB_SAMPLE_CORRELATION; j++) // Derives the correlation for the new point using 20ms
+		// Derives the correlation for the new point using 20ms
+		for (j = 0; j < NB_SAMPLE_CORRELATION; j++) 
 		{
 			tempOuputCorrelation[i] += inputCorrelation[i][j];
 		}
@@ -196,6 +183,7 @@ uint32_t signalProcessing ()
 		outputCorrelation[i][idOutputCorrelation] = (uint32_t)(tempOuputCorrelation[i] >> 6);
 	}
 	
+	// Possibility to debug at this part sending the output of the correlation
 	//usbCommSendCoefficients(outputCorrelation[0][idOutputCorrelation],outputCorrelation[1][idOutputCorrelation],outputCorrelation[2][idOutputCorrelation],outputCorrelation[3][idOutputCorrelation] );	
 	
 	// Sioux way to increment the ids of the arrays and to detect when they are full
@@ -209,7 +197,7 @@ uint32_t signalProcessing ()
 		IdForCorrelation= 0;
 	}
 	
-	// Research the id of the maximum for each correlation
+	// Research the id of the maximum for each correlation (ie: the position where it is possible to compare the time of arrival)
 	for (i = 0; i < NB_BEACONS; i++)
 	{
 		tempMaximum = 0;
@@ -229,7 +217,7 @@ uint32_t signalProcessing ()
 		} 
 	}
 
-	// Research the biggest maximum ie the closest beacon
+	// Research the biggest and the lowest maximum ie the closest and the farest beacon
 	tempMaximum= 0;
 	tempMinimum= -1;
 	for (i = 0; i < NB_BEACONS; i++)
@@ -242,10 +230,13 @@ uint32_t signalProcessing ()
 		if (outputCorrelation[i][idMaxOfArrayCorrelation[i]] < tempMinimum)
 		{
 			tempMinimum = outputCorrelation[i][idMaxOfArrayCorrelation[i]];
-			idBeaconWithLowRSS = i;
+			idBeaconWithLowRSS = i; // Just for record
 		}
 	}
-	//idClosestBeacon = 2;
+	
+	/////////////////////
+	// TDOA DERIVATION //
+	/////////////////////
 	
 	// Determines the TDOAs in number of samples (equivalent to 64/128 = 0.5ms time based unity)
 	for (i = 0; i < NB_BEACONS; i++)
@@ -263,8 +254,7 @@ uint32_t signalProcessing ()
 			fuckingTDOA[i] = (int32_t) idMaxOfArrayCorrelation[i] - (int32_t) idMaxOfArrayCorrelation[idClosestBeacon];
 			syncWindow++;
 		}
-		/////DEBUT TEST
-		// Saving 5 tdoas
+
 		tdoaSaved[i][idTdoaSaved] = fuckingTDOA[i];
 	}
 	
@@ -273,6 +263,7 @@ uint32_t signalProcessing ()
 		idTdoaSaved = 0;
 	}
 	
+	// Need a stable signal (at least four consecutive same TDOA) to validate it (done several time on each window, do not interfere with the frequency of TDOA released)
 	uint8_t ready = 1;
 	for (i = 0; i < NB_BEACONS; i++)
 	{
@@ -289,52 +280,11 @@ uint32_t signalProcessing ()
 	if(ready && readyToSend)
 	{
 		readyToSend = 0;
-		//fuckingTDOA[idBeaconWithLowRSS] = -34;
+		
+		// Coefficients are for debug purpose (using the Python script) while times are for the drone.
 		//usbCommSendCoefficients( fuckingTDOA[0]+34,fuckingTDOA[1]+34,fuckingTDOA[2]+34,fuckingTDOA[3]+34 );	
 		usbCommSendTimes( fuckingTDOA[0],fuckingTDOA[1],fuckingTDOA[2],fuckingTDOA[3], outputCorrelation[0][idMaxOfArrayCorrelation[0]], outputCorrelation[1][idMaxOfArrayCorrelation[1]], outputCorrelation[2][idMaxOfArrayCorrelation[2]], outputCorrelation[3][idMaxOfArrayCorrelation[3]] );	
-	}////FIN TEST
-	
-	/*if (syncWindow == 4 && readyToSend == 0) 
-	{
-		usbCommSendCoefficients( fuckingTDOA[0]+34,fuckingTDOA[1]+34,fuckingTDOA[2]+34,fuckingTDOA[3]+34 );	
-		//usbCommSendTimes( fuckingTDOA[0],fuckingTDOA[1],fuckingTDOA[2],fuckingTDOA[3], outputCorrelation[0][idMaxOfArrayCorrelation[0]], outputCorrelation[1][idMaxOfArrayCorrelation[1]], outputCorrelation[2][idMaxOfArrayCorrelation[2]], outputCorrelation[3][idMaxOfArrayCorrelation[3]] );	
-
-		readyToSend = 1;
 	}
-	if (syncWindow != 4)
-	{
-		readyToSend = 0;
-	}*/
-    
-	
-	
-	//usbCommSendCoefficients( fuckingTDOA[0],fuckingTDOA[1],fuckingTDOA[2],fuckingTDOA[3] );	
-	
-	/*if (++idTDOA == NB_SAMPLE_CORRELATION)
-	{
-		idTDOA = 0;
-		readyToSend = 1;
-	}*/
-	
-	if (readyToSend == 1)
-	{
-		/*for (i = 0; i < NB_BEACONS; i++)
-		{
-			tempTDOA[i] = 0;
-			for (j = 10; j < NB_SAMPLE_CORRELATION-10; j++)
-			{
-				tempTDOA[i] += arrayTDOA[i][j];
-			}
-			tempTDOA[i] /= NB_SAMPLE_CORRELATION-20;
-		}*/
-		//usbCommSendCoefficients( tempTDOA[0],tempTDOA[1],tempTDOA[2],tempTDOA[3] );	
-
-		//usbCommSendTimes( fuckingTDOA[0],fuckingTDOA[1],fuckingTDOA[2],fuckingTDOA[3], outputCorrelation[0][idMaxOfArrayCorrelation[0]], outputCorrelation[1][idMaxOfArrayCorrelation[1]], outputCorrelation[2][idMaxOfArrayCorrelation[2]], outputCorrelation[3][idMaxOfArrayCorrelation[3]] );	
-	}
-	
-	//GPIO_WriteBit( GPIOC, 12, 0 );
-
-	//Rajouter les LEDS pour un test réel
 	
 	return 0;			
 		

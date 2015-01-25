@@ -18,11 +18,8 @@
 	*
 	*****************************************************************************/
 
-#define FREQUENCY_THRESHOLD					{15000,15000,15000,15000}//{4000,4000,4000,4000}
-#define POSITION_VIRGULE						10
 
 #define NB_BLOCKS										(256/SIGNAL_HALF_BUFFER_SIZE)
-#define MAX_SIGNAL									1
 #define AVERAGE_SIGNAL              2048
 
 #define NB_SAMPLE_CORRELATION				(EMISSION_PERIOD*NB_BLOCKS/2) // Equivalent to 20ms 
@@ -38,7 +35,7 @@
 #define TDOA_PERIOD 								1000 //ms
 #define TDOA_PERIOD_SAMPLE 					(TDOA_PERIOD/EMISSION_PERIOD_SAMPLE)
 
-#define REF_BEACON									2 // 3rd beacon
+
 /******************************************************************************
 	*
 	*   PUBLIC FUNCTIONS
@@ -46,16 +43,7 @@
 	*****************************************************************************/
 
 /********************************************************************************
-	* signalTreatmentInit
-	*
-	* Congifure the GPIO for the signal reception
-	*
-	*******************************************************************************/
-
-void signalTreatmentInit();
-
-/********************************************************************************
-	* signalTraitement
+	* signalProcessing
 	*
 	*  	Filtering a signal. 
 	*		Allow to know if this signal is composed by signals with these following frequencies :
@@ -73,7 +61,6 @@ void signalTreatmentInit();
   * 
 	* @return 0 if working
 	*******************************************************************************/
-
 uint32_t signalProcessing ();
 
 
